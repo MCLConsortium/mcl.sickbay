@@ -48,7 +48,7 @@ To publish this software, try [Twine](https://twine.readthedocs.io/).
 
 ### 🔢 Versioning
 
-We use the [SemVer](https://semver.org/) philosophy for versioning this software. For versions available, see the [releases made](https://github.com/MCLConsortium/clinical-data/releases) on this project.
+We use the [SemVer](https://semver.org/) philosophy for versioning this software. For versions available, see the [release history](https://pypi.org/project/mcl.sickbay/#history).
 
 
 ## 📦 Additional Resources
@@ -61,7 +61,7 @@ Some resources that provide further context for this software are as follows:
 
 ## 👥 Contributing
 
-Well it's wide open right now, but later you might look at [open issues](https://github.com/MCLConsortium/clinical-data/issues), forking the project, and submitting a pull request.
+Well it's wide open right now, but later you might look at [open issues](https://github.com/MCLConsortium/mcl.sickbay/issues), forking the project, and submitting a pull request.
 
 
 ## 📃 License

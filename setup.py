@@ -27,7 +27,7 @@ setuptools.setup(
     long_description_content_type='text/markdown',
     author='Sean Kelly',
     author_email='sean.kelly@jpl.nasa.gov',
-    url='https://github.com/MCLConsortium/clinical-data',
+    url='https://github.com/MCLConsortium/mcl.sickbay',
     namespace_packages=['mcl'],
     test_suite='mcl.sickbay.tests.test_suite',
     packages=setuptools.find_packages('src', exclude=['docs', 'bootstrap']),
