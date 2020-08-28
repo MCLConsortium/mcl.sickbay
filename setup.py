@@ -17,11 +17,11 @@ _requirements = [
 
 here = os.path.abspath(os.path.dirname(__file__))
 with open(os.path.join(here, 'README.md'), 'r') as f: desc = f.read()
-
+with open(os.path.join(here, 'src', 'mcl', 'sickbay', 'VERSION.txt'), 'r') as f: version = f.read().strip()
 
 setuptools.setup(
     name='mcl.sickbay',
-    version='0.0.0',
+    version=version,
     description='MCL Sickbay, a Clinical Data Prototype',
     long_description=desc,
     long_description_content_type='text/markdown',
