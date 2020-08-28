@@ -1,0 +1,8 @@
+.*.cfg
+bin
+develop-eggs
+parts
+*.log
+*.egg-info
+*.py[oc]
+*.log

@@ -1,0 +1,3 @@
+graft src/mcl
+include *.rst *.md *.txt
+global-exclude *.pyc *.pyo
