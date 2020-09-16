@@ -57,7 +57,7 @@ def addTestData(session):
     )
     cc.biospecimens = [bs]
     o1 = BreastOrgan(
-        tbd_attribute1=123, tbd_attribute2=456, labcasFileURL='file:/tmp/breast.dat',
+        labcasFileURL='file:/tmp/breast.dat',
         anchor_type=Anchors.highly_suspicious_lesion_imaging_date, grade=Grade.intermediate,
         laterality=Laterality.right, site=BreastSite.nipple, size=123, necrosis=MysteriousPolarAnswer.yes,
         necrosis_location=NecrosisLocation.focal, recurrence=MysteriousPolarAnswer.yes,
@@ -74,7 +74,7 @@ def addTestData(session):
             HistopathologyPrecancerType(hp_type=PrecancerousHistopathology.dcis_cribiform),
         ]
     )
-    o2 = ProstateOrgan(tbd_attribute1=321, tbd_attribute2=654, depth_or_whatever=99, labcasFileURL='file:/vmlinuz')
+    o2 = ProstateOrgan(depth_or_whatever=99, labcasFileURL='file:/vmlinuz')
     cc.organs = [o1, o2]
     g1 = Genomics(
         specimen_ID='XYZ123_456_12', sequencing_center=400, sequencing_date=datetime.date(2020, 1, 3),

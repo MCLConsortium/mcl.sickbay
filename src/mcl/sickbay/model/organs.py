@@ -47,11 +47,11 @@ class Organ(Base, LabCASMetadata):
     # Primary key common to all organs:
     identifier = Column(Integer, Sequence('organ_id_seq'), primary_key=True)
 
-    # These are common attributes to all organs:
-    tbd_attribute1 = Column(Integer)  # Testing placeholder
-    tbd_attribute2 = Column(Integer)  # Testing placeholder
-    # 🤷‍♀️ What other generic attributes are common between all organs?
-    # Waiting on @Kristen Anton to come up with a refactoring between the different organ types.
+    # If there are any attributes common to all organs, put them here:
+    #  «here»
+    # Note that after telecons with Kristen Anton, we've determined that there are *no*
+    # common attributes between organs, save one the *name* of the organ. We capture that
+    # below in ``organType``.
 
     # Many-to-1 reference to our Clinical Core:
     clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
