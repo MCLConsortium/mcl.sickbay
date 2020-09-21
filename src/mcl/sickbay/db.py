@@ -1,6 +1,12 @@
 # encoding: utf-8
 
-'''MCL Sickbay, a Clinical Data prototype — database stuff'''
+'''
+🤢 Sickbay: Clinical data model for the Consortium for Molecular and Cellular
+Characterization of Screen-Detected Lesions.
+
+Database related interations.
+'''
+
 
 from . import VERSION
 from .model import createMetadata
@@ -16,11 +22,12 @@ from .model.enums import (
     GeneticTestingAnswer, TestResults, EstrogenTestResults, HER2Results, Menopause, ECOGScore,
     BreastCancerDetectionMethod, BreastImagingWorkup, BIRADSTissues, SequencingTechnique, SequencingOrigin,
     GenomicMethod, GenomicStranding, GenomicAnalyzer, Smart3SeqInput, Smart3SeqIndexing, TumorTissue,
-    Precancers, RulesOfAcquisition, Preserves, Fixatives, Analytes, Storage, SlideCharges
+    Precancers, RulesOfAcquisition, Preserves, Fixatives, Analytes, Storage, SlideCharges, VitalStatus
 )
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-import argparse, getpass, datetime
+from .json import ClinicalCoreEncoder, ORGAN_ENCODERS, BiospecimenEncoder
+import argparse, getpass, datetime, json
 
 
 _description = '''Generate and populate some database structures for
@@ -29,6 +36,204 @@ set up and running with permissions to access it.
 '''
 
 __version__ = VERSION
+
+
+def addSampleData(session):
+    cc1 = ClinicalCore(
+        # LabCASMetadata
+        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/1',
+        fileName='12_78_ClinicalCore_20200624_0_DATA',
+        dateFileGenerated=datetime.date(2020, 2, 13),
+        siteID=78,
+        submittingInvestigatorID=1329,
+        processingLevel='Processed',
+        fileType='Clinical Core',
+        # ClinicalCore
+        participant_ID='MCL78_001',
+        anchor_type=Anchors.first_positive_biopsy_confirming_diagnosis_date,
+        days_to_consent=30,
+        days_to_enrollment=30,
+        gender=Gender.female,
+        ethnicity=Ethnicity.unknown,
+        race=Race.native_hawaiian_or_other_pacific_islander,
+        vital_status=VitalStatus.alive,
+        days_to_vital_status_reference=24,
+        age_at_index=49,
+        days_to_birth=-17885,
+        year_of_birth=1970,
+        education=Education.high_school_graduate,
+        income=Income.seventy_five_thousand_to_100000,
+        height=173,
+        days_to_weight_recorded=-450,
+        weight=90,
+        prior_cancer=PolarAnswer.no,
+        current_lesion_type=Lesion.breast,
+        days_to_diagnosis=7,
+        year_of_diagnosis=2019,
+        age_at_diagnosis=49,
+        how_detected=Detection.screening,
+        days_to_detection_date=0,
+        days_to_last_screen_date=-180,
+        days_to_last_neg_screen_date=-180,
+        mode_of_detection=Mode.imaging,
+        lesion_type=Neoplasm.metastatic,
+        specimen_collected=PolarAnswer.yes,
+        biomarker_tested=PolarAnswer.no,
+        relative_with_cancer_history=ImpertinentPolarAnswer.no,
+        tobacco_smoking_status=SmokingStatus.never_smoker,
+        type_tobacco_used=Tobacco.not_applicable,
+        alcohol_history=PolarAnswer.no,
+    )
+    cc2 = ClinicalCore(
+        # LabCASMetadata
+        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/2',
+        fileName='12_78_ClinicalCore_20200624_0_DATA',
+        dateFileGenerated=datetime.date(2020, 2, 13),
+        siteID=78,
+        submittingInvestigatorID=1329,
+        processingLevel='Processed',
+        fileType='Clinical Core',
+        # ClinicalCore
+        participant_ID='MCL78_003',
+        anchor_type=Anchors.first_positive_biopsy_confirming_diagnosis_date,
+        days_to_consent=21,
+        days_to_enrollment=21,
+        gender=Gender.female,
+        ethnicity=Ethnicity.hispanic,
+        race=Race.white,
+        vital_status=VitalStatus.alive,
+        days_to_vital_status_reference=10,
+        age_at_index=35,
+        days_to_birth=-12593,
+        year_of_birth=1985,
+        education=Education.college_graduate,
+        income=Income.greater_than_100000,
+        height=147,
+        days_to_weight_recorded=0,
+        weight=46,
+        prior_cancer=PolarAnswer.unknown,
+        current_lesion_type=Lesion.breast,
+        days_to_diagnosis=8,
+        year_of_diagnosis=2020,
+        age_at_diagnosis=34,
+        how_detected=Detection.symptom_driven_patient_detected,
+        days_to_detection_date=-10,
+        days_to_last_screen_date=-545,
+        days_to_last_neg_screen_date=-545,
+        mode_of_detection=Mode.imaging,
+        lesion_type=Neoplasm.primary,
+        specimen_collected=PolarAnswer.no,
+        biomarker_tested=PolarAnswer.yes,
+        relative_with_cancer_history=ImpertinentPolarAnswer.yes,
+        relative_with_cancer_history_count=3,
+        tobacco_smoking_status=SmokingStatus.current_smoker,
+        type_tobacco_used=Tobacco.electronic_cigarettes,
+        tobacco_smoking_onset_age=16,
+        years_smoked=19,
+        cigarettes_per_day=8,
+        alcohol_history=PolarAnswer.yes,
+        alcohol_drinks_per_day=6,
+        alcohol_days_per_week=3
+    )
+    cc3 = ClinicalCore(
+        # LabCASMetadata
+        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/3',
+        fileName='12_111_ClinicalCore_20200623_0_DATA',
+        dateFileGenerated=datetime.date(2020, 5, 28),
+        siteID=111,
+        submittingInvestigatorID=613,
+        processingLevel='Processed',
+        fileType='Clinical Core',
+        # ClinicalCore
+        participant_ID='MCL111_001',
+        anchor_type=Anchors.first_imaging_date,
+        gender=Gender.male,
+        ethnicity=Ethnicity.not_hispanic,
+        race=Race.asian,
+        vital_status=VitalStatus.dead,
+        days_to_vital_status_reference=42,
+        age_at_index=68,
+        days_to_birth=-24820,
+        year_of_birth=1950,
+        education=Education.post_high_school_training,
+        income=Income.seventy_five_thousand_to_100000,
+        height=183,
+        days_to_weight_recorded=-100,
+        weight=82,
+        prior_cancer=PolarAnswer.no,
+        current_lesion_type=Lesion.pancreas,
+        days_to_diagnosis=20,
+        year_of_diagnosis=2018,
+        age_at_diagnosis=68,
+        how_detected=Detection.screening,
+        days_to_detection_date=0,
+        days_to_last_screen_date=-368,
+        days_to_last_neg_screen_date=-368,
+        mode_of_detection=Mode.physical_exam,
+        lesion_type=Neoplasm.primary,
+        specimen_collected=PolarAnswer.yes,
+        biomarker_tested=PolarAnswer.yes,
+        relative_with_cancer_history=ImpertinentPolarAnswer.unknown,
+        relative_with_cancer_history_count=3,
+        tobacco_smoking_status=SmokingStatus.former_smoker,
+        type_tobacco_used=Tobacco.pipe,
+        tobacco_smoking_onset_age=19,
+        tobacco_smoking_quit_age=40,
+        years_smoked=21,
+        cigarettes_per_day=10,
+        alcohol_history=PolarAnswer.yes,
+        alcohol_drinks_per_day=1,
+        alcohol_days_per_week=1
+    )
+    cc4 = ClinicalCore(
+        # LabCASMetadata
+        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/3',
+        fileName='12_111_ClinicalCore_20200623_0_DATA',
+        dateFileGenerated=datetime.date(2020, 5, 28),
+        siteID=111,
+        submittingInvestigatorID=613,
+        processingLevel='Processed',
+        fileType='Clinical Core',
+        # ClinicalCore
+        participant_ID='MCL111_400',
+        anchor_type=Anchors.first_imaging_date,
+        gender=Gender.female,
+        ethnicity=Ethnicity.not_hispanic,
+        race=Race.asian,
+        vital_status=VitalStatus.dead,
+        days_to_vital_status_reference=78,
+        age_at_index=66,
+        days_to_birth=-24024,
+        year_of_birth=1953,
+        education=Education.some_college,
+        income=Income.greater_than_100000,
+        height=164,
+        days_to_weight_recorded=20,
+        weight=74,
+        prior_cancer=PolarAnswer.unknown,
+        current_lesion_type=Lesion.pancreas,
+        days_to_diagnosis=10,
+        year_of_diagnosis=2019,
+        age_at_diagnosis=65,
+        how_detected=Detection.symptom_driven_patient_detected,
+        days_to_detection_date=-5,
+        days_to_last_screen_date=0,
+        days_to_last_neg_screen_date=0,
+        mode_of_detection=Mode.physical_exam,
+        lesion_type=Neoplasm.primary,
+        specimen_collected=PolarAnswer.yes,
+        age_at_menses_start=13,
+        menses_stop=ImpertinentAnswer.yes,
+        age_at_menses_stop=52,
+        biomarker_tested=PolarAnswer.yes,
+        relative_with_cancer_history=ImpertinentPolarAnswer.unknown,
+        relative_with_cancer_history_count=3,
+        tobacco_smoking_status=SmokingStatus.not_reported,
+        type_tobacco_used=Tobacco.unknown,
+        alcohol_history=PolarAnswer.no,
+    )
+    session.add_all([cc1, cc2, cc3, cc4])
+    session.commit()
 
 
 def addTestData(session):
@@ -116,6 +321,7 @@ def demo():
     parser.add_argument('-d', '--dbname', default='clinical_data', help='Database name (%(default)s)')
     parser.add_argument('-v', '--verbose', action='store_true', default=False, help='Be verbose (%(default)s)')
     parser.add_argument('-a', '--add-test-data', action='store_true', default=False, help='Add test data (%(default)s)')
+    parser.add_argument('-s', '--add-sample-data', action='store_true', default=False, help="Add Kristen Anton's sample data (%(default)s)")
     args = parser.parse_args()
 
     password = None if not args.password else getpass.getpass(f'{args.username} password: ')
@@ -125,14 +331,26 @@ def demo():
         url = f'postgresql://{args.username}@{args.host}/{args.dbname}'
 
     engine = create_engine(url, echo=args.verbose)
-
     createMetadata(engine)
-    if args.add_test_data:
+
+    if args.add_test_data or args.add_sample_data:
         Session = sessionmaker()
         Session.configure(bind=engine)
         session = Session()
-        addTestData(session)
+        if args.add_test_data:
+            addTestData(session)
+        if args.add_sample_data:
+            addSampleData(session)
+
         for i in session.query(ClinicalCore):
-            print(i, i.anchor_type, type(i.anchor_type), [j for j in i.genomics], [j for j in i.images])
-            for j in i.biospecimens:
-                print(j, [k for k in j.genomics], [k for k in j.images])
+            # Do a JSON dump:
+            print(json.dumps(i, cls=ClinicalCoreEncoder))
+            # Or just access your favorite attributes:
+            # print(i, i.anchor_type, type(i.anchor_type), [j for j in i.genomics], [j for j in i.images])
+            # for o in i.organs:
+            #     print(json.dumps(o, cls=ORGAN_ENCODERS[o.__class__]))
+            # for j in i.biospecimens:
+            #     # Try some JSON:
+            #     print(json.dumps(j, cls=BiospecimenEncoder))
+            #     # Do nested queries:
+            #     # print(j, [k for k in j.genomics], [k for k in j.images])
