@@ -1,7 +1,11 @@
 # encoding: utf-8
 
+'''
+🤢 Sickbay: Clinical data model for the Consortium for Molecular and Cellular
+Characterization of Screen-Detected Lesions.
 
-'''MCL Sickbay, a Clinical Data prototype — data model, base definitions'''
+Base classes and base data model definitions.
+'''
 
 from sqlalchemy import Column, String, Date, Integer
 from sqlalchemy.ext.declarative import declarative_base

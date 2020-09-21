@@ -1,6 +1,11 @@
 # encoding: utf-8
 
-'''MCL Sickbay: a clinical data prototype — data model: organ-specifics'''
+'''
+🤢 Sickbay: Clinical data model for the Consortium for Molecular and Cellular
+Characterization of Screen-Detected Lesions.
+
+Organs of the data model.
+'''
 
 from .base import Base, LabCASMetadata
 from sqlalchemy import Column, Integer, String, ForeignKey, Enum, Sequence

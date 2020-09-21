@@ -1,7 +1,11 @@
 # encoding: utf-8
-#
 
-'''MCL Sickbay, a clinical data prototype: data model — clinical core definitions'''
+'''
+🤢 Sickbay: Clinical data model for the Consortium for Molecular and Cellular
+Characterization of Screen-Detected Lesions.
+
+Clinical core of the data model.
+'''
 
 from .base import Base, LabCASMetadata
 from .genomics import Genomics

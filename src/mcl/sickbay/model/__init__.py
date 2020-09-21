@@ -1,11 +1,16 @@
 # encoding: utf-8
 
-'''MCL Sickbay, a clinical data prototype — data model'''
+'''
+🤢 Sickbay: Clinical data model for the Consortium for Molecular and Cellular
+Characterization of Screen-Detected Lesions.
+
+Data model implementation module.
+'''
 
 
-from .base import Base
+from .base import Base, LabCASMetadata
 from .clinicalcore import ClinicalCore, PriorLesion
-from .genomics import Genomics
+from .genomics import Genomics, Smart3SeqGenomics
 from .images import Imaging
 from .organs import Organ, BreastOrgan, ProstateOrgan
 from .specimens import Biospecimen
@@ -19,13 +24,15 @@ def createMetadata(engine):
 
 
 __all__ = [
-    createMetadata,
     Biospecimen,
     BreastOrgan,
     ClinicalCore,
+    createMetadata,
     Genomics,
     Imaging,
+    LabCASMetadata,
     Organ,
     PriorLesion,
     ProstateOrgan,
+    Smart3SeqGenomics,
 ]

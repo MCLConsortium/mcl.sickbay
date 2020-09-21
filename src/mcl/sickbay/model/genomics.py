@@ -1,6 +1,11 @@
 # encoding: utf-8
 
-'''MCL Sickbay, a clinlical data prototype — data model — genomics'''
+'''
+🤢 Sickbay: Clinical data model for the Consortium for Molecular and Cellular
+Characterization of Screen-Detected Lesions.
+
+Genomics of the data model.
+'''
 
 from .base import Base, LabCASMetadata
 from sqlalchemy import Column, Integer, String, ForeignKey, Date, Enum, Boolean, Float

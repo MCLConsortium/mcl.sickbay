@@ -1,6 +1,11 @@
 # encoding: utf-8
 
-'''MCL Sickbay, a clinical data prototype: enumerations'''
+'''
+🤢 Sickbay: Clinical data model for the Consortium for Molecular and Cellular
+Characterization of Screen-Detected Lesions.
+
+Enumerations.
+'''
 
 from enum import Enum
 
