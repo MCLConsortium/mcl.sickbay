@@ -10,8 +10,8 @@ import setuptools, os.path
 
 _requirements = [
     'setuptools',
-    'psycopg2',
-    'sqlalchemy'
+    'psycopg2==2.8.5',
+    'sqlalchemy==1.3.19'
 ]
 
 
