@@ -61,7 +61,7 @@ class LabCASMetadataEncoder(SickbayEncoder):
             # This is nullable but also a datetime.date, which JSON cannot directly support
             when = obj.dateFileGenerated
             if when is not None:
-                d['dateFileGenerated'] = (when.year, when.month, when.year)
+                d['dateFileGenerated'] = (when.year, when.month, when.day)
             return d
         else:
             return super(LabCASMetadataEncoder, self).default(obj)
@@ -124,7 +124,7 @@ ORGAN_ENCODERS = {
 
 class GenomicsEncoder(LabCASMetadataEncoder):
     _genomicsAttributes = (
-        'sequencing_center', 'sequencing_date', 'sequencing_batch_id', 'library_name', 'library_strategy',
+        'sequencing_center', 'sequencing_batch_id', 'library_name', 'library_strategy',
         'library_source', 'library_selection', 'library_strand', 'library_layout', 'sequencing_platform',
         'read_length', 'rin', 'adapter_name', 'adapter_sequence', 'flow_cell_barcode', 'size_selection_range',
         'target_capture_kit_target_region',
@@ -134,6 +134,8 @@ class GenomicsEncoder(LabCASMetadataEncoder):
         if isinstance(obj, Genomics):
             d = super(GenomicsEncoder, self).default(obj)
             d['specimen_ID'] = obj.specimen_ID
+            when = obj.sequencing_date
+            d['sequencing_date'] = (when.year, when.month, when.day)
             self.addAttributes(obj, self._genomicsAttributes, d)
             return d
         else:
@@ -179,6 +181,7 @@ class ClinicalCoreEncoder(LabCASMetadataEncoder):
         '''See https://docs.python.org/3/library/json.html#json.JSONEncoder.default'''
         if isinstance(obj, ClinicalCore):
             d = super(ClinicalCoreEncoder, self).default(obj)
+            d['participant_ID'] = obj.participant_ID
             self.addAttributes(obj, self._clinicalCoreAttributes, d)
             if obj.prior_lesions is not None and len(obj.prior_lesions) > 0:
                 # 🤔 Should this return the enumeration's name or value? Guess we'll do name for now
