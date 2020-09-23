@@ -217,6 +217,8 @@ class BiospecimenEncoder(LabCASMetadataEncoder):
             d = super(BiospecimenEncoder, self).default(obj)
             d['specimen_ID'] = obj.specimen_ID
             self.addAttributes(obj, self._biospecimenAttributes, d)
+            if obj.adjacent_specimens:
+                d['adjacent_specimens'] = [i.adjacent_specimen_ID for i in obj.adjacent_specimens]
             if obj.genomics:
                 d['genomics'] = [GENOMICS_ENCODERS[i.__class__]().default(i) for i in obj.genomics]
             if obj.images:

@@ -64,10 +64,10 @@ class Specimen(Enum):
 
 class AnatomicalSite(Enum):
     '''Where on the body specimens may be collected'''
-    breast    = 'Breast'
-    lung      = 'Lung'
-    pancrease = 'Pancreas'
-    prostate  = 'Prostate'
+    breast   = 'Breast'
+    lung     = 'Lung'
+    pancreas = 'Pancreas'
+    prostate = 'Prostate'
 
 
 class Education(Enum):
@@ -452,6 +452,17 @@ class HER2Results(Enum):
     positive_score_3_plus  = 'Positive (Score 3+)'
     cannot_be_determined   = 'Cannot be determined'
     not_tested             = 'Not tested'
+    data_not_available     = 'Data not available'
+
+
+class HER2InSituHybridization(Enum):
+    '''The result of HER2 genetic in situ hybridization analysis'''
+    negative_not_amplified = 'Negative (not amplified)'
+    positive_amplified     = 'Positive (amplified)'
+    cannot_be_determined   = 'Cannot be determined'
+    not_tested             = 'Not tested'
+    pending                = 'Pending'
+    unknown                = 'Unknown'
     data_not_available     = 'Data not available'
 
 

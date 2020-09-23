@@ -13,7 +13,7 @@ from .clinicalcore import ClinicalCore, PriorLesion
 from .genomics import Genomics, Smart3SeqGenomics
 from .images import Imaging
 from .organs import Organ, BreastOrgan, ProstateOrgan
-from .specimens import Biospecimen
+from .specimens import Biospecimen, AdjacentSpecimen
 
 
 def createMetadata(engine):
@@ -24,6 +24,7 @@ def createMetadata(engine):
 
 
 __all__ = [
+    AdjacentSpecimen,
     Biospecimen,
     BreastOrgan,
     ClinicalCore,

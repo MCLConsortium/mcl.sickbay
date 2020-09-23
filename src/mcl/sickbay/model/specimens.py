@@ -29,7 +29,7 @@ class Biospecimen(Base, LabCASMetadata):
 
     # Attributes:
     specimen_ID_local           = Column(String(25))
-    specimen_parent_ID          = Column(String(16), ForeignKey('biospecimens.specimen_ID'))
+    specimen_parent_ID          = Column(String(16))
     specimen_type               = Column(Enum(Specimen, name='specimen_enum'), nullable=False)
     anatomical_site             = Column(Enum(AnatomicalSite, name='anatomical_site_enum'), nullable=False)
     tumor_tissue_type           = Column(Enum(TumorTissue, name='tumor_tissue_enum'), nullable=False)
@@ -61,7 +61,7 @@ class Biospecimen(Base, LabCASMetadata):
     days_to_shipping            = Column(Integer)
     shipping_conditions         = Column(Enum(Packaging, name='packaging_enum'))
     shipping_destination        = Column(Enum(Destinations, name='destinations_enum'))
-    # ❕ adjacent_specimen_IDs 1-to-many with self
+    # Note adjacent_specimen_IDs is a 1-to-many relation; see below, captured in attribute "adjacent_specimens"
 
     # Relationships:
     clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
@@ -73,7 +73,34 @@ class Biospecimen(Base, LabCASMetadata):
 
     # Object-relational details:
     __tablename__ = 'biospecimens'
-    adjacent = relationship('Biospecimen', remote_side=[specimen_ID], uselist=True)
+
+
+class AdjacentSpecimen(Base):
+    '''↖️ Nearby specimens; this is from a ``|``-separated list'''
+
+    # Primary key, an auto-sequenced ID number:
+    identifier = Column(Integer, Sequence('adjacent_specimen_id_seq'), primary_key=True)
+
+    # Sole attribute: an adjacent specimen ID
+    adjacent_specimen_ID = Column(String(16), nullable=False)
+
+    # Many-to-1 reference to our specimen:
+    biospecimen_identifier = Column(String(16), ForeignKey('biospecimens.specimen_ID'))
+    biospecimen = relationship('Biospecimen', back_populates='adjacent_specimens')
+
+    # Methods:
+    def __repr__(self):
+        return f'<{self.__class__.__name__}(identifier={self.identifier})>'
+
+    # Object-relational mapping details:
+    __tablename__ = 'adjacentSpecimens'
+
+
+Biospecimen.adjacent_specimens = relationship(
+    'AdjacentSpecimen',
+    order_by=AdjacentSpecimen.identifier,
+    back_populates='biospecimen'
+)
 
 
 # Additional Relationships

@@ -26,6 +26,7 @@ from .enums import (
     GeneticTestingAnswer,
     Grade,
     GroupStage7,
+    HER2InSituHybridization,
     HER2Results,
     Laterality,
     MarginalStatus,
@@ -108,7 +109,7 @@ class BreastOrgan(Organ):
     er_percent_positivity                 = Column(Integer)  # 🤔 TODO: should this be Float?
     progesterone_receptor                 = Column(Enum(TestResults, name='test_results_enum'), nullable=False)
     her2_immunohistochemistry             = Column(Enum(HER2Results, name='her2_results_enum'), nullable=False)
-    her2_in_situ_hybridization            = Column(Enum(HER2Results, name='her2_results_enum'))
+    her2_in_situ_hybridization            = Column(Enum(HER2InSituHybridization, name='her2_hybrid_enum'))
     ki_67_percent_positive_nuclei         = Column(Integer)  # 🤔 TODO: should this be Float?
     menopausal_status                     = Column(Enum(Menopause, name='menopause_enum'), nullable=False)
     ecog_score                            = Column(Enum(ECOGScore, name='ecogscore_enum'), nullable=False)
