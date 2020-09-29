@@ -56,8 +56,14 @@ class LabCASMetadataEncoder(SickbayEncoder):
                 f'__{obj.__class__.__module__}.{obj.__class__.__name__}__': True,
                 'labcasFileURL': obj.labcasFileURL
             }
+
             # These other attributes are nullable
-            self.addAttributes(obj, ('fileName', 'siteID', 'submittingInvestigatorID', 'processingLevel', 'fileType'), d)
+            nullableAttributes = (
+                'fileName', 'siteID', 'submittingInvestigatorID', 'processingLevel', 'fileType',
+                'consortium', 'protocolID'
+            )
+            self.addAttributes(obj, nullableAttributes, d)
+
             # This is nullable but also a datetime.date, which JSON cannot directly support
             when = obj.dateFileGenerated
             if when is not None:

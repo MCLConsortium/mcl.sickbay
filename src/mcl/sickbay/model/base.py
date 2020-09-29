@@ -26,6 +26,8 @@ class LabCASMetadata(object):
     # Provided just for a sense of completion
     fileName                 = Column(String(255))
     dateFileGenerated        = Column(Date)
+    consortium               = Column(String(255))
+    protocolID               = Column(Integer)
     siteID                   = Column(Integer)
     submittingInvestigatorID = Column(Integer)
     processingLevel          = Column(String(16))

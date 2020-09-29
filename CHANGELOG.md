@@ -3,6 +3,16 @@
 This documents the changes from release to release.
 
 
+### 0.0.6
+
+In this release:
+
+-   Base metadata for all classes now includes:
+    -   `consortium`, a nullable string that can be used to contain an RDF URI to the consortium that originated the data, such as `https://mcl.nci.nih.gov/` for the Consortium for Molecular and Cellular Characterization of Screen-Detected Lesions.
+    -   `protocolID`, a nullable integer that tells the research protocol that generated the data.
+-   Kristen's sample data (`--add-sample-data`) includes these consortium and protocol IDs
+
+
 ### 0.0.5
 
 This release fixes:
