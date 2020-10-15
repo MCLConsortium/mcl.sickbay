@@ -7,17 +7,27 @@ Characterization of Screen-Detected Lesions.
 Enumerations.
 '''
 
-from enum import Enum
+from aenum import Enum
 
 
-class Anchors(Enum):
+class _CaseInsensitiveEnum(Enum):
+    @classmethod
+    def _missing_name_(cls, value):
+        value = value.lower()
+        for member in cls:
+            if member.value.lower() == value:
+                return member
+        return None
+
+
+class Anchors(_CaseInsensitiveEnum):
     '''Date used as the base from which all other dates within a cohort or dataset are derived'''
     first_positive_biopsy_confirming_diagnosis_date = 'First positive biopsy confirming diagnosis date'
     first_imaging_date                              = 'First imaging date'
     highly_suspicious_lesion_imaging_date           = 'Highly suspicious lesion imaging date'
 
 
-class Gender(Enum):
+class Gender(_CaseInsensitiveEnum):
     '''Assemblage of properties that distinguish people on the basis of their societal roles'''
     female       = 'Female'
     male         = 'Male'
@@ -26,7 +36,7 @@ class Gender(Enum):
     not_reported = 'Not reported'
 
 
-class Ethnicity(Enum):
+class Ethnicity(_CaseInsensitiveEnum):
     '''Office of Management and Budget (OMB) ethnic categories'''
     hispanic     = 'Hispanic or Latino'
     not_hispanic = 'Not Hispanic or Latino'
@@ -34,7 +44,7 @@ class Ethnicity(Enum):
     not_reported = 'Not reported'
 
 
-class Race(Enum):
+class Race(_CaseInsensitiveEnum):
     '''OMB race categories'''
     white                                     = 'White'
     american_inidan_or_alaska_native          = 'American Indian or Alaska Native'
@@ -46,7 +56,7 @@ class Race(Enum):
     not_reported                              = 'Not reported'
 
 
-class VitalStatus(Enum):
+class VitalStatus(_CaseInsensitiveEnum):
     '''Survival state of a person'''
     alive        = 'Alive'
     dead         = 'Dead'
@@ -54,7 +64,7 @@ class VitalStatus(Enum):
     not_reported = 'Not reported'
 
 
-class Specimen(Enum):
+class Specimen(_CaseInsensitiveEnum):
     '''Types of specimens collected from human bodies'''
     tissue  = 'Tissue'
     blood   = 'Blood'
@@ -62,7 +72,7 @@ class Specimen(Enum):
     analyte = 'Analyte'
 
 
-class AnatomicalSite(Enum):
+class AnatomicalSite(_CaseInsensitiveEnum):
     '''Where on the body specimens may be collected'''
     breast   = 'Breast'
     lung     = 'Lung'
@@ -70,7 +80,7 @@ class AnatomicalSite(Enum):
     prostate = 'Prostate'
 
 
-class Education(Enum):
+class Education(_CaseInsensitiveEnum):
     '''Highest level of education attained'''
     some_high_school          = 'Some high school'
     high_school_graduate      = 'High school graduate'
@@ -82,7 +92,7 @@ class Education(Enum):
     not_reported              = 'Not reported'
 
 
-class Income(Enum):
+class Income(_CaseInsensitiveEnum):
     '''Household income in USD'''
     ten_thousand_to_24999           = '$10,000–$24,999'
     twenty_five_thousand_to_44999   = '$25,000–$44,999'
@@ -95,7 +105,7 @@ class Income(Enum):
     not_reported                    = 'Not reported'
 
 
-class PolarAnswer(Enum):
+class PolarAnswer(_CaseInsensitiveEnum):
     '''An answer to a yes/no question with the potential for refusal'''
     yes          = 'Yes'
     no           = 'No'
@@ -104,7 +114,7 @@ class PolarAnswer(Enum):
     refused      = 'Refused'
 
 
-class ImpertinentAnswer(Enum):
+class ImpertinentAnswer(_CaseInsensitiveEnum):
     '''An answer to a yes/no question with the potential of being inapplicable'''
     yes            = 'Yes'
     no             = 'No'
@@ -113,7 +123,7 @@ class ImpertinentAnswer(Enum):
     not_applicable = 'Not applicable'
 
 
-class ImpertinentPolarAnswer(Enum):
+class ImpertinentPolarAnswer(_CaseInsensitiveEnum):
     '''The best of both worlds'''
     yes            = 'Yes'
     no             = 'No'
@@ -123,7 +133,7 @@ class ImpertinentPolarAnswer(Enum):
     refused        = 'Refused'
 
 
-class MysteriousPolarAnswer(Enum):
+class MysteriousPolarAnswer(_CaseInsensitiveEnum):
     '''An answer to a yes/no question with the potential for saying "I dunno"'''
     yes                = 'Yes'
     no                 = 'No'
@@ -131,7 +141,7 @@ class MysteriousPolarAnswer(Enum):
     unknown            = 'Unknown'
 
 
-class Lesion(Enum):
+class Lesion(_CaseInsensitiveEnum):
     '''Disease location of a cyst, lesion, atypical neoplastic cells, etc.'''
     bladder                            = 'Bladder'
     bone                               = 'Bone'
@@ -165,27 +175,27 @@ class Lesion(Enum):
     not_applicable                     = 'Not applicable'
 
 
-class Detection(Enum):
+class Detection(_CaseInsensitiveEnum):
     '''How cancer is being detected'''
     screening                       = 'Screening'
     symptom_driven_patient_detected = 'Symptom driven/Patient detected'
     incidental                      = 'Incidental'
 
 
-class Mode(Enum):
+class Mode(_CaseInsensitiveEnum):
     '''Mode of cancer detection'''
     imaging         = 'Imaging'
     physical_exam   = 'Physical exam'
     laboratory_test = 'Laboratory test'
 
 
-class Neoplasm(Enum):
+class Neoplasm(_CaseInsensitiveEnum):
     '''Type of malignant neoplasm detected'''
     primary    = 'Primary'
     metastatic = 'Metastatic'
 
 
-class SmokingStatus(Enum):
+class SmokingStatus(_CaseInsensitiveEnum):
     '''🚬?'''
     current_smoker = 'Current smoker'
     former_smoker  = 'Former smoker'
@@ -194,7 +204,7 @@ class SmokingStatus(Enum):
     not_reported   = 'Not reported'
 
 
-class Tobacco(Enum):
+class Tobacco(_CaseInsensitiveEnum):
     '''Kinds of 🚬'''
     cigarettes            = 'Cigarettes'
     cigar                 = 'Cigar'
@@ -208,7 +218,7 @@ class Tobacco(Enum):
     not_applicable        = 'Not applicable'
 
 
-class PrecancerousHistopathology(Enum):
+class PrecancerousHistopathology(_CaseInsensitiveEnum):
     '''Preancerous tissue examination'''
     usual_ductal_hyperplasia_udh    = 'Usual ductal hyperplasia (UDH)'
     atypical_ductal_hyperplasia_adh = 'Atypical ductal hyperplasia (ADH)'
@@ -222,7 +232,7 @@ class PrecancerousHistopathology(Enum):
     lobular_carcinoma_in_situ_lcis  = 'Lobular carcinoma in situ (LCIS)'
 
 
-class Grade(Enum):
+class Grade(_CaseInsensitiveEnum):
     '''College of American Pathologists' (CAP) scale'''
     low                = 'Low'
     intermediate       = 'Intermediate'
@@ -230,7 +240,7 @@ class Grade(Enum):
     data_not_available = 'Data not available'
 
 
-class Laterality(Enum):
+class Laterality(_CaseInsensitiveEnum):
     '''Side of the body from which tissue was revemod.'''
     bilateral      = 'Bilateral'
     left           = 'Left'
@@ -240,7 +250,7 @@ class Laterality(Enum):
     not_applicable = 'Not applicable'
 
 
-class BreastSite(Enum):
+class BreastSite(_CaseInsensitiveEnum):
     '''Quadrant or structure from which tissue specimen was removed'''
     upper_outer_quadrant = 'Upper outer quadrant'
     lower_outer_quadrant = 'Lower outer quadrant'
@@ -251,7 +261,7 @@ class BreastSite(Enum):
     data_not_available   = 'Data not available'
 
 
-class NecrosisLocation(Enum):
+class NecrosisLocation(_CaseInsensitiveEnum):
     '''Lesion presence as determined by histological examination'''
     focal              = 'Focal'
     central            = 'Central'
@@ -259,7 +269,7 @@ class NecrosisLocation(Enum):
     data_not_available = 'Data not available'
 
 
-class MarginalStatus(Enum):
+class MarginalStatus(_CaseInsensitiveEnum):
     '''Value, significance, or extent of cutting the edge or border of tissue'''
     equivocal        = 'Equivocal'
     negative_finding = 'Negative finding'
@@ -268,7 +278,7 @@ class MarginalStatus(Enum):
     unknown          = 'Unknown'
 
 
-class TStage7(Enum):
+class TStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's pathological tumor "T Stage"'''
     t0         = 'T0'
     t1         = 'T1'
@@ -290,7 +300,7 @@ class TStage7(Enum):
     tx         = 'TX'
 
 
-class TStage8(Enum):
+class TStage8(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 8's pathological tumor "T Stage".
     Yes it's similar to stage 7 but with subtle differences.'''
     t0         = 'T0'
@@ -312,7 +322,7 @@ class TStage8(Enum):
     tx         = 'TX'
 
 
-class PathologicNStage7(Enum):
+class PathologicNStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's pathological regional lymph node "N Stage"'''
     pn0           = 'pN0'
     pn0_i_plus    = 'pN0(i+)'
@@ -334,19 +344,19 @@ class PathologicNStage7(Enum):
     pnx           = 'pNX'
 
 
-class PathologicMStage7(Enum):
+class PathologicMStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's pathological distant metastasis "M Stage".
     Note this vocabualry has only one entry at present.'''
     m1 = 'M1'
 
 
-class PathologicMStage8(Enum):
+class PathologicMStage8(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 8's pathological distant metastasis "M Category".
     And again, yes, there's just one entry. Sigh.'''
     pm1 = 'pM1'
 
 
-class ClinicalNStage7(Enum):
+class ClinicalNStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's clinically assesed "M Stage".'''
     n3c = 'N3c'
     n3b = 'N3b'
@@ -360,14 +370,14 @@ class ClinicalNStage7(Enum):
     nx  = 'NX'
 
 
-class ClinicalMStage7(Enum):
+class ClinicalMStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's clinically assessed "M Stage".'''
     m0        = 'M0'
     m1        = 'M1'
     m0_i_plus = 'M0(i+)'
 
 
-class GroupStage7(Enum):
+class GroupStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's group stage.'''
     zero          = '0'
     ia            = 'IA'
@@ -381,7 +391,7 @@ class GroupStage7(Enum):
     stage_unknown = 'Stage unknown'
 
 
-class ClinicalTNMCategoryN8(Enum):
+class ClinicalTNMCategoryN8(_CaseInsensitiveEnum):
     '''American Joint Committee on Caner (AJCC) edition 8's clinically assessed lymph node N category.'''
     cn0   = 'cN0'
     cn1   = 'cN1'
@@ -396,7 +406,7 @@ class ClinicalTNMCategoryN8(Enum):
     cnx   = 'cNX'
 
 
-class ClinicalTNMCategoryM8(Enum):
+class ClinicalTNMCategoryM8(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 8's clinically assessed distant metastasis category.'''
     cm0        = 'cM0'
     cm0_i_plus = 'cM0(i+)'
@@ -404,7 +414,7 @@ class ClinicalTNMCategoryM8(Enum):
     pm1        = 'pM1'
 
 
-class PrognosticGroupStage8(Enum):
+class PrognosticGroupStage8(_CaseInsensitiveEnum):
     '''American Joint Committee on Cance (AJCC) edition 8's prognostic group stage'''
     zero = '0'
     la   = 'lA'
@@ -416,7 +426,7 @@ class PrognosticGroupStage8(Enum):
     iv   = 'IV'
 
 
-class GeneticTestingAnswer(Enum):
+class GeneticTestingAnswer(_CaseInsensitiveEnum):
     '''How to answer the question of if genetic testing was done'''
     done               = 'Done'
     not_done           = 'Not done'
@@ -424,7 +434,7 @@ class GeneticTestingAnswer(Enum):
     data_not_available = 'Data not available'
 
 
-class TestResults(Enum):
+class TestResults(_CaseInsensitiveEnum):
     '''How to conclude analysis or other test results'''
     positive             = 'Positive'
     negative             = 'Negative'
@@ -434,7 +444,7 @@ class TestResults(Enum):
     cannot_be_determined = 'Data not available'  # Make this an alias because the # of vocabs is out of control
 
 
-class EstrogenTestResults(Enum):
+class EstrogenTestResults(_CaseInsensitiveEnum):
     '''Because this test has a slightly different set of answers'''
     positive             = 'Positive'
     low_positive         = 'Low positive'
@@ -444,7 +454,7 @@ class EstrogenTestResults(Enum):
     data_not_available   = 'Data not available'
 
 
-class HER2Results(Enum):
+class HER2Results(_CaseInsensitiveEnum):
     '''Results of testing human epidermal growth factor receptor 2)'''
     negative_score_0       = 'Negative (Score 0)'
     negative_score_1_plus  = 'Negative (Score 1+)'
@@ -455,7 +465,7 @@ class HER2Results(Enum):
     data_not_available     = 'Data not available'
 
 
-class HER2InSituHybridization(Enum):
+class HER2InSituHybridization(_CaseInsensitiveEnum):
     '''The result of HER2 genetic in situ hybridization analysis'''
     negative_not_amplified = 'Negative (not amplified)'
     positive_amplified     = 'Positive (amplified)'
@@ -466,7 +476,7 @@ class HER2InSituHybridization(Enum):
     data_not_available     = 'Data not available'
 
 
-class Menopause(Enum):
+class Menopause(_CaseInsensitiveEnum):
     '''Menopause'''
     premenopausal      = 'Premenopausal'
     perimenopausal     = 'Perimenopausal'
@@ -475,7 +485,7 @@ class Menopause(Enum):
     data_not_available = 'Data not available'
 
 
-class ECOGScore(Enum):
+class ECOGScore(_CaseInsensitiveEnum):
     '''Eastern Cooperative Oncology Group score'''
     s0                 = '0'
     s1                 = '1'
@@ -487,7 +497,7 @@ class ECOGScore(Enum):
     data_not_available = 'Data not available'
 
 
-class BreastCancerDetectionMethod(Enum):
+class BreastCancerDetectionMethod(_CaseInsensitiveEnum):
     '''How breast cancer gets detected'''
     clinical_exam_palpation   = 'Clinical exam (palpation)'
     screening_mammogram       = 'Screening mammogram'
@@ -498,7 +508,7 @@ class BreastCancerDetectionMethod(Enum):
     unknown                   = 'Unknown'
 
 
-class BreastImagingWorkup(Enum):
+class BreastImagingWorkup(_CaseInsensitiveEnum):
     '''Technology used in visualization of breasts'''
     mammogram                   = 'Mammogram'
     ultrasound                  = 'Ultrasound'
@@ -509,7 +519,7 @@ class BreastImagingWorkup(Enum):
     data_not_available          = 'Data not available'
 
 
-class BIRADSTissues(Enum):
+class BIRADSTissues(_CaseInsensitiveEnum):
     '''Breast Imaging Reporting and Data System category of the kinds of tissues in a mammogram'''
     predominantly_fatty                = 'Predominantly fatty'
     scattered_fibroglandular_densities = 'Scattered fibroglandular densities'
@@ -517,7 +527,7 @@ class BIRADSTissues(Enum):
     extremely_dense                    = 'Extremely dense'
 
 
-class SequencingTechnique(Enum):
+class SequencingTechnique(_CaseInsensitiveEnum):
     '''Bibiolographic tactics'''
     rna_seq                             = 'RNA-Seq'
     mirna_seq                           = 'miRNA-Seq'
@@ -544,7 +554,7 @@ class SequencingTechnique(Enum):
     other                               = 'Other'
 
 
-class SequencingOrigin(Enum):
+class SequencingOrigin(_CaseInsensitiveEnum):
     '''Where genenomic identification came from'''
     dna           = 'DNA'
     rna           = 'RNA'
@@ -555,7 +565,7 @@ class SequencingOrigin(Enum):
     single_nuclei = 'Single-nuclei'
 
 
-class GenomicMethod(Enum):
+class GenomicMethod(_CaseInsensitiveEnum):
     '''How genomes get sequenced'''
     hybrid_selection         = 'Hybrid Selection'
     pcr                      = 'PCR'
@@ -567,7 +577,7 @@ class GenomicMethod(Enum):
     other                    = 'Other'
 
 
-class GenomicStranding(Enum):
+class GenomicStranding(_CaseInsensitiveEnum):
     '''How helixes get chosen'''
     unstranded      = 'Unstranded'
     first_stranded  = 'First_Stranded'
@@ -575,7 +585,7 @@ class GenomicStranding(Enum):
     not_applicable  = 'Not Applicable'
 
 
-class GenomicAnalyzer(Enum):
+class GenomicAnalyzer(_CaseInsensitiveEnum):
     '''Gene analysis platform'''
     gs_flx_titanium              = '454 GS FLX Titanium'
     ab_solid_4                   = 'AB SOLiD 4'
@@ -600,21 +610,21 @@ class GenomicAnalyzer(Enum):
     not_reported                 = 'Not Reported'
 
 
-class Smart3SeqInput(Enum):
+class Smart3SeqInput(_CaseInsensitiveEnum):
     '''Substance used in computational analysis'''
     tissue_on_cap  = 'Tissue on cap'
     tissue_in_tube = 'Tissue in tube'
     rna_in_tube    = 'RNA in tube'
 
 
-class Smart3SeqIndexing(Enum):
+class Smart3SeqIndexing(_CaseInsensitiveEnum):
     '''Type of sequencing method that adds a unique identifier sequence to samples'''
     single = 'Single'
     dual   = 'Dual'
     other  = 'Other'
 
 
-class TumorTissue(Enum):
+class TumorTissue(_CaseInsensitiveEnum):
     '''Kind of disease present in the lesion or tumor'''
     premalignant   = 'Premalignant'
     metastatic     = 'Metastatic'
@@ -627,7 +637,7 @@ class TumorTissue(Enum):
     not_applicable = 'Not applicable'
 
 
-class Precancers(Enum):
+class Precancers(_CaseInsensitiveEnum):
     '''Precancers. Yep, precancers.'''
     dcis            = 'DCIS'
     luad_aah        = 'LUAD-AAH'
@@ -643,7 +653,7 @@ class Precancers(Enum):
     not_applicable  = 'Not applicable'
 
 
-class RulesOfAcquisition(Enum):
+class RulesOfAcquisition(_CaseInsensitiveEnum):
     '''DS9 dictated'''
     core_biopsy            = 'Core Biopsy'
     incisional_biopsy      = 'Incisional Biopsy'
@@ -658,7 +668,7 @@ class RulesOfAcquisition(Enum):
     not_applicable         = 'Not applicable'
 
 
-class Preserves(Enum):
+class Preserves(_CaseInsensitiveEnum):
     '''How samples are saved'''
     cryopreserved                                        = 'Cryopreserved'
     cryopreservation_in_liquid_nitrogen_dead_tissue      = 'Cryopreservation in liquid nitrogen (dead tissue)'
@@ -681,7 +691,7 @@ class Preserves(Enum):
     not_reported                                         = 'Not reported'
 
 
-class Fixatives(Enum):
+class Fixatives(_CaseInsensitiveEnum):
     '''Chemical process or substance preserving biology'''
     acetone             = 'Acetone'
     alcohol             = 'Alcohol'
@@ -702,7 +712,7 @@ class Fixatives(Enum):
     not_recorded        = 'Not recorded'
 
 
-class Analytes(Enum):
+class Analytes(_CaseInsensitiveEnum):
     '''Substances whose chemical constituents are being identified and measured.'''
     cfdna                                   = 'cfDNA'
     dna                                     = 'DNA'
@@ -723,7 +733,7 @@ class Analytes(Enum):
     not_applicable                          = 'Not applicable'
 
 
-class Storage(Enum):
+class Storage(_CaseInsensitiveEnum):
     '''How speciemns get stored after preservation and before use in a protocol'''
     ambient_temperature       = 'Ambient temperature'
     cut_slide                 = 'Cut slide'
@@ -740,7 +750,7 @@ class Storage(Enum):
     other                     = 'Other'
 
 
-class SlideCharges(Enum):
+class SlideCharges(_CaseInsensitiveEnum):
     '''Whatever'''
     uncharged      = 'Uncharged'
     charged        = 'Charged'
@@ -750,7 +760,7 @@ class SlideCharges(Enum):
     not_applicable = 'Not applicable'
 
 
-class Packaging(Enum):
+class Packaging(_CaseInsensitiveEnum):
     '''How specimens were packed'''
     ambient_pack                 = 'Ambient pack'
     cold_pack                    = 'Cold pack'
@@ -763,7 +773,7 @@ class Packaging(Enum):
     not_recorded                 = 'Not recorded'
 
 
-class Destinations(Enum):
+class Destinations(_CaseInsensitiveEnum):
     '''Where speicmens go'''
     broad_institute = 'Broad Institute'
     bu              = 'BU'

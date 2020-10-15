@@ -14,7 +14,7 @@ from .model.clinicalcore import ClinicalCore, PriorLesion
 from .model.specimens import Biospecimen, AdjacentSpecimen
 from .model.genomics import Genomics, Smart3SeqGenomics
 from .model.images import Imaging
-from .model.organs import BreastOrgan, ProstateOrgan, HistopathologyPrecancerType
+from .model.organs import Organ, BreastOrgan, ProstateOrgan, HistopathologyPrecancerType
 from .model.enums import (
     Anchors, Gender, Ethnicity, Race, Specimen, AnatomicalSite, Education, Income, PolarAnswer,
     Lesion, Detection, Mode, Neoplasm, ImpertinentAnswer, SmokingStatus, ImpertinentPolarAnswer,
@@ -51,7 +51,7 @@ def addSampleData(session):
     # 12_78_ClinicalCore_20200624_0
     cc1 = ClinicalCore(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/1',
+        labcasID='/to/be/determined/1',
         fileName='12_78_ClinicalCore_20200624_0_DATA',
         dateFileGenerated=datetime.date(2020, 2, 13),
         consortium='https://mcl.nci.nih.gov/',
@@ -99,7 +99,7 @@ def addSampleData(session):
     # 12_78_ClinicalCore_20200624_0
     cc2 = ClinicalCore(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/2',
+        labcasID='/to/be/determined/2',
         fileName='12_78_ClinicalCore_20200624_0_DATA',
         dateFileGenerated=datetime.date(2020, 2, 13),
         consortium='https://mcl.nci.nih.gov/',
@@ -153,7 +153,7 @@ def addSampleData(session):
     # 12_111_ClinicalCore_20200623_0
     cc3 = ClinicalCore(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/3',
+        labcasID='/to/be/determined/3',
         fileName='12_111_ClinicalCore_20200623_0_DATA',
         dateFileGenerated=datetime.date(2020, 5, 28),
         consortium='https://mcl.nci.nih.gov/',
@@ -206,7 +206,7 @@ def addSampleData(session):
     # 12_111_ClinicalCore_20200623_0
     cc4 = ClinicalCore(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/3',
+        labcasID='/to/be/determined/3',
         fileName='12_111_ClinicalCore_20200623_0_DATA',
         dateFileGenerated=datetime.date(2020, 5, 28),
         consortium='https://mcl.nci.nih.gov/',
@@ -256,7 +256,7 @@ def addSampleData(session):
     # 12_78_BreastCore_20200625_0
     o1 = BreastOrgan(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/4',
+        labcasID='/to/be/determined/4',
         fileName='12_78_BreastCore_20200625_0_DATA',
         dateFileGenerated=datetime.date(2020, 6, 24),
         consortium='https://mcl.nci.nih.gov/',
@@ -309,7 +309,7 @@ def addSampleData(session):
 
     bs1 = Biospecimen(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/5/6',
+        labcasID='/to/be/determined/5/6',
         fileName='12_78_Biospecimen_20200624_0_DATA',
         dateFileGenerated=datetime.date(2020, 2, 13),
         consortium='https://mcl.nci.nih.gov/',
@@ -350,7 +350,7 @@ def addSampleData(session):
     )
     bs2 = Biospecimen(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/5/7',
+        labcasID='/to/be/determined/5/7',
         fileName='12_78_Biospecimen_20200624_0_DATA',
         dateFileGenerated=datetime.date(2020, 2, 13),
         consortium='https://mcl.nci.nih.gov/',
@@ -391,7 +391,7 @@ def addSampleData(session):
     )
     bs3 = Biospecimen(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/5/8',
+        labcasID='/to/be/determined/5/8',
         fileName='12_78_Biospecimen_20200624_0_DATA',
         dateFileGenerated=datetime.date(2020, 2, 13),
         consortium='https://mcl.nci.nih.gov/',
@@ -436,7 +436,7 @@ def addSampleData(session):
 
     o2 = BreastOrgan(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/4',
+        labcasID='/to/be/determined/4',
         fileName='12_78_BreastCore_20200625_0_DATA',
         dateFileGenerated=datetime.date(2020, 6, 24),
         consortium='https://mcl.nci.nih.gov/',
@@ -485,7 +485,7 @@ def addSampleData(session):
 
     bs404_1 = Biospecimen(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/6/1',
+        labcasID='/to/be/determined/6/1',
         fileName='12_111_Biospecimen_20200623_0_DATA',
         dateFileGenerated=datetime.date(2020, 6, 22),
         consortium='https://mcl.nci.nih.gov/',
@@ -525,7 +525,7 @@ def addSampleData(session):
     )
     bs404_2 = Biospecimen(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/6/2',
+        labcasID='/to/be/determined/6/2',
         fileName='12_111_Biospecimen_20200623_0_DATA',
         dateFileGenerated=datetime.date(2020, 6, 22),
         consortium='https://mcl.nci.nih.gov/',
@@ -565,7 +565,7 @@ def addSampleData(session):
     )
     bs404_3 = Biospecimen(
         # LabCASMetadata
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/6/3',
+        labcasID='/to/be/determined/6/3',
         fileName='12_111_Biospecimen_20200623_0_DATA',
         dateFileGenerated=datetime.date(2020, 6, 22),
         consortium='https://mcl.nci.nih.gov/',
@@ -614,7 +614,7 @@ def addSampleData(session):
 
     # 12_78_GenomicsSmart3seq_20200624_0_META
     g78_1 = Smart3SeqGenomics(
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/9/1',
+        labcasID='/to/be/determined/9/1',
         fileName='abcde_VT_3ildhth.fastq',
         dateFileGenerated=datetime.date(2020, 4, 15),
         consortium='https://mcl.nci.nih.gov/',
@@ -649,7 +649,7 @@ def addSampleData(session):
     )
     bs1.genomics = [g78_1]
     g78_2 = Smart3SeqGenomics(
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/9/2',
+        labcasID='/to/be/determined/9/2',
         fileName='abcde_VT_3493838.fastq',
         dateFileGenerated=datetime.date(2020, 4, 15),
         consortium='https://mcl.nci.nih.gov/',
@@ -684,7 +684,7 @@ def addSampleData(session):
     )
     bs2.genomics = [g78_2]
     g78_3 = Smart3SeqGenomics(
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/9/3',
+        labcasID='/to/be/determined/9/3',
         fileName='abcde_VT_32uduus.fastq',
         dateFileGenerated=datetime.date(2020, 4, 15),
         siteID=78,
@@ -719,7 +719,7 @@ def addSampleData(session):
 
     # 12_111_GenomicsSmart3seq_20200625_0_META
     gs111_1 = Smart3SeqGenomics(
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/10/1',
+        labcasID='/to/be/determined/10/1',
         fileName='RNA334_MDA_3ildhth.fastq',
         dateFileGenerated=datetime.date(2020, 5, 1),
         consortium='https://mcl.nci.nih.gov/',
@@ -754,7 +754,7 @@ def addSampleData(session):
     )
     bs404_1.genomics = [gs111_1]
     gs111_2 = Smart3SeqGenomics(
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/10/2',
+        labcasID='/to/be/determined/10/2',
         fileName='RNA386_MDA_3493838.fastq',
         dateFileGenerated=datetime.date(2020, 5, 15),
         consortium='https://mcl.nci.nih.gov/',
@@ -789,7 +789,7 @@ def addSampleData(session):
     )
     bs404_2.genomics = [gs111_2]
     gs111_3 = Smart3SeqGenomics(
-        labcasFileURL='https://mcl-labcas.jpl.nasa.gov/to/be/determined/10/3',
+        labcasID='/to/be/determined/10/3',
         fileName='RNA6844_MDA_32uduus.fastq',
         dateFileGenerated=datetime.date(2020, 5, 15),
         consortium='https://mcl.nci.nih.gov/',
@@ -831,7 +831,7 @@ def addSampleData(session):
 
 def addTestData(session):
     cc = ClinicalCore(
-        participant_ID='XYZ123_456', days_to_consent=123, labcasFileURL='file:/tmp/data.dat', race=Race.asian,
+        participant_ID='XYZ123_456', days_to_consent=123, labcasID='/tmp/data.dat', race=Race.asian,
         anchor_type=Anchors.first_imaging_date, gender=Gender.female, ethnicity=Ethnicity.hispanic,
         education=Education.postgraduate_professional, income=Income.seventy_five_thousand_to_100000,
         age_at_index=22, year_of_birth=1988, height=175, weight=82, prior_cancer=PolarAnswer.yes,
@@ -851,11 +851,11 @@ def addTestData(session):
         time_excision_to_processing=4, days_to_collection=2, preservation_method=Preserves.o_c_t,
         fixative_used=Fixatives.para_benzoquinone, processing_duration=123, analyte_type=Analytes.repli_g_qiagen_dna,
         storage_method=Storage.frozen_in_liquid_nitrogen, days_to_storage=99, slide_charge_type=SlideCharges.other,
-        labcasFileURL='file:/tmp/more.dat',
+        labcasID='/tmp/more.dat',
     )
     cc.biospecimens = [bs]
     o1 = BreastOrgan(
-        labcasFileURL='file:/tmp/breast.dat',
+        labcasID='/tmp/breast.dat',
         anchor_type=Anchors.highly_suspicious_lesion_imaging_date, grade=Grade.intermediate,
         laterality=Laterality.right, site=BreastSite.nipple, size=123, necrosis=MysteriousPolarAnswer.yes,
         necrosis_location=NecrosisLocation.focal, recurrence=MysteriousPolarAnswer.yes,
@@ -872,7 +872,8 @@ def addTestData(session):
             HistopathologyPrecancerType(hp_type=PrecancerousHistopathology.dcis_cribiform),
         ]
     )
-    o2 = ProstateOrgan(depth_or_whatever=99, labcasFileURL='file:/vmlinuz')
+    o2 = ProstateOrgan(depth_or_whatever=99, labcasID='/vmlinuz')
+    o3 = ProstateOrgan(depth_or_whatever=199, labcasID='/vmlinuz2', inscribed_participant_ID='ZZTOP')
     cc.organs = [o1, o2]
     g1 = Genomics(
         specimen_ID='XYZ123_456_12', sequencing_center=400, sequencing_date=datetime.date(2020, 1, 3),
@@ -880,7 +881,7 @@ def addTestData(session):
         library_strategy=SequencingTechnique.rna_seq, library_source=SequencingOrigin.dna,
         library_selection=GenomicMethod.pcr, library_strand=GenomicStranding.first_stranded,
         sequencing_platform=GenomicAnalyzer.ab_solid_4, read_length=6,
-        labcasFileURL='file:/tmp/1.gene'
+        labcasID='/tmp/1.gene'
     )
     g2 = Smart3SeqGenomics(
         specimen_ID='XYZ123_456_13', sequencing_center=822, sequencing_date=datetime.date(1973, 5, 6),
@@ -890,15 +891,20 @@ def addTestData(session):
         sequencing_platform=GenomicAnalyzer.ab_solid_2, read_length=9,
         number_PCR_cycles=7, input_type=Smart3SeqInput.tissue_on_cap, number_libraries_in_pool=7,
         index_sequence='CGTAACT', indexing_type=Smart3SeqIndexing.single,
-        labcasFileURL='file:/tmp/2.gene'
+        labcasID='/tmp/2.gene'
     )
     cc.genomics = [g1]
     bs.genomics = [g2]
-    i1 = Imaging(labcasFileURL='file:/tmp/1.png', some_attribute=42)
-    i2 = Imaging(labcasFileURL='file:/tmp/2.png', some_attribute=69)
+    i1 = Imaging(labcasID='/tmp/1.png', some_attribute=42)
+    i2 = Imaging(labcasID='/tmp/2.png', some_attribute=69)
     cc.images = [i1]
     bs.images = [i2]
-    session.add(cc)
+    session.add_all([cc, o3])
+
+    # Try out inscribed_participant_ID:
+    organs = session.query(Organ).filter(Organ.inscribed_participant_ID == 'ZZTOP')
+    cc.organs.extend(organs.all())
+
     session.commit()
 
 

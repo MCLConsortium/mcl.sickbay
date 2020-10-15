@@ -59,6 +59,10 @@ class Organ(Base, LabCASMetadata):
     # common attributes between organs, save one the *name* of the organ. We capture that
     # below in ``organType``.
 
+    # Structurally, though, we do have this common attribute ↓
+    inscribed_participant_ID = Column(String(14))
+    # 👆 This is used to look up a detached Organ so we can associate it with a ClinicalCore later.
+
     # Many-to-1 reference to our Clinical Core:
     clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore = relationship('ClinicalCore', back_populates='organs')

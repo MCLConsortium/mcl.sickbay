@@ -2,6 +2,33 @@
 
 This documents the changes from release to release.
 
+### 0.0.7
+
+In this release:
+
+-   The `labcasFileURL` field is now just `labcasID`; everything else is the same except the name (and the semantics; it no longer is used to hold URLs)
+-   The `Organ` class now has an `inscribed_participant_ID` field you can use to note a future participant ID association with a `ClinicalCore`
+-   All enumerations now use [advanced enumerations](https://pypi.org/project/aenum/) for their base class.
+-   All enumerations now have a case-insensitive lookup.
+
+The implications of that last bullet mean:
+
+```python
+>>> from mcl.sickbay.model.enums import Race
+>>> Race.black_or_african_american == Race('Black or African American')
+True
+>>> Race.black_or_african_american == Race['Black or African American']
+True
+>>> Race.black_or_african_american == Race['black or african american']
+True
+>>> Race('black or african american')
+Traceback (most recent call last):
+...
+ValueError: 'black or african american' is not a valid Race
+```
+
+So if you want case-insensitive lookups, use brackets, not parentheses.
+
 
 ### 0.0.6
 

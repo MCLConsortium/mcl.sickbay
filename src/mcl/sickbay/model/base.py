@@ -20,7 +20,7 @@ class LabCASMetadata(object):
 
     # We need at least this so we can link back to the file that produced some clinical data:
     # Why a string of length 2000? Answer: https://stackoverflow.com/questions/417142/
-    labcasFileURL = Column(String(2000), nullable=False)
+    labcasID = Column(String(2000), nullable=False)
 
     # This stuff is all recorded in LabCAS itself, so not sure it's needed here 🤷‍♀️
     # Provided just for a sense of completion

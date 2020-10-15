@@ -51,10 +51,10 @@ class LabCASMetadataEncoder(SickbayEncoder):
     def default(self, obj):
         '''See https://docs.python.org/3/library/json.html#json.JSONEncoder.default'''
         if isinstance(obj, LabCASMetadata):
-            # Add a "tag" to indicate the "class", and the labcasFileURL which is non-nullable
+            # Add a "tag" to indicate the "class", and the labcasID which is non-nullable
             d = {
                 f'__{obj.__class__.__module__}.{obj.__class__.__name__}__': True,
-                'labcasFileURL': obj.labcasFileURL
+                'labcasID': obj.labcasID
             }
 
             # These other attributes are nullable
@@ -80,6 +80,8 @@ class OrganEncoder(LabCASMetadataEncoder):
             d = super(OrganEncoder, self).default(obj)
             d['identifier'] = obj.identifier
             d['organType'] = obj.organType
+            if obj.inscribed_participant_ID is not None:
+                d['inscribed_participant_ID'] = obj.inscribed_participant_ID
             return d
         else:
             return super(OrganEncoder, self).default(obj)
