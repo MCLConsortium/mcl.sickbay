@@ -64,7 +64,7 @@ class Biospecimen(Base, LabCASMetadata):
     # Note adjacent_specimen_IDs is a 1-to-many relation; see below, captured in attribute "adjacent_specimens"
 
     # Structural attribute ↓
-    inscribed_participant_ID = Column(String(14))
+    inscribed_clinicalCore_participant_ID = Column(String(14))
     # 👆 This is used to look up a detached objects for later assocation.
 
     # Relationships:

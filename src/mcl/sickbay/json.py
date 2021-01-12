@@ -80,8 +80,6 @@ class OrganEncoder(LabCASMetadataEncoder):
             d = super(OrganEncoder, self).default(obj)
             d['identifier'] = obj.identifier
             d['organType'] = obj.organType
-            if obj.inscribed_participant_ID is not None:
-                d['inscribed_participant_ID'] = obj.inscribed_participant_ID
             return d
         else:
             return super(OrganEncoder, self).default(obj)

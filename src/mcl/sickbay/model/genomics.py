@@ -51,8 +51,8 @@ class Genomics(Base, LabCASMetadata):
     target_capture_kit_target_region = Column(String(50))
 
     # Structural attributes ↓
-    inscribed_participant_ID = Column(String(14))
-    inscribed_specimen_ID = Column(String(16))
+    inscribed_clinicalCore_participant_ID = Column(String(14))
+    inscribed_biospecimen_specimen_ID = Column(String(16))
     # 👆 These are used to look up a detached objects for later association.
 
     # Relationships:

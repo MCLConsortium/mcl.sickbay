@@ -60,7 +60,7 @@ class Organ(Base, LabCASMetadata):
     # below in ``organType``.
 
     # Structurally, though, we do have this common attribute ↓
-    inscribed_participant_ID = Column(String(14))
+    inscribed_clinicalCore_participant_ID = Column(String(14))
     # 👆 This is used to look up a detached Organ so we can associate it with a ClinicalCore later.
 
     # Many-to-1 reference to our Clinical Core:
