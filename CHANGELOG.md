@@ -3,6 +3,12 @@
 This documents the changes from release to release.
 
 
+### 0.0.9
+
+-   Rename `inscribed_participant_ID` → `inscribed_clinicalCore_participant_ID`
+-   Rename `inscribed_specimen_ID` → `inscribed_biospecimen_specimen_ID`
+
+
 ### 0.0.8
 
 -   Addresses https://github.com/MCLConsortium/mcl.sickbay/issues/2 by:
