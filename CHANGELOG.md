@@ -2,6 +2,16 @@
 
 This documents the changes from release to release.
 
+
+### 0.0.8
+
+-   Addresses https://github.com/MCLConsortium/mcl.sickbay/issues/2 by:
+    -   Adding `inscribed_participant_ID` and `inscribed_specimen_ID` to `Genomics`
+    -   Adding `inscribed_participant_ID` and `inscribed_specimen_ID` to `Imaging`
+    -   Adding `inscribed_participant_ID` to `Biospecimen`
+    -   (It also adds some test data to these fields.)
+
+
 ### 0.0.7
 
 In this release:

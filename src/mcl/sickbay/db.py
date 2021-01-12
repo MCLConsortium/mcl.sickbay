@@ -851,7 +851,7 @@ def addTestData(session):
         time_excision_to_processing=4, days_to_collection=2, preservation_method=Preserves.o_c_t,
         fixative_used=Fixatives.para_benzoquinone, processing_duration=123, analyte_type=Analytes.repli_g_qiagen_dna,
         storage_method=Storage.frozen_in_liquid_nitrogen, days_to_storage=99, slide_charge_type=SlideCharges.other,
-        labcasID='/tmp/more.dat',
+        labcasID='/tmp/more.dat', inscribed_participant_ID='ZZTOP'
     )
     cc.biospecimens = [bs]
     o1 = BreastOrgan(
@@ -891,12 +891,15 @@ def addTestData(session):
         sequencing_platform=GenomicAnalyzer.ab_solid_2, read_length=9,
         number_PCR_cycles=7, input_type=Smart3SeqInput.tissue_on_cap, number_libraries_in_pool=7,
         index_sequence='CGTAACT', indexing_type=Smart3SeqIndexing.single,
-        labcasID='/tmp/2.gene'
+        labcasID='/tmp/2.gene', inscribed_participant_ID='ZZTOP', inscribed_specimen_ID='ZZBOT'
     )
     cc.genomics = [g1]
     bs.genomics = [g2]
     i1 = Imaging(labcasID='/tmp/1.png', some_attribute=42)
-    i2 = Imaging(labcasID='/tmp/2.png', some_attribute=69)
+    i2 = Imaging(
+        labcasID='/tmp/2.png', some_attribute=69,
+        inscribed_participant_ID='ZZTOP', inscribed_specimen_ID='ZZBOT'
+    )
     cc.images = [i1]
     bs.images = [i2]
     session.add_all([cc, o3])

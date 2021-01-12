@@ -63,6 +63,10 @@ class Biospecimen(Base, LabCASMetadata):
     shipping_destination        = Column(Enum(Destinations, name='destinations_enum'))
     # Note adjacent_specimen_IDs is a 1-to-many relation; see below, captured in attribute "adjacent_specimens"
 
+    # Structural attribute ↓
+    inscribed_participant_ID = Column(String(14))
+    # 👆 This is used to look up a detached objects for later assocation.
+
     # Relationships:
     clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='biospecimens')

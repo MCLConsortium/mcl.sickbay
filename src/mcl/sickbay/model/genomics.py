@@ -50,6 +50,11 @@ class Genomics(Base, LabCASMetadata):
     size_selection_range             = Column(Integer)
     target_capture_kit_target_region = Column(String(50))
 
+    # Structural attributes ↓
+    inscribed_participant_ID = Column(String(14))
+    inscribed_specimen_ID = Column(String(16))
+    # 👆 These are used to look up a detached objects for later association.
+
     # Relationships:
     clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='genomics')

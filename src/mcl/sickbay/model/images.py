@@ -24,6 +24,11 @@ class Imaging(Base, LabCASMetadata):
     # Attributes (TBD):
     some_attribute = Column(Integer)
 
+    # Structural attributes ↓
+    inscribed_participant_ID = Column(String(14))
+    inscribed_specimen_ID = Column(String(16))
+    # 👆 These are used to look up a detached objects for later association.
+
     # Relationships:
     clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='images')
