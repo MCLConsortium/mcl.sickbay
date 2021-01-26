@@ -7,7 +7,7 @@ Characterization of Screen-Detected Lesions.
 Base classes and base data model definitions.
 '''
 
-from sqlalchemy import Column, String, Date, Integer
+from sqlalchemy import Column, String
 from sqlalchemy.ext.declarative import declarative_base
 
 
@@ -25,10 +25,10 @@ class LabCASMetadata(object):
     # This stuff is all recorded in LabCAS itself, so not sure it's needed here 🤷‍♀️
     # Provided just for a sense of completion
     fileName                 = Column(String(255))
-    dateFileGenerated        = Column(Date)
+    dateFileGenerated        = Column(String(12))
     consortium               = Column(String(255))
-    protocolID               = Column(Integer)
-    siteID                   = Column(Integer)
-    submittingInvestigatorID = Column(Integer)
+    protocolID               = Column(String(10))
+    siteID                   = Column(String(10))
+    submittingInvestigatorID = Column(String(10))
     processingLevel          = Column(String(16))
     fileType                 = Column(String(32))
