@@ -25,11 +25,11 @@ class Biospecimen(Base, LabCASMetadata):
     '''🧪 Biological specimen data'''
 
     # Primary key:
-    specimen_ID = Column(String(16), primary_key=True)
+    specimen_ID = Column(String(50), primary_key=True)
 
     # Attributes:
     specimen_ID_local           = Column(String(25))
-    specimen_parent_ID          = Column(String(16))
+    specimen_parent_ID          = Column(String(50))
     specimen_type               = Column(Enum(Specimen, name='specimen_enum'), nullable=False)
     anatomical_site             = Column(Enum(AnatomicalSite, name='anatomical_site_enum'), nullable=False)
     tumor_tissue_type           = Column(Enum(TumorTissue, name='tumor_tissue_enum'), nullable=False)
@@ -64,11 +64,11 @@ class Biospecimen(Base, LabCASMetadata):
     # Note adjacent_specimen_IDs is a 1-to-many relation; see below, captured in attribute "adjacent_specimens"
 
     # Structural attribute ↓
-    inscribed_clinicalCore_participant_ID = Column(String(14))
+    inscribed_clinicalCore_participant_ID = Column(String(50))
     # 👆 This is used to look up a detached objects for later assocation.
 
     # Relationships:
-    clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
+    clinicalCore_participant_ID = Column(String(50), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='biospecimens')
 
     # Functions:
@@ -86,13 +86,13 @@ class AdjacentSpecimen(Base):
     identifier = Column(Integer, Sequence('adjacent_specimen_id_seq'), primary_key=True)
 
     # Sole attribute: an adjacent specimen ID
-    adjacent_specimen_ID = Column(String(16), nullable=False)
+    adjacent_specimen_ID = Column(String(50), nullable=False)
 
     # https://github.com/MCLConsortium/mcl.sickbay/issues/3
-    inscribed_biospecimen_identifier = Column(String(16))
+    inscribed_biospecimen_identifier = Column(String(50))
 
     # Many-to-1 reference to our specimen:
-    biospecimen_identifier = Column(String(16), ForeignKey('biospecimens.specimen_ID'))
+    biospecimen_identifier = Column(String(50), ForeignKey('biospecimens.specimen_ID'))
     biospecimen = relationship('Biospecimen', back_populates='adjacent_specimens')
 
     # Methods:

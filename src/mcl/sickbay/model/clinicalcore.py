@@ -43,7 +43,7 @@ class ClinicalCore(Base, LabCASMetadata):
     '''🩺 Core clinical data; this has a 1-to-many relationship with the rest of the world'''
 
     # Primary key:
-    participant_ID = Column(String(14), primary_key=True)
+    participant_ID = Column(String(50), primary_key=True)
 
     # Attributes (brace yourself—there's a lot 😮):
     anchor_type                        = Column(Enum(Anchors, name='anchors_enum'), nullable=False)
@@ -110,11 +110,11 @@ class PriorLesion(Base):
     lesion_type = Column(Enum(Lesion, name='lesion_enum'), nullable=False)
 
     # Many-to-1 reference to our Clinical Core:
-    clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
+    clinicalCore_participant_ID = Column(String(50), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='prior_lesions')
 
     # https://github.com/MCLConsortium/mcl.sickbay/issues/3
-    inscribed_clinicalCore_participant_ID = Column(String(14))
+    inscribed_clinicalCore_participant_ID = Column(String(50))
 
     # Methods:
     def __repr__(self):
@@ -135,11 +135,11 @@ class CoreRace(Base):
     race = Column(Enum(Race, name='race_enum'), nullable=False)
 
     # Many-to-1 reference to our Clinical Core:
-    clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
+    clinicalCore_participant_ID = Column(String(50), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='core_races')
 
     # https://github.com/MCLConsortium/mcl.sickbay/issues/3 (anticipated)
-    inscribed_clinicalCore_participant_ID = Column(String(14))
+    inscribed_clinicalCore_participant_ID = Column(String(50))
 
     # Methods:
     def __repr__(self):
@@ -160,10 +160,10 @@ class CoreTobacco(Base):
     type_tobacco_used = Column(Enum(Tobacco, name='tobacco_enum'), nullable=False)
 
     # https://github.com/MCLConsortium/mcl.sickbay/issues/3 (anticipated)
-    inscribed_clinicalCore_participant_ID = Column(String(14))
+    inscribed_clinicalCore_participant_ID = Column(String(50))
 
     # Many-to-1 reference to our Clinical Core:
-    clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
+    clinicalCore_participant_ID = Column(String(50), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='core_tobaccos')
 
     # Methods:

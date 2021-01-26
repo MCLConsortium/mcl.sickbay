@@ -25,14 +25,14 @@ class Imaging(Base, LabCASMetadata):
     some_attribute = Column(Integer)
 
     # Structural attributes ↓
-    inscribed_clinicalCore_participant_ID = Column(String(14))
-    inscribed_biospecimen_specimen_ID = Column(String(16))
+    inscribed_clinicalCore_participant_ID = Column(String(50))
+    inscribed_biospecimen_specimen_ID = Column(String(50))
     # 👆 These are used to look up a detached objects for later association.
 
     # Relationships:
-    clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
+    clinicalCore_participant_ID = Column(String(50), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='images')
-    biospecimen_specimen_ID     = Column(String(16), ForeignKey('biospecimens.specimen_ID'))
+    biospecimen_specimen_ID     = Column(String(50), ForeignKey('biospecimens.specimen_ID'))
     biospecimen                 = relationship('Biospecimen', back_populates='images')
 
     # Functions:

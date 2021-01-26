@@ -38,6 +38,14 @@ For issue https://github.com/MCLConsortium/mcl.sickbay/issues/3:
 -   `inscribed_clinicalCore_participant_ID` is a new field on `PriorLesion`, `CoreRace`, and `CoreTobacco`
 -   `inscribed_biospecimen_identifier` is a new field on `AdjacentSpecimen`
 
+For issue https://github.com/MCLConsortium/mcl.sickbay/issues/5:
+
+-   The following updates diverge from the [data dictionaries](https://mcl.nci.nih.gov/resources/standards/mcl-cdes) of the common data elements:
+    -   `participant_ID` is now 50 characters (along with foreign keys and `inscribed` fields), up from 14
+    -   `specimen_ID` is now 50 characters (along with foreign keys and `inscribed` fields), up from 16
+
+
+
 
 ### 0.0.9
 
