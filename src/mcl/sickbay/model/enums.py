@@ -70,6 +70,7 @@ class Specimen(_CaseInsensitiveEnum):
     blood   = 'Blood'
     aliquot = 'Aliquot'
     analyte = 'Analyte'
+    unknown = 'Unknown'
 
 
 class AnatomicalSite(_CaseInsensitiveEnum):
@@ -78,6 +79,7 @@ class AnatomicalSite(_CaseInsensitiveEnum):
     lung     = 'Lung'
     pancreas = 'Pancreas'
     prostate = 'Prostate'
+    unknown  = 'Unknown'
 
 
 class Education(_CaseInsensitiveEnum):
@@ -180,6 +182,7 @@ class Detection(_CaseInsensitiveEnum):
     screening                       = 'Screening'
     symptom_driven_patient_detected = 'Symptom driven/Patient detected'
     incidental                      = 'Incidental'
+    unknown                         = 'Unknown'
 
 
 class Mode(_CaseInsensitiveEnum):
@@ -193,6 +196,7 @@ class Neoplasm(_CaseInsensitiveEnum):
     '''Type of malignant neoplasm detected'''
     primary    = 'Primary'
     metastatic = 'Metastatic'
+    unknown    = 'Unknown'
 
 
 class SmokingStatus(_CaseInsensitiveEnum):
@@ -344,6 +348,7 @@ class TStage8(_CaseInsensitiveEnum):
     tis_pagets = "Tis (Pagets)"
     tis_dcis   = 'Tis (DCIS)'
     tx         = 'TX'
+    unknown    = 'Unknown'
 
 
 class PathologicNStage7(_CaseInsensitiveEnum):
@@ -366,18 +371,21 @@ class PathologicNStage7(_CaseInsensitiveEnum):
     pn3b          = 'pN3b'
     pn3c          = 'pN3c'
     pnx           = 'pNX'
+    unknown       = 'Unknown'
 
 
 class PathologicMStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's pathological distant metastasis "M Stage".
     Note this vocabualry has only one entry at present.'''
-    m1 = 'M1'
+    m1      = 'M1'
+    unknown = 'Unknown'
 
 
 class PathologicMStage8(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 8's pathological distant metastasis "M Category".
     And again, yes, there's just one entry. Sigh.'''
-    pm1 = 'pM1'
+    pm1     = 'pM1'
+    unknown = 'Unknown'
 
 
 class ClinicalNStage7(_CaseInsensitiveEnum):
@@ -428,21 +436,23 @@ class GroupStage7(_CaseInsensitiveEnum):
     occult        = 'Occult'
     stage_unknown = 'Stage unknown'
     not_reported  = 'Not reported'
+    unknown       = 'Unknown'
 
 
 class ClinicalTNMCategoryN8(_CaseInsensitiveEnum):
     '''American Joint Committee on Caner (AJCC) edition 8's clinically assessed lymph node N category.'''
-    cn0   = 'cN0'
-    cn1   = 'cN1'
-    cn1mi = 'cN1mi'
-    cn2   = 'cN2'
-    cn2a  = 'cN2a'
-    cn2b  = 'cN2b'
-    cn3   = 'cN3'
-    n3a   = 'N3a'
-    cn3b  = 'cN3b'
-    cn3c  = 'cN3c'
-    cnx   = 'cNX'
+    cn0     = 'cN0'
+    cn1     = 'cN1'
+    cn1mi   = 'cN1mi'
+    cn2     = 'cN2'
+    cn2a    = 'cN2a'
+    cn2b    = 'cN2b'
+    cn3     = 'cN3'
+    n3a     = 'N3a'
+    cn3b    = 'cN3b'
+    cn3c    = 'cN3c'
+    cnx     = 'cNX'
+    unknown = 'Unknown'
 
 
 class ClinicalTNMCategoryM8(_CaseInsensitiveEnum):
@@ -451,18 +461,20 @@ class ClinicalTNMCategoryM8(_CaseInsensitiveEnum):
     cm0_i_plus = 'cM0(i+)'
     cm1        = 'cM1'
     pm1        = 'pM1'
+    unknown    = 'Unknown'
 
 
 class PrognosticGroupStage8(_CaseInsensitiveEnum):
     '''American Joint Committee on Cance (AJCC) edition 8's prognostic group stage'''
-    zero = '0'
-    ia   = 'IA'
-    ib   = 'IB'
-    iia  = 'IIA'
-    iib  = 'IIB'
-    iiia = 'IIIA'
-    iiic = 'IIIC'
-    iv   = 'IV'
+    zero    = '0'
+    ia      = 'IA'
+    ib      = 'IB'
+    iia     = 'IIA'
+    iib     = 'IIB'
+    iiia    = 'IIIA'
+    iiic    = 'IIIC'
+    iv      = 'IV'
+    unknown = 'Unknown'
 
 
 class GeneticTestingAnswer(_CaseInsensitiveEnum):
@@ -494,6 +506,7 @@ class EstrogenTestResults(_CaseInsensitiveEnum):
     not_tested           = 'Not tested'
     pending              = 'Pending'
     data_not_available   = 'Data not available'
+    unknown              = 'Unknown'
 
 
 class HER2Results(_CaseInsensitiveEnum):
@@ -599,6 +612,7 @@ class SequencingTechnique(_CaseInsensitiveEnum):
     validation                          = 'Validation'
     amplicon                            = 'Amplicon'
     other                               = 'Other'
+    unknown                             = 'Unknown'
 
 
 class SequencingOrigin(_CaseInsensitiveEnum):
@@ -610,6 +624,7 @@ class SequencingOrigin(_CaseInsensitiveEnum):
     bulk_tissue   = 'Bulk tissue'
     single_cells  = 'Single-cells'
     single_nuclei = 'Single-nuclei'
+    unknown       = 'Unknown'
 
 
 class GenomicMethod(_CaseInsensitiveEnum):
@@ -622,6 +637,7 @@ class GenomicMethod(_CaseInsensitiveEnum):
     rrna_depletion           = 'rRNA Depletion'
     mirna_size_fractionation = 'miRNA Size Fractionation'
     other                    = 'Other'
+    unknown                  = 'Unknown'
 
 
 class GenomicStranding(_CaseInsensitiveEnum):
@@ -630,6 +646,7 @@ class GenomicStranding(_CaseInsensitiveEnum):
     first_stranded  = 'First_Stranded'
     second_stranded = 'Second_Stranded'
     not_applicable  = 'Not Applicable'
+    unknown         = 'Unknown'
 
 
 class GenomicAnalyzer(_CaseInsensitiveEnum):
@@ -662,13 +679,15 @@ class Smart3SeqInput(_CaseInsensitiveEnum):
     tissue_on_cap  = 'Tissue on cap'
     tissue_in_tube = 'Tissue in tube'
     rna_in_tube    = 'RNA in tube'
+    unknown        = 'Unknown'
 
 
 class Smart3SeqIndexing(_CaseInsensitiveEnum):
     '''Type of sequencing method that adds a unique identifier sequence to samples'''
-    single = 'Single'
-    dual   = 'Dual'
-    other  = 'Other'
+    single  = 'Single'
+    dual    = 'Dual'
+    other   = 'Other'
+    unknown = 'Unknown'
 
 
 class TumorTissue(_CaseInsensitiveEnum):
@@ -707,6 +726,7 @@ class Precancers(_CaseInsensitiveEnum):
     pin                             = 'PIN'
     other                           = 'Other'
     not_applicable                  = 'Not applicable'
+    unknown                         = 'Unknown'
 
 
 class RulesOfAcquisition(_CaseInsensitiveEnum):
@@ -787,6 +807,7 @@ class Analytes(_CaseInsensitiveEnum):
     peripheral_blood_mononuclear_cells_pbmc = 'Peripheral blood mononuclear cells (PBMC)'
     other                                   = 'Other'
     not_applicable                          = 'Not applicable'
+    unknown                                 = 'Unknown'
 
 
 class Storage(_CaseInsensitiveEnum):
@@ -804,6 +825,7 @@ class Storage(_CaseInsensitiveEnum):
     rnalater_at_25c           = 'RNAlater at 25C'
     rnalater_at__20c          = 'RNAlater at -20C'
     other                     = 'Other'
+    unknown                   = 'Unknown'
 
 
 class SlideCharges(_CaseInsensitiveEnum):
@@ -843,6 +865,7 @@ class Destinations(_CaseInsensitiveEnum):
     ucsf            = 'UCSF'
     uvm             = 'UVM'
     vanderbilt      = 'Vanderbilt'
+    unknown         = 'Unknown'
 
 
 class PrecancerLungHistopathology(_CaseInsensitiveEnum):
@@ -962,6 +985,7 @@ class Adenocarcinoma(_CaseInsensitiveEnum):
     solid                            = 'Solid'
     not_applicable                   = 'Not applicable'
     not_specified                    = 'Not specified'
+    unknown                          = 'Unknown'
 
 
 class AJCCStaging(_CaseInsensitiveEnum):
@@ -1076,6 +1100,7 @@ class TumorPathologyLocation(_CaseInsensitiveEnum):
     distal_common_bile_duct = 'Distal Common bile duct'
     diffuse                 = 'Diffuse'
     not_specified           = 'Not Specified'
+    unknown                 = 'Unknown'
 
 
 class LesionFocality(_CaseInsensitiveEnum):
@@ -1123,6 +1148,7 @@ class DuctComms(_CaseInsensitiveEnum):
     not_specified = 'Not Specified'
     none          = 'None'
     not_reported  = 'Not reported'
+    unknown       = 'Unknown'
 
 
 class PathManagement(_CaseInsensitiveEnum):
@@ -1177,18 +1203,20 @@ class ExocrineStage8(_CaseInsensitiveEnum):
     findings, and evidence obtained from pathology review when surgery is
     the first definitive therapy, using AJCC Ed. 8 criteria. Yikes.
     '''
-    n0 = 'N0'
-    n1 = 'N1'
-    n2 = 'N2'
-    nx = 'NX'
+    n0      = 'N0'
+    n1      = 'N1'
+    n2      = 'N2'
+    nx      = 'NX'
+    unknown = 'Unknown'
 
 
 class NeuroendocrineGroup(_CaseInsensitiveEnum):
     '''Bunch of roman numerals, ick.'''
-    i   = 'I'
-    ii  = 'II'
-    iii = 'III'
-    iv  = 'IV'
+    i       = 'I'
+    ii      = 'II'
+    iii     = 'III'
+    iv      = 'IV'
+    unknown = 'Unknown'
 
 
 class ProstateHistology(_CaseInsensitiveEnum):
@@ -1204,6 +1232,7 @@ class ProstateHistology(_CaseInsensitiveEnum):
     other                           = 'Other'
     cannot_be_determine             = 'Cannot be determine'
     not_reported                    = 'Not reported'
+    unknown                         = 'Unknown'
 
 
 class ProstateHistologicSubtypes(_CaseInsensitiveEnum):
@@ -1219,6 +1248,7 @@ class ProstateHistologicSubtypes(_CaseInsensitiveEnum):
     other                           = 'Other'
     cannot_be_determine             = 'Cannot be determine'
     not_reported                    = 'Not reported'
+    unknown                         = 'Unknown'
 
 
 class MorpholoCytoSubtypes(_CaseInsensitiveEnum):

@@ -44,6 +44,7 @@ For issue https://github.com/MCLConsortium/mcl.sickbay/issues/5:
     -   `participant_ID` is now 50 characters (along with foreign keys and `inscribed` fields), up from 14
     -   `specimen_ID` is now 50 characters (along with foreign keys and `inscribed` fields), up from 16
 
+And finally, for issue https://github.com/MCLConsortium/mcl.sickbay/issues/6 … we add `unknown` to all enumerations that didn't have it already.
 
 
 
