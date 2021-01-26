@@ -61,7 +61,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/1',
         fileName='12_78_ClinicalCore_20200624_0_DATA',
-        dateFileGenerated=datetime.date(2020, 2, 13),
+        dateFileGenerated='2020-02-13',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=78,
@@ -108,7 +108,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/2',
         fileName='12_78_ClinicalCore_20200624_0_DATA',
-        dateFileGenerated=datetime.date(2020, 2, 13),
+        dateFileGenerated='2020-02-13',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=78,
@@ -162,7 +162,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/3',
         fileName='12_111_ClinicalCore_20200623_0_DATA',
-        dateFileGenerated=datetime.date(2020, 5, 28),
+        dateFileGenerated='2020-05-28',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=111,
@@ -215,7 +215,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/3',
         fileName='12_111_ClinicalCore_20200623_0_DATA',
-        dateFileGenerated=datetime.date(2020, 5, 28),
+        dateFileGenerated='2020-05-28',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=111,
@@ -265,7 +265,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/4',
         fileName='12_78_BreastCore_20200625_0_DATA',
-        dateFileGenerated=datetime.date(2020, 6, 24),
+        dateFileGenerated='2020-06-24',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=78,
@@ -318,7 +318,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/5/6',
         fileName='12_78_Biospecimen_20200624_0_DATA',
-        dateFileGenerated=datetime.date(2020, 2, 13),
+        dateFileGenerated='2020-02-13',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=78,
@@ -359,7 +359,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/5/7',
         fileName='12_78_Biospecimen_20200624_0_DATA',
-        dateFileGenerated=datetime.date(2020, 2, 13),
+        dateFileGenerated='2020-02-13',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=78,
@@ -400,7 +400,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/5/8',
         fileName='12_78_Biospecimen_20200624_0_DATA',
-        dateFileGenerated=datetime.date(2020, 2, 13),
+        dateFileGenerated='2020-02-13',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=78,
@@ -445,7 +445,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/4',
         fileName='12_78_BreastCore_20200625_0_DATA',
-        dateFileGenerated=datetime.date(2020, 6, 24),
+        dateFileGenerated='2020-06-24',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=78,
@@ -494,7 +494,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/6/1',
         fileName='12_111_Biospecimen_20200623_0_DATA',
-        dateFileGenerated=datetime.date(2020, 6, 22),
+        dateFileGenerated='2020-06-22',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=111,
@@ -534,7 +534,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/6/2',
         fileName='12_111_Biospecimen_20200623_0_DATA',
-        dateFileGenerated=datetime.date(2020, 6, 22),
+        dateFileGenerated='2020-06-22',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=111,
@@ -574,7 +574,7 @@ def addSampleData(session):
         # LabCASMetadata
         labcasID='/to/be/determined/6/3',
         fileName='12_111_Biospecimen_20200623_0_DATA',
-        dateFileGenerated=datetime.date(2020, 6, 22),
+        dateFileGenerated='2020-06-22',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=111,
@@ -623,7 +623,7 @@ def addSampleData(session):
     g78_1 = Smart3SeqGenomics(
         labcasID='/to/be/determined/9/1',
         fileName='abcde_VT_3ildhth.fastq',
-        dateFileGenerated=datetime.date(2020, 4, 15),
+        dateFileGenerated='2020-04-15',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=78,
@@ -658,7 +658,7 @@ def addSampleData(session):
     g78_2 = Smart3SeqGenomics(
         labcasID='/to/be/determined/9/2',
         fileName='abcde_VT_3493838.fastq',
-        dateFileGenerated=datetime.date(2020, 4, 15),
+        dateFileGenerated='2020-04-15',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=78,
@@ -693,7 +693,7 @@ def addSampleData(session):
     g78_3 = Smart3SeqGenomics(
         labcasID='/to/be/determined/9/3',
         fileName='abcde_VT_32uduus.fastq',
-        dateFileGenerated=datetime.date(2020, 4, 15),
+        dateFileGenerated='2020-04-15',
         siteID=78,
         submittingInvestigatorID=1327,
         processingLevel='processed',
@@ -728,7 +728,7 @@ def addSampleData(session):
     gs111_1 = Smart3SeqGenomics(
         labcasID='/to/be/determined/10/1',
         fileName='RNA334_MDA_3ildhth.fastq',
-        dateFileGenerated=datetime.date(2020, 5, 1),
+        dateFileGenerated='2020-05-01',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=111,
@@ -763,7 +763,7 @@ def addSampleData(session):
     gs111_2 = Smart3SeqGenomics(
         labcasID='/to/be/determined/10/2',
         fileName='RNA386_MDA_3493838.fastq',
-        dateFileGenerated=datetime.date(2020, 5, 15),
+        dateFileGenerated='2020-05-15',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=111,
@@ -798,7 +798,7 @@ def addSampleData(session):
     gs111_3 = Smart3SeqGenomics(
         labcasID='/to/be/determined/10/3',
         fileName='RNA6844_MDA_32uduus.fastq',
-        dateFileGenerated=datetime.date(2020, 5, 15),
+        dateFileGenerated='2020-05-15',
         consortium='https://mcl.nci.nih.gov/',
         protocolID=12,
         siteID=111,
