@@ -3,6 +3,30 @@
 This documents the changes from release to release.
 
 
+### 0.0.10
+
+-   On `ClinicalCore`:
+    -   The `race` attribute is now a 1-to-many mapping to `CoreRace` via `core_races`
+    -   The `type_tobacco_used` is now a 1-to-many mapping to `CoreTobacco` via `core_tobaccos`
+    -   The attribute `days_to_birth` is now required
+-   On `Biospecimen`:
+    -   The enumeration for `Precancers` has a whole bunch of new permitted values
+-   On `BreastOrgan`:
+    -   The enumeration for `PrecancerousHistopathology` contains values for "unknown" and "data not available"
+    -   The enumeration for `BreastSite` now has an `unknown` value
+    -   A new value `pending` is available for `GeneticTestingAnswer`, `TestResults`, `EstrogenTestResults`
+    -   The enumeration `HER2Results` adds `pending` and `unknown` values
+    -   The enumeration `BreastImagingWorkup` adds an `unknown` value
+    -   The enumeration `BIRADSTissues` adds values for "unknown" and "data not available"
+-   New `LungOrgan` plus (bogus) test data for it
+-   New `PancreasOrgan` plus (bogus) test data for it
+-   Updated `ProstateOrgan`
+    -   Previously, this was just a placeholder to test multiple inheritance from the common `Organ` class in terms of both Python class hierachy and database hierarchy
+    -   Now it's completely filled out with the `v0` prostate common data elements with its numerous controlled vocabularies
+-   Expanded enumerations: `ClinicalMStage7`, `TStage7`, `ClinicalNStage7`, `GroupStage7`, `MarginalStatus`
+-   New enumerations, far too many to enumerate 😏
+
+
 ### 0.0.9
 
 -   Rename `inscribed_participant_ID` → `inscribed_clinicalCore_participant_ID`
