@@ -88,6 +88,9 @@ class AdjacentSpecimen(Base):
     # Sole attribute: an adjacent specimen ID
     adjacent_specimen_ID = Column(String(16), nullable=False)
 
+    # https://github.com/MCLConsortium/mcl.sickbay/issues/3
+    inscribed_biospecimen_identifier = Column(String(16))
+
     # Many-to-1 reference to our specimen:
     biospecimen_identifier = Column(String(16), ForeignKey('biospecimens.specimen_ID'))
     biospecimen = relationship('Biospecimen', back_populates='adjacent_specimens')
