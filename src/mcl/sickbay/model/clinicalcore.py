@@ -51,11 +51,10 @@ class ClinicalCore(Base, LabCASMetadata):
     days_to_enrollment                 = Column(Integer)
     gender                             = Column(Enum(Gender, name='gender_enum'), nullable=False)
     ethnicity                          = Column(Enum(Ethnicity, name='ethnicity_enum'), nullable=False)
-    race                               = Column(Enum(Race, name='race_enum'), nullable=False)
     vital_status                       = Column(Enum(VitalStatus, name='vital_status_enum'))
     days_to_vital_status_reference     = Column(Integer)
     age_at_index                       = Column(Integer, nullable=False)
-    days_to_birth                      = Column(Integer)
+    days_to_birth                      = Column(Integer, nullable=False)
     year_of_birth                      = Column(Integer, nullable=False)
     education                          = Column(Enum(Education, name='education_enum'), nullable=False)
     income                             = Column(Enum(Income, name='income_enum'), nullable=False)
@@ -81,7 +80,6 @@ class ClinicalCore(Base, LabCASMetadata):
     relative_with_cancer_history       = Column(Enum(ImpertinentPolarAnswer, name='impolar_enum'), nullable=False)
     relative_with_cancer_history_count = Column(Integer)
     tobacco_smoking_status             = Column(Enum(SmokingStatus, name='smoking_status_enum'), nullable=False)
-    type_tobacco_used                  = Column(Enum(Tobacco, name='tobacco_enum'), nullable=False)
     tobacco_smoking_onset_age          = Column(Integer)
     tobacco_smoking_quit_age           = Column(Integer)
     years_smoked                       = Column(Integer)
@@ -90,6 +88,8 @@ class ClinicalCore(Base, LabCASMetadata):
     alcohol_drinks_per_day             = Column(Integer)
     alcohol_days_per_week              = Column(Integer)
     # ❕ Note that ``prior_lesion_type`` is 1-to-many, so see the next class, below.
+    # ❕ Also race used to be a single value; it's now ``core_races``, a 1-to-many, so see class below.
+    # ❕ Same with ``tobacco_types``
 
     # Methods (brace yourself—there's just 1 so far 😛)
     def __repr__(self):
@@ -121,6 +121,50 @@ class PriorLesion(Base):
     __tablename__ = 'priorLesions'
 
 
+class CoreRace(Base):
+    '''👩🏾‍🦰 Core Race tracks multiple races for a Clinical Core participant; in the spreadsheets
+    sent to LabCAS, this comes from a ``|``-separated list.'''
+
+    # Primary key, an auto-sequencedd ID number:
+    identifier = Column(Integer, Sequence('core_race_id_seq'), primary_key=True)
+
+    # Attributes of a core race, which is just race:
+    race = Column(Enum(Race, name='race_enum'), nullable=False)
+
+    # Many-to-1 reference to our Clinical Core:
+    clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
+    clinicalCore                = relationship('ClinicalCore', back_populates='core_races')
+
+    # Methods:
+    def __repr__(self):
+        return f'<{self.__class__.__name__}(identifier={self.identifier})>'
+
+    # Object-relational mapping details:
+    __tablename__ = 'coreRaces'
+
+
+class CoreTobacco(Base):
+    '''🚬 Multiple tobaccos used by a Clinical Core participant; in the spreadsheets sent to LabCAS,
+    this comes from a ``|``-separated list.'''
+
+    # Primary key, an auto-sequencedd ID number:
+    identifier = Column(Integer, Sequence('tobacco_id_seq'), primary_key=True)
+
+    # Attributes of a core tobacco, which is just the type of tobacco used:
+    type_tobacco_used = Column(Enum(Tobacco, name='tobacco_enum'), nullable=False)
+
+    # Many-to-1 reference to our Clinical Core:
+    clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
+    clinicalCore                = relationship('ClinicalCore', back_populates='core_tobaccos')
+
+    # Methods:
+    def __repr__(self):
+        return f'<{self.__class__.__name__}(identifier={self.identifier})>'
+
+    # Object-relational mapping details:
+    __tablename__ = 'coreTobaccos'
+
+
 # Additional Relationships
 # ------------------------
 
@@ -129,3 +173,5 @@ ClinicalCore.genomics      = relationship('Genomics',     order_by=Genomics.spec
 ClinicalCore.images        = relationship('Imaging',      order_by=Imaging.identifier,      back_populates='clinicalCore')
 ClinicalCore.organs        = relationship('Organ',        order_by=Organ.identifier,        back_populates='clinicalCore')
 ClinicalCore.prior_lesions = relationship('PriorLesion',  order_by=PriorLesion.identifier,  back_populates='clinicalCore')
+ClinicalCore.core_races    = relationship('CoreRace',     order_by=CoreRace.identifier,     back_populates='clinicalCore')
+ClinicalCore.core_tobaccos = relationship('CoreTobacco',  order_by=CoreTobacco.identifier,  back_populates='clinicalCore')

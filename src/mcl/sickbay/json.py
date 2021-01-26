@@ -14,7 +14,9 @@ from .model import (
     Genomics,
     Imaging,
     LabCASMetadata,
+    LungOrgan,
     Organ,
+    PancreasOrgan,
     ProstateOrgan,
     Smart3SeqGenomics,
 )
@@ -111,19 +113,77 @@ class BreastOrganEncoder(OrganEncoder):
 
 
 class ProstateOrganEncoder(OrganEncoder):
+    _prostateAttributes = (
+        'histologic_type', 'histologic_subtype', 'morphologic_cytologic_subtypes',
+        'morphologic_cytologic_subcategories', 'gleason_score_dominant_nodule', 'gleason_grade_group',
+        'percent_gleason_pattern_4', 'tumor_extent', 'location_dominant_nodule', 'location_secondary_nodule',
+        'local_extent', 'location_extent_extraprostatic_extension', 'margins', 'location_nature_positive_margins',
+        'summed_length_positive_margin', 'highest_grade_at_margin', 'seminal_vesicle_invasion',
+        'lymphatic_invasion', 'pelvic_lymph_nodes', 'tumor_in_pelvic_lymph_nodes', 'lymph_nodes_metastatic_carcinoma',
+        'lymph_nodes_tested', 'lymph_node_location', 'extranodal_extension_identified',
+        'ajcc_extent_of_invasion_primary_tumor', 'ajcc_extent_of_invasion_regional_lymph_nodes',
+        'ajcc_extent_of_invasion_summary_margins', 'ajcc_staging_system_edition', 'ajcc_clinical_m',
+        'ajcc_clinical_n', 'ajcc_clinical_t', 'ajcc_clinical_stage', 'ajcc_pathologic_m', 'ajcc_pathologic_n',
+        'ajcc_pathologic_t', 'ajcc_pathologic_stage', 'additonal_findings_uninvolved_prostate',
+        'prior_malignancy', 'prior_treatment'
+    )
     def default(self, obj):
         '''See https://docs.python.org/3/library/json.html#json.JSONEncoder.default'''
         if isinstance(obj, ProstateOrgan):
             d = super(ProstateOrganEncoder, self).default(obj)
-            if obj.depth_or_whatever is not None: d['depth_or_whatever']  = obj.depth_or_whatever
+            self.addAttributes(obj, self._prostateAttributes, d)
             return d
         else:
             return super(ProstateOrganEncoder, self).default(obj)
 
 
+class LungOrganEncoder(OrganEncoder):
+    _lungAttributes = (
+        'histopathology_precancer_type', 'histopathology_precancer_type_other', 'collection_method',
+        'lymphocytes', 'neutrophils', 'plasma_cells', 'macrophages', 'lung_location', 'lobe_bronchial_location',
+        'segment', 'branch', 'histologic_type', 'primary_adenocarcinoma_differentiation_type', 'tumor_grade',
+        'ajcc_staging_system_edition', 'ajcc_clinical_m', 'ajcc_clinical_n', 'ajcc_clinical_t', 'ajcc_clinical_stage',
+        'ajcc_pathologic_m', 'ajcc_pathologic_n', 'ajcc_pathologic_t', 'ajcc_pathologic_stage', 'lymph_nodes_tested',
+        'lymph_nodes_positive', 'prior_malignancy', 'prior_treatment'
+    )
+    def default(self, obj):
+        '''See https://docs.python.org/3/library/json.html#json.JSONEncoder.default'''
+        if isinstance(obj, LungOrgan):
+            d = super(LungOrganEncoder, self).default(obj)
+            self.addAttributes(obj, self._lungAttributes, d)
+            return d
+        else:
+            return super(LungOrganEncoder, self).default(obj)
+
+
+class PancreasOrganEncoder(OrganEncoder):
+    _pancreasAttributes = (
+        'histological_grading', 'histological_subtypes_ipmn', 'tumor_pathology_location', 'lesion_focality',
+        'number_lesions', 'mitotic_rate', 'necrosis', 'path_number_of_tumors', 'path_tumor_size_largest_lesion',
+        'lesion_size', 'path_ipmn_grade_at_excision', 'final_path_duct_communication', 'path_management_recommendation',
+        'path_acc_num_diag_biopsy', 'path_immunohistochemistry', 'path_immunohistochemistry_outcome',
+        'histology_grading', 'exocrine_pathologic_T_AJCC_8', 'exocrine_pathologic_N_AJCC_8',
+        'exocrine_pathologic_M_AJCC_8', 'exocrine_clinical_T_AJCC_8', 'exocrine_clinical_N_AJCC_8',
+        'exocrine_clinical_M_AJCC_8', 'exocrine_group_stage_AJCC_8', 'neuroendocrine_pathologic_T_AJCC_8',
+        'neuroendocrine_pathologic_N_AJCC_8', 'neuroendocrine_pathologic_M_AJCC_8',
+        'neuroendocrine_clinical_T_AJCC_8', 'neuroendocrine_clinical_N_AJCC_8',
+        'neuroendocrine_clinical_M_AJCC_8', 'neuroendocrine_group_stage'
+    )
+    def default(self, obj):
+        '''See https://docs.python.org/3/library/json.html#json.JSONEncoder.default'''
+        if isinstance(obj, PancreasOrgan):
+            d = super(PancreasOrganEncoder, self).default(obj)
+            self.addAttributes(obj, self._pancreasAttributes, d)
+            return d
+        else:
+            return super(PancreasOrganEncoder, self).default(obj)
+
+
 ORGAN_ENCODERS = {
     BreastOrgan: BreastOrganEncoder,
     ProstateOrgan: ProstateOrganEncoder,
+    LungOrgan: LungOrganEncoder,
+    PancreasOrgan: PancreasOrganEncoder,
     # Additional encoders here as additional organs come to be
 }
 
@@ -192,6 +252,11 @@ class ClinicalCoreEncoder(LabCASMetadataEncoder):
             if obj.prior_lesions is not None and len(obj.prior_lesions) > 0:
                 # 🤔 Should this return the enumeration's name or value? Guess we'll do name for now
                 d['prior_lesions'] = [i.lesion_type.name for i in obj.prior_lesions]
+            if obj.core_races is not None and len(obj.core_races) > 0:
+                # 🤔 Ditto
+                d['core_races'] = [i.race.name for i in obj.core_races]
+            if obj.core_tobaccos is not None and len(obj.core_tobaccos) > 0:
+                d['core_tobaccos'] = [i.type_tobacco_used.name for i in obj.core_tobaccos]
             if obj.biospecimens:
                 e = BiospecimenEncoder()
                 d['biospecimens'] = [e.default(i) for i in obj.biospecimens]

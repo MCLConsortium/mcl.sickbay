@@ -41,13 +41,13 @@ class Biospecimen(Base, LabCASMetadata):
     days_to_collection          = Column(Integer, nullable=False)
     time_excision_to_processing = Column(Integer, nullable=False)
     ischemic_time               = Column(Float)
-    portion_weight              = Column(Float)
-    total_volume                = Column(Float)
+    portion_weight              = Column(Float)  # milligrams
+    total_volume                = Column(Float)  # milliliters
     preservation_method         = Column(Enum(Preserves, name='preserves_enum'), nullable=False)
     preservation_method_other   = Column(String(100))
     fixative_used               = Column(Enum(Fixatives, name='fixatives_enum'), nullable=False)
     fixatives_other             = Column(String(100))
-    fixation_duration           = Column(Integer)
+    fixation_duration           = Column(Integer)  # minutes
     processing_duration         = Column(Integer, nullable=False)
     analyte_type                = Column(Enum(Analytes, name='analytes_enum'), nullable=False)
     analyte_type_other          = Column(String(100))
@@ -57,7 +57,7 @@ class Biospecimen(Base, LabCASMetadata):
     storage_method_other        = Column(String(30))
     days_to_storage             = Column(Integer, nullable=False)
     slide_charge_type           = Column(Enum(SlideCharges, name='slide_charges_enum'), nullable=False)
-    section_thickness           = Column(Float)
+    section_thickness           = Column(Float)  # µm
     days_to_shipping            = Column(Integer)
     shipping_conditions         = Column(Enum(Packaging, name='packaging_enum'))
     shipping_destination        = Column(Enum(Destinations, name='destinations_enum'))

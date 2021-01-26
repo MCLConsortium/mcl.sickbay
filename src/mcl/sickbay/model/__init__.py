@@ -12,7 +12,7 @@ from .base import Base, LabCASMetadata
 from .clinicalcore import ClinicalCore, PriorLesion
 from .genomics import Genomics, Smart3SeqGenomics
 from .images import Imaging
-from .organs import Organ, BreastOrgan, ProstateOrgan
+from .organs import Organ, BreastOrgan, ProstateOrgan, LungOrgan, PancreasOrgan
 from .specimens import Biospecimen, AdjacentSpecimen
 
 
@@ -32,7 +32,9 @@ __all__ = [
     Genomics,
     Imaging,
     LabCASMetadata,
+    LungOrgan,
     Organ,
+    PancreasOrgan,
     PriorLesion,
     ProstateOrgan,
     Smart3SeqGenomics,

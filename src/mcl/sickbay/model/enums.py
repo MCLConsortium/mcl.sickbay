@@ -230,6 +230,8 @@ class PrecancerousHistopathology(_CaseInsensitiveEnum):
     dcis_comedo                     = 'DCIS-Comedo'
     dcis_nos                        = 'DCIS, NOS'
     lobular_carcinoma_in_situ_lcis  = 'Lobular carcinoma in situ (LCIS)'
+    unknown                         = 'Unknown'
+    data_not_available              = 'Data not available'
 
 
 class Grade(_CaseInsensitiveEnum):
@@ -238,6 +240,20 @@ class Grade(_CaseInsensitiveEnum):
     intermediate       = 'Intermediate'
     high               = 'High'
     data_not_available = 'Data not available'
+
+
+class TumorGrade(_CaseInsensitiveEnum):
+    '''Degree of abnormality of cancer cells, a measure of differentiation and aggressiveness.'''
+    g1           = 'G1'
+    g2           = 'G2'
+    g3           = 'G3'
+    g4           = 'G4'
+    gx           = 'GX'
+    gb           = 'GB'
+    high_grade   = 'High grade'
+    low_grade    = 'Low grade'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
 
 
 class Laterality(_CaseInsensitiveEnum):
@@ -258,6 +274,7 @@ class BreastSite(_CaseInsensitiveEnum):
     lower_inner_quadrant = 'Lower inner quadrant'
     central              = 'Central'
     nipple               = 'Nipple'
+    unknown              = 'Unknown'
     data_not_available   = 'Data not available'
 
 
@@ -276,28 +293,35 @@ class MarginalStatus(_CaseInsensitiveEnum):
     not_evaluable    = 'Not evaluable'
     positive_finding = 'Positive finding'
     unknown          = 'Unknown'
+    negative         = 'Negative'
+    positive         = 'Positive'
+    not_reported     = 'Not reported'
 
 
 class TStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's pathological tumor "T Stage"'''
-    t0         = 'T0'
-    t1         = 'T1'
-    t1a        = 'T1a'
-    t1b        = 'T1b'
-    t1c        = 'T1c'
-    t1mi       = 'T1mi'
-    t2         = 'T2'
-    t3         = 'T3'
-    t4         = 'T4'
-    t4a        = 'T4a'
-    t4b        = 'T4b'
-    t4c        = 'T4c'
-    t4d        = 'T4d'
-    tis        = 'Tis'
-    tis_pagets = "Tis (Paget's)"
-    tis_lcis   = 'Tis (LCIS)'
-    tis_dcis   = 'Tis (DCIS)'
-    tx         = 'TX'
+    t0           = 'T0'
+    t1           = 'T1'
+    t1a          = 'T1a'
+    t1b          = 'T1b'
+    t1c          = 'T1c'
+    t1mi         = 'T1mi'
+    t2           = 'T2'
+    t2a          = 'T2a'
+    t2b          = 'T2b'
+    t3           = 'T3'
+    t4           = 'T4'
+    t4a          = 'T4a'
+    t4b          = 'T4b'
+    t4c          = 'T4c'
+    t4d          = 'T4d'
+    tis          = 'Tis'
+    tis_pagets   = "Tis (Paget's)"
+    tis_lcis     = 'Tis (LCIS)'
+    tis_dcis     = 'Tis (DCIS)'
+    tx           = 'TX'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
 
 
 class TStage8(_CaseInsensitiveEnum):
@@ -358,29 +382,40 @@ class PathologicMStage8(_CaseInsensitiveEnum):
 
 class ClinicalNStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's clinically assesed "M Stage".'''
-    n3c = 'N3c'
-    n3b = 'N3b'
-    n3a = 'N3a'
-    n3  = 'N3'
-    n2b = 'N2b'
-    n2a = 'N2a'
-    n2  = 'N2'
-    n1  = 'N1'
-    n0  = 'N0'
-    nx  = 'NX'
+    n3c          = 'N3c'
+    n3b          = 'N3b'
+    n3a          = 'N3a'
+    n3           = 'N3'
+    n2b          = 'N2b'
+    n2a          = 'N2a'
+    n2           = 'N2'
+    n1           = 'N1'
+    n0           = 'N0'
+    nx           = 'NX'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
 
 
 class ClinicalMStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's clinically assessed "M Stage".'''
-    m0        = 'M0'
-    m1        = 'M1'
-    m0_i_plus = 'M0(i+)'
+    m0           = 'M0'
+    m1           = 'M1'
+    m0_i_plus    = 'M0(i+)'
+    m1a          = 'M1a'
+    m1b          = 'M1b'
+    m1c          = 'M1c'
+    pm1          = 'pM1'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
 
 
 class GroupStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's group stage.'''
     zero          = '0'
     ia            = 'IA'
+    ia1           = 'IA1'
+    ia2           = 'IA2'
+    ia3           = 'IA3'
     ib            = 'IB'
     iia           = 'IIA'
     iib           = 'IIB'
@@ -388,7 +423,11 @@ class GroupStage7(_CaseInsensitiveEnum):
     iiib          = 'IIIB'
     iiic          = 'IIIC'
     iv            = 'IV'
+    iva           = 'IVA'
+    ivb           = 'IVB'
+    occult        = 'Occult'
     stage_unknown = 'Stage unknown'
+    not_reported  = 'Not reported'
 
 
 class ClinicalTNMCategoryN8(_CaseInsensitiveEnum):
@@ -417,7 +456,7 @@ class ClinicalTNMCategoryM8(_CaseInsensitiveEnum):
 class PrognosticGroupStage8(_CaseInsensitiveEnum):
     '''American Joint Committee on Cance (AJCC) edition 8's prognostic group stage'''
     zero = '0'
-    la   = 'lA'
+    ia   = 'IA'
     ib   = 'IB'
     iia  = 'IIA'
     iib  = 'IIB'
@@ -430,6 +469,7 @@ class GeneticTestingAnswer(_CaseInsensitiveEnum):
     '''How to answer the question of if genetic testing was done'''
     done               = 'Done'
     not_done           = 'Not done'
+    pending            = 'Pending'
     unknown            = 'Unknown'
     data_not_available = 'Data not available'
 
@@ -439,6 +479,7 @@ class TestResults(_CaseInsensitiveEnum):
     positive             = 'Positive'
     negative             = 'Negative'
     not_tested           = 'Not tested'
+    pending              = 'Pending'
     unknown              = 'Unknown'
     data_not_available   = 'Data not available'
     cannot_be_determined = 'Data not available'  # Make this an alias because the # of vocabs is out of control
@@ -451,6 +492,7 @@ class EstrogenTestResults(_CaseInsensitiveEnum):
     negative             = 'Negative'
     cannot_be_determined = 'Cannot be determined'
     not_tested           = 'Not tested'
+    pending              = 'Pending'
     data_not_available   = 'Data not available'
 
 
@@ -462,6 +504,8 @@ class HER2Results(_CaseInsensitiveEnum):
     positive_score_3_plus  = 'Positive (Score 3+)'
     cannot_be_determined   = 'Cannot be determined'
     not_tested             = 'Not tested'
+    pending                = 'Pending'
+    unknown                = 'Unknown'
     data_not_available     = 'Data not available'
 
 
@@ -516,6 +560,7 @@ class BreastImagingWorkup(_CaseInsensitiveEnum):
     pet_ct                      = 'PET/CT'
     ct                          = 'CT'
     multiple_imaging_modalities = 'Multiple imaging modalities'
+    unknown                     = 'Unknown'
     data_not_available          = 'Data not available'
 
 
@@ -525,6 +570,8 @@ class BIRADSTissues(_CaseInsensitiveEnum):
     scattered_fibroglandular_densities = 'Scattered fibroglandular densities'
     heterogeneously_dense              = 'Heterogeneously dense'
     extremely_dense                    = 'Extremely dense'
+    unknown                            = 'Unknown'
+    data_not_available                 = 'Data not available'
 
 
 class SequencingTechnique(_CaseInsensitiveEnum):
@@ -639,18 +686,27 @@ class TumorTissue(_CaseInsensitiveEnum):
 
 class Precancers(_CaseInsensitiveEnum):
     '''Precancers. Yep, precancers.'''
-    dcis            = 'DCIS'
-    luad_aah        = 'LUAD-AAH'
-    luad_ais        = 'LUAD-AIS'
-    luad_mia        = 'LUAD-MIA'
-    lusc_metaplasia = 'LUSC-Metaplasia'
-    lusc_dysplasia  = 'LUSC-Dysplasia'
-    lusc_cis        = 'LUSC-CIS'
-    panin           = 'PanIN'
-    ipmn            = 'IPMN'
-    pin             = 'PIN'
-    other           = 'Other'
-    not_applicable  = 'Not applicable'
+    usual_ductal_hyperplasia_udh    = 'Usual ductal hyperplasia (UDH)'
+    atypical_ductal_hyperplasia_adh = 'Atypical ductal hyperplasia (ADH)'
+    dcis_paget_disease              = 'DCIS-Paget disease'
+    dcis_solid_mosaic_microanicar   = 'DCIS-Solid (mosaic, microanicar)'
+    dcis_cribriform                 = 'DCIS-Cribriform'
+    dcis_micropapillary             = 'DCIS-Micropapillary'
+    dcis_papillary                  = 'DCIS-Papillary'
+    dcis_comedo                     = 'DCIS-Comedo'
+    dcis_nos                        = 'DCIS, NOS'
+    lobular_carcinoma_in_situ_lcis  = 'Lobular carcinoma in situ (LCIS)'
+    luad_aah                        = 'LUAD-AAH'
+    luad_ais                        = 'LUAD-AIS'
+    luad_mia                        = 'LUAD-MIA'
+    lusc_metaplasia                 = 'LUSC-Metaplasia'
+    lusc_dysplasia                  = 'LUSC-Dysplasia'
+    lusc_cis                        = 'LUSC-CIS'
+    panin                           = 'PanIN'
+    ipmn                            = 'IPMN'
+    pin                             = 'PIN'
+    other                           = 'Other'
+    not_applicable                  = 'Not applicable'
 
 
 class RulesOfAcquisition(_CaseInsensitiveEnum):
@@ -787,3 +843,573 @@ class Destinations(_CaseInsensitiveEnum):
     ucsf            = 'UCSF'
     uvm             = 'UVM'
     vanderbilt      = 'Vanderbilt'
+
+
+class PrecancerLungHistopathology(_CaseInsensitiveEnum):
+    '''Histopathology precancer types for lungs'''
+    mild_dysplasia                        = 'Mild Dysplasia'
+    moderate_dysplasia                    = 'Moderate Dysplasia'
+    severe_dysplasia                      = 'Severe Dysplasia'
+    cis                                   = 'CIS'
+    aah                                   = 'AAH'
+    ais_adenocarcinoma_in_situ            = 'AIS (Adenocarcinoma in situ)'
+    mia_minimally_invasive_adenocarcinoma = 'MIA (minimally invasive adenocarcinoma)'
+    other                                 = 'Other'
+    unknown                               = 'Unknown'
+    not_reported                          = 'Not reported'
+
+
+class LungBiopsy(_CaseInsensitiveEnum):
+    '''Collection method'''
+    endobronchial_biopsy = 'Endobronchial biopsy'
+    bronchial_brushing   = 'Bronchial brushing'
+    surgical_resection   = 'Surgical resection'
+    unknown              = 'Unknown'
+    not_reported         = 'Not reported'
+
+
+class Infiltration(_CaseInsensitiveEnum):
+    '''The presence of normal or pathologic migration and accumulation of some marker, checmical, cell,
+    or other substance within tissue at a particular time.
+    '''
+    normal_10      = 'Normal (<10%)'
+    mild_10_20     = 'Mild (10 - 20%)'
+    moderate_20_50 = 'Moderate (20 - 50%)'
+    severe_50      = 'Severe (>50%)'
+    not_present    = 'Not present'
+    unknown        = 'Unknown'
+    not_reported   = 'Not reported'
+
+
+class LungLocation(_CaseInsensitiveEnum):
+    '''The named location of one of a pair of organs in the chest or related structures that
+    supplies the body with oxygen and removes carbon dioxide from the body.
+    '''
+    main_carina  = 'Main carina'
+    left         = 'Left'
+    right        = 'Right'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class BronchialLobe(_CaseInsensitiveEnum):
+    '''The named location of a portion of a lung or bronchus.'''
+    upper_lobe   = 'Upper lobe'
+    middle_lobe  = 'Middle lobe'
+    lower_lobe   = 'Lower lobe'
+    stump        = 'Stump'
+    bronchus     = 'Bronchus'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class LungSegment(_CaseInsensitiveEnum):
+    '''Divisions of the lung lobar bronchus that supplies a bronchopulmonary segment.'''
+    segment_1      = '1'
+    segment_2      = '2'
+    segment_3      = '3'
+    segment_4      = '4'
+    segment_5      = '5'
+    segment_6      = '6'
+    segment_7      = '7'
+    segment_8      = '8'
+    segment_9      = '9'
+    segment_10     = '10'
+    not_applicable = 'Not applicable'
+    unknown        = 'Unknown'
+    not_reported   = 'Not reported'
+
+
+class LungBranch(_CaseInsensitiveEnum):
+    '''Sub-segment within the bronchial tree where it further subdivides into smaller passages.'''
+    a              = 'A'
+    b              = 'B'
+    c              = 'C'
+    not_applicable = 'Not applicable'
+    unknown        = 'Unknown'
+    not_reported   = 'Not reported'
+
+
+class LungHistologicType(_CaseInsensitiveEnum):
+    '''Morphology observed by microscope in the tissue next to a benign or malignant tissue growth.'''
+    adenocarcinoma_adc                           = 'Adenocarcinoma (ADC)'
+    adenosquamous_carcinoma                      = 'Adenosquamous carcinoma'
+    carcinoid_tumor_and_atypical_carcinoid_tumor = 'Carcinoid tumor and atypical carcinoid tumor'
+    in_situ_pulmonary_adenocarcinoma_ais         = 'In situ pulmonary adenocarcinoma (AIS)'
+    large_cell_carcinoma                         = 'Large cell carcinoma'
+    large_cell_neuroendocrine_carcinoma_lcnec    = 'Large cell neuroendocrine carcinoma (LCNEC)'
+    lymphoepithelioma_like_carcinoma             = 'Lymphoepithelioma-like carcinoma'
+    minimally_invasive_adenocarcinoma_mia        = 'Minimally invasive adenocarcinoma (MIA)'
+    nut_carcinoma                                = 'Nut carcinoma'
+    sarcomatoid_carcinoma                        = 'Sarcomatoid carcinoma'
+    small_cell_lung_cancer_sclc                  = 'Small cell lung cancer (SCLC)'
+    squamous_cell_carcinoma_scc                  = 'Squamous cell carcinoma (SCC)'
+    squamous_cell_cis                            = 'Squamous cell CIS'
+    unknown                                      = 'Unknown'
+    not_reported                                 = 'Not reported'
+
+
+class Adenocarcinoma(_CaseInsensitiveEnum):
+    '''Goup based on the cellular characteristic of the primary growth pattern of malignant glandular cells.'''
+    acinar                           = 'Acinar'
+    colloid_adenocarcinoma           = 'Colloid adenocarcinoma'
+    enteric_adenocarcinoma           = 'Enteric adenocarcinoma'
+    fetal_adenocarcinoma             = 'Fetal adenocarcinoma'
+    invasive_mucinous_adenocarcinoma = 'Invasive mucinous adenocarcinoma'
+    lepidic                          = 'Lepidic'
+    micropapillary                   = 'Micropapillary'
+    papillary                        = 'Papillary'
+    solid                            = 'Solid'
+    not_applicable                   = 'Not applicable'
+    not_specified                    = 'Not specified'
+
+
+class AJCCStaging(_CaseInsensitiveEnum):
+    '''American Joint Committee on Cancer staging handbook.'''
+    staging_7    = '7'
+    staging_8    = '8'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class AJCCMetastasisStage(_CaseInsensitiveEnum):
+    '''Absence or presence of distant spread or metastases (M) to locations via vascular
+    channels or lymphatics beyond the regional lymph nodes, using criteria established by the
+    American Joint Committee on Cancer (AJCC).
+    '''
+    m1           = 'M1'
+    m1a          = 'M1a'
+    m1b          = 'M1b'
+    cm0          = 'cM0'
+    cm1          = 'cM1'
+    pm1          = 'pM1'
+    pm1a         = 'pM1a'
+    pm1b         = 'pM1b'
+    pm1c         = 'pM1c'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class AJCCPathologicStage(_CaseInsensitiveEnum):
+    '''The extent of a cancer, especially whether the disease has spread from the original site
+    to other parts of the body based on American Joint Committee on Cancer (AJCC) staging criteria.
+    '''
+    stage_0      = 'Stage 0'
+    stage_0a     = 'Stage 0a'
+    stage_0is    = 'Stage 0is'
+    stage_i      = 'Stage I'
+    stage_ia     = 'Stage IA'
+    stage_ia1    = 'Stage IA1'
+    stage_ia2    = 'Stage IA2'
+    stage_ib     = 'Stage IB'
+    stage_ib1    = 'Stage IB1'
+    stage_ib2    = 'Stage IB2'
+    stage_ic     = 'Stage IC'
+    stage_ii     = 'Stage II'
+    stage_iia    = 'Stage IIA'
+    stage_iia1   = 'Stage IIA1'
+    stage_iia2   = 'Stage IIA2'
+    stage_iib    = 'Stage IIB'
+    stage_iic    = 'Stage IIC'
+    stage_iic1   = 'Stage IIC1'
+    stage_iii    = 'Stage III'
+    stage_iiia   = 'Stage IIIA'
+    stage_iiib   = 'Stage IIIB'
+    stage_iiic   = 'Stage IIIC'
+    stage_iiic1  = 'Stage IIIC1'
+    stage_iiic2  = 'Stage IIIC2'
+    stage_is     = 'Stage IS'
+    stage_iv     = 'Stage IV'
+    stage_iva    = 'Stage IVA'
+    stage_ivb    = 'Stage IVB'
+    stage_ivc    = 'Stage IVC'
+    stage_tis    = 'Stage Tis'
+    stage_x      = 'Stage X'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class Treatment(_CaseInsensitiveEnum):
+    '''Therapeutic agents.'''
+    surgery         = 'Surgery'
+    radiation       = 'Radiation'
+    chemotherapy    = 'Chemotherapy'
+    immunotherapy   = 'Immunotherapy'
+    hormone_therapy = 'Hormone Therapy'
+    not_applicable  = 'Not applicable'
+    unknown         = 'Unknown'
+    not_reported    = 'Not reported'
+
+
+class MicroHistoPathologiclaGrading(_CaseInsensitiveEnum):
+    '''Results from histopathological microscopic characterization of pancreatic precancer.'''
+    panin_1a                                           = 'PanIN 1A'
+    panin_1b                                           = 'PanIN 1B'
+    panin_2                                            = 'PanIN 2'
+    panin_3                                            = 'PanIN 3'
+    ipmn_adenoma_low_grade_or_lg_dysplasia             = 'IPMN, Adenoma (low-grade, or LG, dysplasia)'
+    ipmn_borderline_intermediate_grade_or_ig_dysplasia = 'IPMN, Borderline (intermediate-grade, or IG, dysplasia)'
+    ipmn_carcinoma_in_situ_high_grade_or_hg_dysplasia  = 'IPMN, Carcinoma in situ (high-grade, or HG, dysplasia)'
+    unknown                                            = 'Unknown'
+    not_reported                                       = 'Not reported'
+
+
+class IPMNHistologicalSubtypes(_CaseInsensitiveEnum):
+    '''The Intraductal Papillary Mucinous Neoplasm (IPMN) epithelial cell subtype.'''
+    gastric          = 'Gastric'
+    intestinal       = 'Intestinal'
+    pancreatobiliary = 'Pancreatobiliary'
+    oncocytic_type   = 'Oncocytic type'
+    unknown          = 'Unknown'
+    not_reported     = 'Not reported'
+
+
+class TumorPathologyLocation(_CaseInsensitiveEnum):
+    '''The location of the lesion at time of resection.'''
+    head                    = 'Head'
+    uncinate                = 'Uncinate'
+    neck                    = 'Neck'
+    body                    = 'Body'
+    tail                    = 'Tail'
+    duodenum                = 'Duodenum'
+    ampulla                 = 'Ampulla'
+    distal_common_bile_duct = 'Distal Common bile duct'
+    diffuse                 = 'Diffuse'
+    not_specified           = 'Not Specified'
+
+
+class LesionFocality(_CaseInsensitiveEnum):
+    '''No one knows what this really is.'''
+    unifocal             = 'Unifocal'
+    multifocal           = 'Multifocal'
+    cannot_be_determined = 'Cannot be determined'
+    unknown              = 'Unknown'
+    not_reported         = 'Not reported'
+
+
+class Mitoses(_CaseInsensitiveEnum):
+    '''Mitotic rate.'''
+    less_than_2  = '<2 mitoses/mm²'
+    two_to_20    = '2 to 20 mitoses/mm²'
+    more_than_20 = '>20 mitoses per mm²'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class Necrosis(_CaseInsensitiveEnum):
+    '''The necrotic status of the neoplasm.'''
+    absent              = 'Absent'
+    present             = 'Present'
+    cannot_be_determine = 'Cannot be determine'
+    unknown             = 'Unknown'
+    not_reported        = 'Not reported'
+
+
+class IPMNGradeAtExcision(_CaseInsensitiveEnum):
+    '''Grade of pancreatic Intraductal Papillary-Mucinous Neoplasm (IPMN) at the time of excision.'''
+    ipmn_adenoma_low_grade_or_lg_dysplasia             = 'IPMN, Adenoma (low-grade, or LG, dysplasia)'
+    ipmn_borderline_intermediate_grade_or_ig_dysplasia = 'IPMN, Borderline (intermediate-grade, or IG, dysplasia)'
+    ipmn_carcinoma_in_situ_high_grade_or_hg_dysplasia  = 'IPMN, Carcinoma in situ (high-grade, or HG, dysplasia)'
+    ipmn_invasive_carcinoma                            = 'IPMN, Invasive carcinoma'
+    unknown                                            = 'Unknown'
+    not_reported                                       = 'Not reported'
+
+
+class DuctComms(_CaseInsensitiveEnum):
+    '''Duct Communications.'''
+    side_branch   = 'Side-Branch'
+    main_duct     = 'Main Duct'
+    mixed         = 'Mixed'
+    not_specified = 'Not Specified'
+    none          = 'None'
+    not_reported  = 'Not reported'
+
+
+class PathManagement(_CaseInsensitiveEnum):
+    '''Recommended treatment of pancreatic carcinoma.'''
+    high_risk_stigmata_surgical_resection = 'High-risk stigmata: Surgical resection'
+    worrisome_features_evaluation         = 'Worrisome features: Evaluation by endoscopic ultrasonography (EUS)'
+    unknown                               = 'Unknown'
+    not_reported                          = 'Not reported'
+
+
+class Immunohistochemistry(_CaseInsensitiveEnum):
+    '''What the class is named is all it is.'''
+    muc1         = 'MUC1'
+    muc2         = 'MUC2'
+    muc4         = 'MUC4'
+    muc5ac       = 'MUC5AC'
+    stratifin    = 'Stratifin'
+    cdx2         = 'CDX2'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class ImmunohistochemistryOutcomes(_CaseInsensitiveEnum):
+    '''Outcome of the immunohistochemistry test.'''
+    not_done     = 'Not Done'
+    strong       = 'Strong'
+    positive     = 'Positive'
+    weak         = 'Weak'
+    negative     = 'Negative'
+    focal        = 'Focal'
+    diffuse      = 'Diffuse'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class HistologyGrading(_CaseInsensitiveEnum):
+    '''Grading.'''
+    well_differentiated                    = 'Well differentiated'
+    moderately_well_differentiated         = 'Moderately well differentiated'
+    poorly_differentiated                  = 'Poorly differentiated'
+    gx_grade_not_determined_or_unspecified = 'GX - grade not determined or unspecified'
+    no_invasive_cancer                     = 'No invasive cancer'
+    cannot_be_assessed                     = 'Cannot be assessed'
+    undifferentiated                       = 'Undifferentiated'
+    unknown                                = 'Unknown'
+    not_reported                           = 'Not reported'
+
+
+class ExocrineStage8(_CaseInsensitiveEnum):
+    '''Extent of the regional lymph node involvement for exocrine pancreatic
+    carcinoma based on clinical stage information combined with operative
+    findings, and evidence obtained from pathology review when surgery is
+    the first definitive therapy, using AJCC Ed. 8 criteria. Yikes.
+    '''
+    n0 = 'N0'
+    n1 = 'N1'
+    n2 = 'N2'
+    nx = 'NX'
+
+
+class NeuroendocrineGroup(_CaseInsensitiveEnum):
+    '''Bunch of roman numerals, ick.'''
+    i   = 'I'
+    ii  = 'II'
+    iii = 'III'
+    iv  = 'IV'
+
+
+class ProstateHistology(_CaseInsensitiveEnum):
+    '''Histology of the prostate, duh.'''
+    adenocarcinoma_conventional_nos = 'Adenocarcinoma (conventional, NOS)'
+    prostatic_duct_adenocarcinoma   = 'Prostatic duct adenocarcinoma'
+    mucinous_colloid_adenocarcinoma = 'Mucinous (colloid) adenocarcinoma'
+    signet_ring_cell_carcinoma      = 'Signet-ring cell carcinoma'
+    adenosquamous_carcinoma         = 'Adenosquamous carcinoma'
+    small_cell_carcinoma            = 'Small cell carcinoma'
+    sarcomatoid_carcinoma           = 'Sarcomatoid carcinoma'
+    undifferentiatee_carcinoma_nos  = 'Undifferentiatee carcinoma, NOS'
+    other                           = 'Other'
+    cannot_be_determine             = 'Cannot be determine'
+    not_reported                    = 'Not reported'
+
+
+class ProstateHistologicSubtypes(_CaseInsensitiveEnum):
+    '''Subtypes of histologies for the prostate.'''
+    adenocarcinoma_conventional_nos = 'Adenocarcinoma (conventional, NOS)'
+    prostatic_duct_adenocarcinoma   = 'Prostatic duct adenocarcinoma'
+    mucinous_colloid_adenocarcinoma = 'Mucinous (colloid) adenocarcinoma'
+    signet_ring_cell_carcinoma      = 'Signet-ring cell carcinoma'
+    adenosquamous_carcinoma         = 'Adenosquamous carcinoma'
+    small_cell_carcinoma            = 'Small cell carcinoma'
+    sarcomatoid_carcinoma           = 'Sarcomatoid carcinoma'
+    undifferentiatee_carcinoma_nos  = 'Undifferentiatee carcinoma, NOS'
+    other                           = 'Other'
+    cannot_be_determine             = 'Cannot be determine'
+    not_reported                    = 'Not reported'
+
+
+class MorpholoCytoSubtypes(_CaseInsensitiveEnum):
+    '''Subtypes of cytologies that are morphological.'''
+    basal_cell_hyperplasia                           = 'Basal cell hyperplasia'
+    clear_cell_cribiform_hyperplasia                 = 'Clear cell cribiform hyperplasia'
+    atypical_adenomatous_hyperplasia_adenosis_or_aah = 'Atypical adenomatous hyperplasia (adenosis or AAH)'
+    low_grade_prostatic_intraepithelial_neoplasia    = 'Low grade prostatic intraepithelial neoplasia (PIN)/ (PIN I)'
+    high_grade_prostatic_intraepithelial_neoplasia   = 'High grade prostatic intraepithelial neoplasia (HGPIN)/ (PIN II & PIN III)'
+    other                                            = 'Other'
+    unknown                                          = 'Unknown'
+    not_reported                                     = 'Not reported'
+
+
+class MorphoCytoSubcategories(_CaseInsensitiveEnum):
+    '''Subcategories of cytologies that are morphological.'''
+    papillary    = 'papillary'
+    cribiform    = 'cribiform'
+    flat         = 'flat'
+    foamy        = 'foamy'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class GleasonScore(_CaseInsensitiveEnum):
+    '''Gleason scores! The crowd goes wild.'''
+    gleason_1    = '1'
+    gleason_2    = '2'
+    gleason_3    = '3'
+    gleason_4    = '4'
+    gleason_5    = '5'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class GleasonGrade(_CaseInsensitiveEnum):
+    '''Gleason grades! Gleason qualifies for a scholarship.'''
+    low_grade_6          = 'Low grade, 6'
+    intermediate_grade_7 = 'Intermediate grade, 7'
+    high_grade_8_10      = 'High grade, 8 - 10'
+    unknown              = 'Unknown'
+    not_reported         = 'Not reported'
+
+
+class TumorExtent(_CaseInsensitiveEnum):
+    '''Tumor extent, duh.'''
+    minimal      = 'Minimal'
+    moderate     = 'Moderate'
+    extensive    = 'Extensive'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class NoduleLocations(_CaseInsensitiveEnum):
+    '''Dominant locations, buh.'''
+    left_anterior        = 'Left Anterior'
+    left_lateral         = 'Left Lateral'
+    left_posterolateral  = 'Left Posterolateral'
+    left_posterior       = 'Left Posterior'
+    left_apex            = 'Left Apex'
+    left_mid             = 'Left Mid'
+    left_base            = 'Left Base'
+    right_anterior       = 'Right Anterior'
+    right_lateral        = 'Right Lateral'
+    right_posterolateral = 'Right Posterolateral'
+    right_posterior      = 'Right Posterior'
+    right_apex           = 'Right Apex'
+    right_mid            = 'Right Mid'
+    right_base           = 'Right Base'
+    unknown              = 'Unknown'
+    not_reported         = 'Not reported'
+
+
+class AJCCLocalExtent(_CaseInsensitiveEnum):
+    '''Buh'''
+    organ_confined            = 'Organ Confined'
+    extraprostataic_extension = 'Extraprostataic extension'
+    unknown                   = 'Unknown'
+    not_reported              = 'Not reported'
+
+
+class ProstaticNoduleLocations(_CaseInsensitiveEnum):
+    '''Location and extent of extraprostatic extension.'''
+    left_anterior               = 'Left Anterior'
+    left_lateral                = 'Left Lateral'
+    left_posterolateral         = 'Left Posterolateral'
+    left_posterior              = 'Left Posterior'
+    left_apex                   = 'Left Apex'
+    left_mid                    = 'Left Mid'
+    left_base                   = 'Left Base'
+    left_focal                  = 'Left Focal'
+    left_non_focal_established  = 'Left Non-focal (established)'
+    right_anterior              = 'Right Anterior'
+    right_lateral               = 'Right Lateral'
+    right_posterolateral        = 'Right Posterolateral'
+    right_posterior             = 'Right Posterior'
+    right_apex                  = 'Right Apex'
+    right_mid                   = 'Right Mid'
+    right_base                  = 'Right Base'
+    right_focal                 = 'Right Focal'
+    right_non_focal_established = 'Right Non-focal (established)'
+    unknown                     = 'Unknown'
+    not_reported                = 'Not reported'
+
+
+class PositiveMargins(_CaseInsensitiveEnum):
+    '''Location and nature of positive margins.'''
+    left_anterior                                             = 'Left Anterior'
+    left_lateral                                              = 'Left Lateral'
+    left_posterolateral                                       = 'Left Posterolateral'
+    left_posterior                                            = 'Left Posterior'
+    left_apex                                                 = 'Left Apex'
+    left_mid                                                  = 'Left Mid'
+    left_base                                                 = 'Left Base'
+    left_focal                                                = 'Left Focal'
+    left_extensive                                            = 'Left Extensive'
+    left_positive_in_an_area_of_extraprostatic_extension_epe  = 'Left Positive in an area of extraprostatic extension (EPE)'
+    left_positive_in_an_area_of_intraprostatic_incision_ii    = 'Left Positive in an area of intraprostatic incision (II)'
+    left_positive_where_it_is_difficult_to_distinguish        = 'Left Positive where it is difficult to distinguish EPE vs II'
+    right_anterior                                            = 'Right Anterior'
+    right_lateral                                             = 'Right Lateral'
+    right_posterolateral                                      = 'Right Posterolateral'
+    right_posterior                                           = 'Right Posterior'
+    right_apex                                                = 'Right Apex'
+    right_mid                                                 = 'Right Mid'
+    right_base                                                = 'Right Base'
+    right_focal                                               = 'Right Focal'
+    right_extensive                                           = 'Right Extensive'
+    right_positive_in_an_area_of_extraprostatic_extension_epe = 'Right Positive in an area of extraprostatic extension (EPE)'
+    right_positive_in_an_area_of_intraprostatic_incision_ii   = 'Right Positive in an area of intraprostatic incision (II)'
+    right_positive_where_it_is_difficult_to_distinguish       = 'Right Positive where it is difficult to distinguish EPE vs II'
+    bladder_neck_block_pum                                    = 'Bladder neck (block PUM)'
+    vas_deferens                                              = 'Vas deferens'
+    apical_margin_block_dum                                   = 'Apical margin (block DUM)'
+    unknown                                                   = 'Unknown'
+    not_reported                                              = 'Not reported'
+
+
+class SeminalVesicle(_CaseInsensitiveEnum):
+    '''Seminal vesicle, buh.'''
+    none         = 'None'
+    left         = 'Left'
+    right        = 'Right'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class LymphaticInvasion(_CaseInsensitiveEnum):
+    '''It's an invasion of the lymph nodes.'''
+    absent        = 'Absent'
+    present       = 'Present'
+    indeterminate = 'Indeterminate'
+    unknown       = 'Unknown'
+    not_reported  = 'Not reported'
+
+
+class LypmhLocation(_CaseInsensitiveEnum):
+    '''Which lymph node.'''
+    left           = 'Left'
+    right          = 'Right'
+    left_and_right = 'Left and Right'
+    unknown        = 'Unknown'
+    not_reported   = 'Not reported'
+
+
+class AJCCProstateInvasionExtent(_CaseInsensitiveEnum):
+    '''Extent of invasion of primary tumor according to the AJCC 7th edition.'''
+    pt2          = 'pT2: Organ confined throughout'
+    pt2x         = 'pT2x: Organ confined elsewhere, unevaluable in area of positive margin'
+    pt3a         = 'pT3a: Extraprostatic extension or microscopic bladder neck invasion'
+    pt3b         = 'pT3b: Seminal vesicle invasion'
+    pt4          = 'pT4: Invasion of bladder and/or rectum'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class AJCCRegionalLymphInvasionExtent(_CaseInsensitiveEnum):
+    '''Extent of invasion into regional lymph nodes according to the AJCC 7th edition.'''
+    pnx          = 'pNx: Cannot be assessed'
+    pn0          = 'pN0: No regional lymph node metastases'
+    pn1          = 'pN1: Metastasis in regional lymph node(s)'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class AdditionalUninvolvedProstateFindings(_CaseInsensitiveEnum):
+    '''Buh.'''
+    high_grade_prostatic_intraepithelial_neoplasia = 'High-grade prostatic intraepithelial neoplasia (PIN)'
+    inflammation                                   = 'Inflammation'
+    benign_prostatic_hyperplasia                   = 'Benign prostatic hyperplasia (BPH)'
+    prostatic_intraductal_adenocarcinoma           = 'Prostatic Intraductal adenocarcinoma'
+    other                                          = 'Other'
+    unknown                                        = 'Unknown'
+    not_reported                                   = 'Not reported'
