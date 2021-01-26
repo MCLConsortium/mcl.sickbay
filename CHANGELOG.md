@@ -33,6 +33,11 @@ For issue https://github.com/MCLConsortium/mcl.sickbay/issues/4:
 
 -   All fields in `LabCASMetadata` are now `String`.
 
+For issue https://github.com/MCLConsortium/mcl.sickbay/issues/3:
+
+-   `inscribed_clinicalCore_participant_ID` is a new field on `PriorLesion`, `CoreRace`, and `CoreTobacco`
+-   `inscribed_biospecimen_identifier` is a new field on `AdjacentSpecimen`
+
 
 ### 0.0.9
 

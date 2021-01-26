@@ -113,6 +113,9 @@ class PriorLesion(Base):
     clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='prior_lesions')
 
+    # https://github.com/MCLConsortium/mcl.sickbay/issues/3
+    inscribed_clinicalCore_participant_ID = Column(String(14))
+
     # Methods:
     def __repr__(self):
         return f'<{self.__class__.__name__}(identifier={self.identifier})>'
@@ -135,6 +138,9 @@ class CoreRace(Base):
     clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='core_races')
 
+    # https://github.com/MCLConsortium/mcl.sickbay/issues/3 (anticipated)
+    inscribed_clinicalCore_participant_ID = Column(String(14))
+
     # Methods:
     def __repr__(self):
         return f'<{self.__class__.__name__}(identifier={self.identifier})>'
@@ -152,6 +158,9 @@ class CoreTobacco(Base):
 
     # Attributes of a core tobacco, which is just the type of tobacco used:
     type_tobacco_used = Column(Enum(Tobacco, name='tobacco_enum'), nullable=False)
+
+    # https://github.com/MCLConsortium/mcl.sickbay/issues/3 (anticipated)
+    inscribed_clinicalCore_participant_ID = Column(String(14))
 
     # Many-to-1 reference to our Clinical Core:
     clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
