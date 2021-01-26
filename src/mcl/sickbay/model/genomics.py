@@ -29,7 +29,7 @@ class Genomics(Base, LabCASMetadata):
     '''🧬 Structure, function, evolution, and mapping of genome data'''
 
     # Primary key:
-    specimen_ID = Column(String(16), primary_key=True)
+    specimen_ID = Column(String(50), primary_key=True)
 
     # Genomics attributes:
     sequencing_center                = Column(Integer, nullable=False)
@@ -51,14 +51,14 @@ class Genomics(Base, LabCASMetadata):
     target_capture_kit_target_region = Column(String(50))
 
     # Structural attributes ↓
-    inscribed_clinicalCore_participant_ID = Column(String(14))
-    inscribed_biospecimen_specimen_ID = Column(String(16))
+    inscribed_clinicalCore_participant_ID = Column(String(50))
+    inscribed_biospecimen_specimen_ID = Column(String(50))
     # 👆 These are used to look up a detached objects for later association.
 
     # Relationships:
-    clinicalCore_participant_ID = Column(String(14), ForeignKey('clinicalCores.participant_ID'))
+    clinicalCore_participant_ID = Column(String(50), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore                = relationship('ClinicalCore', back_populates='genomics')
-    biospecimen_specimen_ID     = Column(String(16), ForeignKey('biospecimens.specimen_ID'))
+    biospecimen_specimen_ID     = Column(String(50), ForeignKey('biospecimens.specimen_ID'))
     biospecimen                 = relationship('Biospecimen', back_populates='genomics')
 
     # Functions:
@@ -75,7 +75,7 @@ class Smart3SeqGenomics(Genomics):
     '''🧠 A kind of genomics that's smart, tripled, and sequenced'''
 
     # Primary key (1–1 with the base class):
-    specimen_ID = Column(String(16), ForeignKey('genomics.specimen_ID'), primary_key=True)
+    specimen_ID = Column(String(50), ForeignKey('genomics.specimen_ID'), primary_key=True)
 
     # Smart3Seq attributes:
     input_type               = Column(Enum(Smart3SeqInput, name='s3s_input_enum'), nullable=False)
