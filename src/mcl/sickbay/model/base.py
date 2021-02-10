@@ -25,7 +25,7 @@ class LabCASMetadata(object):
     # This stuff is all recorded in LabCAS itself, so not sure it's needed here 🤷‍♀️
     # Provided just for a sense of completion
     fileName                 = Column(String(255))
-    dateFileGenerated        = Column(String(12))
+    dateFileGenerated        = Column(String(50))  # ad-hoc change discussed over Slack
     consortium               = Column(String(255))
     protocolID               = Column(String(10))
     siteID                   = Column(String(10))

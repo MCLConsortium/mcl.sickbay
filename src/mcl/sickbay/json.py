@@ -175,6 +175,7 @@ class PancreasOrganEncoder(OrganEncoder):
 
 
 ORGAN_ENCODERS = {
+    Organ: OrganEncoder,  # https://github.com/MCLConsortium/mcl.sickbay/issues/12
     BreastOrgan: BreastOrganEncoder,
     ProstateOrgan: ProstateOrganEncoder,
     LungOrgan: LungOrganEncoder,
