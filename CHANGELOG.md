@@ -3,6 +3,16 @@
 This documents the changes from release to release.
 
 
+### 1.0.1
+
+- This version adds the human-readable label plus the token value to all enumerations over the JSON; see https://github.com/MCLConsortium/mcl.sickbay/issues/16 for more information.
+
+
+### 1.0.0
+
+- A "more official" release.
+
+
 ### 0.0.10
 
 

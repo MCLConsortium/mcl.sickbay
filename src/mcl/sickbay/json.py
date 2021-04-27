@@ -38,13 +38,14 @@ class SickbayEncoder(json.JSONEncoder):
     def addAttributes(self, obj, attrNames, d):
         '''Add all the attributes named in ``attrNames`` to the dictionary ``d`` with values from
         ``obj``. If an attribute is unset or ``None``, just omit it. If an attribute value is an
-        enumerated type, use the enumeration name rather than the value. 🤔 Is this what we want?
+        enumerated type, use the enumeration name and its value as 2-entry dicts with the
+        ``label`` equal to the value and the ``token`` equal to the name.
         '''
         for name in attrNames:
             value = getattr(obj, name, None)
             if value is not None:
                 if isinstance(value, enum.Enum):
-                    d[name] = value.name  # 🤔 Should this return the enumeration's name or value? Guess we'll do name for now
+                    d[name] = dict(label=value.value, token=value.name)
                 else:
                     d[name] = value
 
