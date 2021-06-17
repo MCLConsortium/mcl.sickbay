@@ -3,6 +3,17 @@
 This documents the changes from release to release.
 
 
+### 1.0.2
+
+For issue https://github.com/EDRN/MCL-metadata/issues/22
+
+-   Additional permissible value on `sequencing_platform` (enum `GenomicAnalyzer`), namely `illumina_hiseq_1500`.
+-   Changed the `read_length` from numeric to a string (10)
+-   Note that we do not have schema migrations set up so these steps must be run manually:
+    -   `ALTER TABLE "genomics" ALTER "read_length" SET DATA TYPE CHARACTER VARYING(10)`
+    -   `ALTER TYPE "genomic_analyzier_enum" ADD VALUE 'illumina_hiseq_1500' AFTER 'illumina_genome_analyzer_iix'`
+
+
 ### 1.0.1
 
 - This version adds the human-readable label plus the token value to all enumerations over the JSON; see https://github.com/MCLConsortium/mcl.sickbay/issues/16 for more information.
