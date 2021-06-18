@@ -1092,27 +1092,27 @@ def main():
     engine = create_engine(url, echo=args.verbose)
     createMetadata(engine)
 
-    if args.add_test_data or args.add_sample_data:
-        Session = sessionmaker()
-        Session.configure(bind=engine)
-        session = Session()
-        if args.add_test_data:
-            addTestData(session)
-        if args.add_sample_data:
-            addSampleData(session)
+    Session = sessionmaker()
+    Session.configure(bind=engine)
+    session = Session()
 
-        for i in session.query(ClinicalCore):
-            # Do a JSON dump:
-            print(json.dumps(i, cls=ClinicalCoreEncoder))
-            # Or just access your favorite attributes:
-            # print(i, i.anchor_type, type(i.anchor_type), [j for j in i.genomics], [j for j in i.images])
-            # for o in i.organs:
-            #     print(json.dumps(o, cls=ORGAN_ENCODERS[o.__class__]))
-            # for j in i.biospecimens:
-            #     # Try some JSON:
-            #     print(json.dumps(j, cls=BiospecimenEncoder))
-            #     # Do nested queries:
-            #     # print(j, [k for k in j.genomics], [k for k in j.images])
+    if args.add_test_data:
+        addTestData(session)
+    if args.add_sample_data:
+        addSampleData(session)
+
+    for i in session.query(Smart3SeqGenomics):
+        # Do a JSON dump:
+        print(json.dumps(i, cls=Smart3SeqGenomicsEncoder))
+        # Or just access your favorite attributes:
+        # print(i, i.anchor_type, type(i.anchor_type), [j for j in i.genomics], [j for j in i.images])
+        # for o in i.organs:
+        #     print(json.dumps(o, cls=ORGAN_ENCODERS[o.__class__]))
+        # for j in i.biospecimens:
+        #     # Try some JSON:
+        #     print(json.dumps(j, cls=BiospecimenEncoder))
+        #     # Do nested queries:
+        #     # print(j, [k for k in j.genomics], [k for k in j.images])
 
 
 if __name__ == '__main__':

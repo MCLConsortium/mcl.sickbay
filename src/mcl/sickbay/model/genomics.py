@@ -41,8 +41,9 @@ class Genomics(Base, LabCASMetadata):
     library_selection                = Column(Enum(GenomicMethod, name='genomic_method_enum'), nullable=False)
     library_strand                   = Column(Enum(GenomicStranding, name='genomic_stranding_enum'), nullable=False)
     library_layout                   = Column(Boolean)
+    # Note: there is a mispelling here; we are stuck with "analyzier" 😩
     sequencing_platform              = Column(Enum(GenomicAnalyzer, name='genomic_analyzier_enum'), nullable=False)
-    read_length                      = Column(Integer, nullable=False)
+    read_length                      = Column(String(10))
     rin                              = Column(Float)  # 🤔 TODO: is this Float or Integer? What the heck even is "R.I.N."?
     adapter_name                     = Column(String(40))
     adapter_sequence                 = Column(String(20))

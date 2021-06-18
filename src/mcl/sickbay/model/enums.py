@@ -660,6 +660,7 @@ class GenomicAnalyzer(_CaseInsensitiveEnum):
     illumina_hiseq_x_five        = 'Illumina HiSeq X Five'
     illumina_genome_analyzer_ii  = 'Illumina Genome Analyzer II'
     illumina_genome_analyzer_iix = 'Illumina Genome Analyzer IIx'
+    illumina_hiseq_1500          = 'Illumina HiSeq 1500'
     illumina_hiseq_2000          = 'Illumina HiSeq 2000'
     illumina_hiseq_2500          = 'Illumina HiSeq 2500'
     illumina_hiseq_4000          = 'Illumina HiSeq 4000'
