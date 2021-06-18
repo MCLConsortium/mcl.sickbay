@@ -37,7 +37,7 @@ from .model.enums import (
 )
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from .json import ClinicalCoreEncoder
+from .json import ClinicalCoreEncoder, Smart3SeqGenomicsEncoder
 import argparse, getpass, datetime, json
 
 
