@@ -16,6 +16,7 @@ from .enums import (
     Adenocarcinoma,
     AJCCLocalExtent,
     AJCCMetastasisStage,
+    AJCCMetastasisStage8,
     AJCCPathologicStage,
     AJCCProstateInvasionExtent,
     AJCCRegionalLymphInvasionExtent,
@@ -27,7 +28,9 @@ from .enums import (
     BreastSite,
     BronchialLobe,
     ClinicalMStage7,
+    ClinicalMStage8,
     ClinicalNStage7,
+    ClinicalNStage8,
     ClinicalTNMCategoryM8,
     ClinicalTNMCategoryN8,
     DuctComms,
@@ -39,6 +42,7 @@ from .enums import (
     GleasonScore,
     Grade,
     GroupStage7,
+    GroupStage8,
     HER2InSituHybridization,
     HER2Results,
     HistologyGrading,
@@ -73,7 +77,6 @@ from .enums import (
     PathologicNStage7,
     PolarAnswer,
     PositiveMargins,
-    PrecancerLungHistopathology,
     PrecancerousHistopathology,
     PrognosticGroupStage8,
     ProstateHistologicSubtypes,
@@ -108,6 +111,20 @@ class Organ(Base, LabCASMetadata):
     #
     # UPDATE 2021-01-22: ``anchor_type`` appears in the CDEs for all organ-specific data,
     # so that looks pretty common to me! I don't care what Kristen said! 😝
+    #
+    # Update 2022-01-03: The following appear in both Prostate and Lung now and there seems to be no
+    # harm in having them in a common base class:
+
+    ajcc_clinical_m       = Column(Enum(ClinicalMStage7, name='cms7_enum'), nullable=True)
+    ajcc_clinical_n       = Column(Enum(ClinicalNStage7, name='cns7_enum'), nullable=True)
+    ajcc_clinical_t       = Column(Enum(TStage7, name='ts7_enum'), nullable=True)
+    ajcc_clinical_stage   = Column(Enum(GroupStage7, name='group7_enum'), nullable=True)
+    ajcc_pathologic_m     = Column(Enum(AJCCMetastasisStage, name='metastasis_enum'), nullable=True)
+    ajcc_pathologic_n     = Column(Enum(ClinicalNStage7, name='cns7_enum'), nullable=True)
+    ajcc_pathologic_t     = Column(Enum(TStage7, name='ts7_enum'), nullable=True)
+    ajcc_pathologic_stage = Column(Enum(AJCCPathologicStage, name='ajccpath_enum'), nullable=True)
+    lymph_nodes_tested    = Column(Integer, nullable=True)  # units?
+    lymph_node_location   = Column(Enum(LypmhLocation, name='lymph_location_enum'), nullable=True)
 
     # Structural common attribute ↓
     inscribed_clinicalCore_participant_ID = Column(String(50))
@@ -116,6 +133,8 @@ class Organ(Base, LabCASMetadata):
     # Many-to-1 reference to our Clinical Core:
     clinicalCore_participant_ID = Column(String(50), ForeignKey('clinicalCores.participant_ID'))
     clinicalCore = relationship('ClinicalCore', back_populates='organs')
+
+    # Note that histopathology_precancer_types is a 1-to-many relation; see below
 
     # Common functions:
     def __repr__(self):
@@ -175,42 +194,10 @@ class BreastOrgan(Organ):
     multicentric_disease                  = Column(Enum(MysteriousPolarAnswer, name='mysterious_enum'), nullable=False)
     imaging_workup                        = Column(Enum(BreastImagingWorkup, name='breast_imaging_workup_enum'), nullable=False)
     birads_density                        = Column(Enum(BIRADSTissues, name='birads_tissues_enum'), nullable=False)
-    # Note that histopathology_precancer_types is a 1-to-many relation; see below
 
     # Object-relational mapping details:
     __mapper_args__ = {'polymorphic_identity': 'breastOrgans'}
     __tablename__ = 'breastOrgans'
-
-
-class HistopathologyPrecancerType(Base):
-    '''🩸 Result of precancerous breast tissue examination; in the spreadsheets submitted to LabCAS,
-    this comes from a ``|``-separated list.'''
-
-    # Primary key, an auto-sequenced ID number:
-    identifier = Column(Integer, Sequence('histo_precancer_id_seq'), primary_key=True)
-
-    # Attributes of a precancerous histopathology (really it's just the type):
-    hp_type = Column(
-        Enum(PrecancerousHistopathology, name='precancer_histopath_enum'), nullable=False
-    )
-
-    # Many-to-1 reference to our Breast:
-    breastOrgan_identifier = Column(Integer, ForeignKey('breastOrgans.identifier'))
-    breastOrgan = relationship('BreastOrgan', back_populates='histopathology_precancer_types')
-
-    # Methods:
-    def __repr__(self):
-        return f'<{self.__class__.__name__}(identifier={self.identifier})>'
-
-    # Object-relational mapping details:
-    __tablename__ = 'histopathologyPrecancerTypes'
-
-
-BreastOrgan.histopathology_precancer_types = relationship(
-    'HistopathologyPrecancerType',
-    order_by=HistopathologyPrecancerType.identifier,
-    back_populates='breastOrgan'
-)
 
 
 class LungOrgan(Organ):
@@ -220,7 +207,6 @@ class LungOrgan(Organ):
     identifier = Column(Integer, ForeignKey('organs.identifier'), primary_key=True)
 
     # Lung-specific attributes:
-    histopathology_precancer_type               = Column(Enum(PrecancerLungHistopathology, name='precalunghist_enum'), nullable=False)
     histopathology_precancer_type_other         = Column(String(100))
     collection_method                           = Column(Enum(LungBiopsy, name='lung_biopsy_enum'), nullable=False)
     lymphocytes                                 = Column(Enum(Infiltration, name='infiltration_enum'), nullable=False)
@@ -235,16 +221,21 @@ class LungOrgan(Organ):
     primary_adenocarcinoma_differentiation_type = Column(Enum(Adenocarcinoma, name='adenocar_enum'), nullable=False)
     tumor_grade                                 = Column(Enum(TumorGrade, name='tumor_grade_enum'), nullable=False)
     ajcc_staging_system_edition                 = Column(Enum(AJCCStaging, name='ajccstaging_enum'), nullable=False)
-    ajcc_clinical_m                             = Column(Enum(ClinicalMStage7, name='cms7_enum'), nullable=False)
-    ajcc_clinical_n                             = Column(Enum(ClinicalNStage7, name='cns7_enum'), nullable=False)
-    ajcc_clinical_t                             = Column(Enum(TStage7, name='ts7_enum'), nullable=False)
-    ajcc_clinical_stage                         = Column(Enum(GroupStage7, name='group7_enum'), nullable=False)
-    ajcc_pathologic_m                           = Column(Enum(AJCCMetastasisStage, name='metastasis_enum'), nullable=False)
-    ajcc_pathologic_n                           = Column(Enum(ClinicalNStage7, name='cns7_enum'), nullable=False)
-    ajcc_pathologic_t                           = Column(Enum(TStage7, name='ts7_enum'), nullable=False)
-    ajcc_pathologic_stage                       = Column(Enum(AJCCPathologicStage, name='ajccpath_enum'), nullable=False)
-    lymph_nodes_tested                          = Column(Integer, nullable=False)
-    lymph_nodes_positive                        = Column(Integer)
+    ajcc_7_lung_clinical_m                      = Column(Enum(ClinicalMStage7, name='cms7_enum'), nullable=True)
+    ajcc_7_lung_clinical_n                      = Column(Enum(ClinicalNStage7, name='cns7_enum'), nullable=True)
+    ajcc_7_lung_clinical_t                      = Column(Enum(TStage7, name='ts7_enum'), nullable=True)
+    ajcc_7_lung_disease_stage                   = Column(Enum(GroupStage7, name='group7_enum'), nullable=True)
+    ajcc_7_lung_pathologic_m                    = Column(Enum(AJCCMetastasisStage, name='metastasis_enum'), nullable=True)
+    ajcc_7_lung_pathologic_n                    = Column(Enum(ClinicalNStage7, name='cns7_enum'), nullable=True)
+    ajcc_7_lung_pathologic_t                    = Column(Enum(TStage7, name='ts7_enum'), nullable=True)
+    ajcc_8_lung_clinical_m                      = Column(Enum(ClinicalMStage8, name='cms8_enum'), nullable=True)
+    ajcc_8_lung_clinical_n                      = Column(Enum(ClinicalNStage8, name='cns8_enum'), nullable=True)
+    ajcc_8_lung_clinical_t                      = Column(Enum(TStage8, name='ts8_enum'), nullable=True)
+    ajcc_8_lung_disease_stage                   = Column(Enum(GroupStage8, name='group8_enum'), nullable=True)
+    ajcc_8_lung_pathologic_m                    = Column(Enum(AJCCMetastasisStage8, name='metastasis_enum'), nullable=True)
+    ajcc_8_lung_pathologic_n                    = Column(Enum(ClinicalNStage8, name='cns8_enum'), nullable=True)
+    ajcc_8_lung_pathologic_t                    = Column(Enum(TStage8, name='ts8_enum'), nullable=True)
+    lymph_nodes_positive                        = Column(Integer, nullable=True)
     prior_malignancy                            = Column(Enum(PolarAnswer, name='polar_enum'), nullable=False)
     prior_treatment                             = Column(Enum(Treatment, name='treatment_enum'), nullable=False)
 
@@ -324,21 +315,11 @@ class ProstateOrgan(Organ):
     pelvic_lymph_nodes                           = Column(Integer)  # units?
     tumor_in_pelvic_lymph_nodes                  = Column(Enum(TestResults, name='test_results_enum'), nullable=False)
     lymph_nodes_metastatic_carcinoma             = Column(Integer)  # units?
-    lymph_nodes_tested                           = Column(Integer)  # units?
-    lymph_node_location                          = Column(Enum(LypmhLocation, name='lymph_location_enum'), nullable=False)
     extranodal_extension_identified              = Column(Enum(PolarAnswer, name='polar_enum'), nullable=False)
     ajcc_extent_of_invasion_primary_tumor        = Column(Enum(AJCCProstateInvasionExtent, name='really_long_enum'), nullable=False)
     ajcc_extent_of_invasion_regional_lymph_nodes = Column(Enum(AJCCRegionalLymphInvasionExtent, name='even_longer_enum'), nullable=False)
     ajcc_extent_of_invasion_summary_margins      = Column(Enum(MarginalStatus, name='marginal_status_enum'), nullable=False)
     ajcc_staging_system_edition                  = Column(Enum(AJCCStaging, name='ajccstaging_enum'), nullable=False)
-    ajcc_clinical_m                              = Column(Enum(ClinicalMStage7, name='cms7_enum'), nullable=False)
-    ajcc_clinical_n                              = Column(Enum(ClinicalNStage7, name='cns7_enum'), nullable=False)
-    ajcc_clinical_t                              = Column(Enum(TStage7, name='ts7_enum'), nullable=False)
-    ajcc_clinical_stage                          = Column(Enum(GroupStage7, name='group7_enum'), nullable=False)
-    ajcc_pathologic_m                            = Column(Enum(AJCCMetastasisStage, name='metastasis_enum'), nullable=False)
-    ajcc_pathologic_n                            = Column(Enum(ClinicalNStage7, name='cns7_enum'), nullable=False)
-    ajcc_pathologic_t                            = Column(Enum(TStage7, name='ts7_enum'), nullable=False)
-    ajcc_pathologic_stage                        = Column(Enum(AJCCPathologicStage, name='ajccpath_enum'), nullable=False)
     additonal_findings_uninvolved_prostate       = Column(Enum(AdditionalUninvolvedProstateFindings, name='huge_enum'), nullable=False)
     prior_malignancy                             = Column(Enum(PolarAnswer, name='polar_enum'), nullable=False)
     prior_treatment                              = Column(Enum(Treatment, name='treatment_enum'), nullable=False)
@@ -346,3 +327,34 @@ class ProstateOrgan(Organ):
     # Object-relational mapping details:
     __mapper_args__ = {'polymorphic_identity': 'prostateOrgans'}
     __tablename__ = 'prostateOrgans'
+
+
+class HistopathologyPrecancerType(Base):
+    '''🩸 Result of precancerous breast or lung tissue examination; in the spreadsheets submitted to LabCAS,
+    this comes from a ``|``-separated list.'''
+
+    # Primary key, an auto-sequenced ID number:
+    identifier = Column(Integer, Sequence('histo_precancer_id_seq'), primary_key=True)
+
+    # Attributes of a precancerous histopathology (really it's just the type):
+    hp_type = Column(
+        Enum(PrecancerousHistopathology, name='precancer_histopath_enum'), nullable=False
+    )
+
+    # Many-to-1 reference to our Breast:
+    organ_identifier = Column(Integer, ForeignKey('organs.identifier'))
+    organ = relationship('Organ', back_populates='histopathology_precancer_types')
+
+    # Methods:
+    def __repr__(self):
+        return f'<{self.__class__.__name__}(identifier={self.identifier})>'
+
+    # Object-relational mapping details:
+    __tablename__ = 'histopathologyPrecancerTypes'
+
+
+Organ.histopathology_precancer_types = relationship(
+    'HistopathologyPrecancerType',
+    order_by=HistopathologyPrecancerType.identifier,
+    back_populates='organ'
+)

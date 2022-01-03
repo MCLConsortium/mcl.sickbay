@@ -78,6 +78,9 @@ class OrganEncoder(LabCASMetadataEncoder):
             d = super(OrganEncoder, self).default(obj)
             d['identifier'] = obj.identifier
             d['organType'] = obj.organType
+            if obj.histopathology_precancer_types is not None and len(obj.histopathology_precancer_types) > 0:
+                # 🤔 Should this return the enumeration's name or value? Guess we'll do name for now
+                d['histopathology_precancer_types'] = [i.hp_type.name for i in obj.histopathology_precancer_types]
             return d
         else:
             return super(OrganEncoder, self).default(obj)
@@ -100,9 +103,6 @@ class BreastOrganEncoder(OrganEncoder):
         if isinstance(obj, BreastOrgan):
             d = super(BreastOrganEncoder, self).default(obj)
             self.addAttributes(obj, self._breastAttributes, d)
-            if obj.histopathology_precancer_types is not None and len(obj.histopathology_precancer_types) > 0:
-                # 🤔 Should this return the enumeration's name or value? Guess we'll do name for now
-                d['histopathology_precancer_types'] = [i.hp_type.name for i in obj.histopathology_precancer_types]
             return d
         else:
             return super(BreastOrganEncoder, self).default(obj)

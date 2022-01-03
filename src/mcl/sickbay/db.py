@@ -968,7 +968,6 @@ def addTestData(session):
     lung = LungOrgan(
         labcasID='/kernel3', inscribed_clinicalCore_participant_ID='ZZLEFT',
         anchor_type=Anchors.first_imaging_date,
-        histopathology_precancer_type=PrecancerLungHistopathology.moderate_dysplasia,
         histopathology_precancer_type_other='Robert',
         collection_method=LungBiopsy.surgical_resection,
         lymphocytes=Infiltration.normal_10,
@@ -996,6 +995,7 @@ def addTestData(session):
         prior_malignancy=PolarAnswer.yes,
         prior_treatment=Treatment.hormone_therapy
     )
+    lung.histopathology_precancer_types = [HistopathologyPrecancerType(hp_type=PrecancerousHistopathology.dcis_comedo)]
     pancreas = PancreasOrgan(
         labcasID='/kernel3', inscribed_clinicalCore_participant_ID='ZZLEFT',
         anchor_type=Anchors.first_imaging_date,
@@ -1025,10 +1025,10 @@ def addTestData(session):
         exocrine_group_stage_AJCC_8=PrognosticGroupStage8.ia,
         neuroendocrine_pathologic_T_AJCC_8=TStage8.t1,
         neuroendocrine_pathologic_N_AJCC_8=ExocrineStage8.n0,
-        neuroendocrine_pathologic_M_AJCC_8=AJCCMetastasisStage.cm0,
+        neuroendocrine_pathologic_M_AJCC_8=AJCCMetastasisStage.m1a,
         neuroendocrine_clinical_T_AJCC_8=TStage8.t1,
         neuroendocrine_clinical_N_AJCC_8=ExocrineStage8.n0,
-        neuroendocrine_clinical_M_AJCC_8=AJCCMetastasisStage.cm0,
+        neuroendocrine_clinical_M_AJCC_8=AJCCMetastasisStage.m1b,
         neuroendocrine_group_stage=NeuroendocrineGroup.iii
     )
     cc.organs = [o1, o2, lung, pancreas]

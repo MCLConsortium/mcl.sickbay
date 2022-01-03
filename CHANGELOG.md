@@ -3,6 +3,82 @@
 This documents the changes from release to release.
 
 
+### 1.1.0
+
+This release contains some incompatible changes in order to accommodate CDE updates from 2021-08-26 through 2021-11-18. Please [see the CDE changelog](https://mcl.nci.nih.gov/resources/standards/mcl_cdedictionaries_changelog-4.xlsx) for highly pedantic details of these updates. The changes to the software include:
+
+-   On class `Organ`:
+    -   `histopathology_precancer_type` was a 1-to-many attribute of `LungOrgan` only; now it belongs to _all_ organs as 1-to-many.
+    -   This base class now has the following optional attributes:
+        -   `ajcc_clinical_m`
+        -   `ajcc_clinical_n`
+        -   `ajcc_clinical_t`
+        -   `ajcc_clinical_stage`
+        -   `ajcc_pathologic_m`
+        -   `ajcc_pathologic_n`
+        -   `ajcc_pathologic_t`
+        -   `ajcc_pathologic_stage`
+        -   `lymph_nodes_tested`
+        -   `lymph_node_location`
+-   On the class `LungOrgan`:
+    -   There are _numerous_ changes. For one, the `ajcc_staging_system_edition` indicates whether the entire record uses the AJCC Staging edition 7 or 8, and depending on this, it tells which set of attributes to use.
+        -   The attributes are:
+            -   `ajcc_7_lung_clinical_m`
+            -   `ajcc_7_lung_clinical_n`
+            -   `ajcc_7_lung_clinical_t`
+            -   `ajcc_7_lung_disease_stage`
+            -   `ajcc_7_lung_pathologic_m`
+            -   `ajcc_7_lung_pathologic_n`
+            -   `ajcc_7_lung_pathologic_t`
+            -   `ajcc_8_lung_clinical_m`
+            -   `ajcc_8_lung_clinical_n`
+            -   `ajcc_8_lung_clinical_t`
+            -   `ajcc_8_lung_disease_stage`
+            -   `ajcc_8_lung_pathologic_m`
+            -   `ajcc_8_lung_pathologic_n`
+            -   `ajcc_8_lung_pathologic_t`
+        -   Note that all of these attributes are _optional_; this is because it's also possible that `ajcc_staging_system_edition` is `unknown` or `not_reported`, in which case we can't enforce that a specific set of the above attributes are actually used.
+    -   Lungs also have a new attribute: `lymph_nodes_positive`, an optional integer.
+-   On the class `ProstateOrgan`, these attributes have moved "up" into the superclass `Organ`:
+    -   `lymph_nodes_tested`
+    -   `lymph_node_location`
+    -   `ajcc_clinical_m`
+    -   `ajcc_clinical_n`
+    -   `ajcc_clinical_t`
+    -   `ajcc_clinical_stage`
+    -   `ajcc_pathologic_m`
+    -   `ajcc_pathologic_n`
+    -   `ajcc_pathologic_t`
+    -   `ajcc_pathologic_stage`
+-   In class `Biospecimen`, these attributes were required and are now optional:
+        -   `days_to_collection`
+        -   `time_excision_to_processing`
+        -   `days_to_storage`
+-   The following enumerated types have changed:
+    -   `TStage7` no longer includes the terms `t1c` or `t1mi`
+    -   `ClinicalMStage7` has dropped the terms `M1c` and `pM1`
+    -   For `GroupStage7`, the following permissible values are no longer permissible:
+        -   `ia1`
+        -   `ia2`
+        -   `ia3`
+        -   `iva`
+        -   `ivb`
+    -   `Precancers` now includes a `normal` kind
+    -   `Fixatives` now supports a `not_applicable` value
+    -   When it comes to `Storage` you now have two new options
+        -   `room_temperature_then_refrigerated`
+        -   `frozen_at__20c`
+    -   `SlideCharges` has made these values impermissible: `cm0`, `cm1`, `pm1`, `pm1a`, `pm1b`, `pm1c`
+    -   We now finally have a blessed description for `Treatment` instead of the kind contrived by a mere software developer
+    -   At long last an expert has realized that `cannot_be_determine` should be `cannot_be_determined` in `Necrosis`
+    -   The following new enumerations are ready for use:
+        -   `ClinicalMStage8` with 8 values
+        -   `ClinicalNStage8` with 7 values
+        -   `GroupStage8` with 17 values
+        -   `AJCCMetastasisStage8` with 8 values
+-   Removal of [zc.buildout](http://www.buildout.org/en/latest/). We cannot recommend this tool less. Just use virtual environments like everyone else.
+
+
 ### 1.0.2
 
 For issue https://github.com/EDRN/MCL-metadata/issues/22

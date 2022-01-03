@@ -36,14 +36,14 @@ To use this software, simply add `mcl.sickbay` as a dependency to your project o
 You can develop, build, and test the package locally as follows:
 
 ```console
-python3 bootstrap.py
-bin/buildout
-bin/test
+python3 -m venv venv
+venv/bin/pip install --quiet --upgrade setuptools pip wheel build
+venv/bin/pip install --editable .
 ```
 
-You can run `bin/create-demo-db` to populate a PostgreSQL database with the schema of the Sickbay data model. Add ``-add-test-data`` to include some test data.
+You can run `venv/bin/create-clinical-db` to populate a PostgreSQL database with the schema of the Sickbay data model. Add `-add-test-data` to include some test data or `--add-sample-data` to add some sample data (or use both!).
 
-To publish this software, try [Twine](https://twine.readthedocs.io/).
+To build and publish this software, try [build](https://pypi.org/project/build/) and [Twine](https://twine.readthedocs.io/).
 
 
 ### 🔢 Versioning

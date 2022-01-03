@@ -308,8 +308,6 @@ class TStage7(_CaseInsensitiveEnum):
     t1           = 'T1'
     t1a          = 'T1a'
     t1b          = 'T1b'
-    t1c          = 'T1c'
-    t1mi         = 'T1mi'
     t2           = 'T2'
     t2a          = 'T2a'
     t2b          = 'T2b'
@@ -411,8 +409,6 @@ class ClinicalMStage7(_CaseInsensitiveEnum):
     m0_i_plus    = 'M0(i+)'
     m1a          = 'M1a'
     m1b          = 'M1b'
-    m1c          = 'M1c'
-    pm1          = 'pM1'
     unknown      = 'Unknown'
     not_reported = 'Not reported'
 
@@ -421,9 +417,6 @@ class GroupStage7(_CaseInsensitiveEnum):
     '''American Joint Committee on Cancer (AJCC) edition 7's group stage.'''
     zero          = '0'
     ia            = 'IA'
-    ia1           = 'IA1'
-    ia2           = 'IA2'
-    ia3           = 'IA3'
     ib            = 'IB'
     iia           = 'IIA'
     iib           = 'IIB'
@@ -431,8 +424,6 @@ class GroupStage7(_CaseInsensitiveEnum):
     iiib          = 'IIIB'
     iiic          = 'IIIC'
     iv            = 'IV'
-    iva           = 'IVA'
-    ivb           = 'IVB'
     occult        = 'Occult'
     stage_unknown = 'Stage unknown'
     not_reported  = 'Not reported'
@@ -706,6 +697,7 @@ class TumorTissue(_CaseInsensitiveEnum):
 
 class Precancers(_CaseInsensitiveEnum):
     '''Precancers. Yep, precancers.'''
+    normal                          = 'Normal'
     usual_ductal_hyperplasia_udh    = 'Usual ductal hyperplasia (UDH)'
     atypical_ductal_hyperplasia_adh = 'Atypical ductal hyperplasia (ADH)'
     dcis_paget_disease              = 'DCIS-Paget disease'
@@ -786,6 +778,7 @@ class Fixatives(_CaseInsensitiveEnum):
     other               = 'Other'
     none                = 'None'
     unknown             = 'Unknown'
+    not_applicable      = 'Not applicable'
     not_recorded        = 'Not recorded'
 
 
@@ -813,20 +806,22 @@ class Analytes(_CaseInsensitiveEnum):
 
 class Storage(_CaseInsensitiveEnum):
     '''How speciemns get stored after preservation and before use in a protocol'''
-    ambient_temperature       = 'Ambient temperature'
-    cut_slide                 = 'Cut slide'
-    fresh                     = 'Fresh'
-    frozen_at__70c            = 'Frozen at -70C'
-    frozen_at__80c            = 'Frozen at -80C'
-    frozen_at__150c           = 'Frozen at -150C'
-    frozen_in_liquid_nitrogen = 'Frozen in liquid nitrogen'
-    frozen_in_vapor_phase     = 'Frozen in vapor phase'
-    paraffin_block            = 'Paraffin block'
-    rnalater_at_4c            = 'RNAlater at 4C'
-    rnalater_at_25c           = 'RNAlater at 25C'
-    rnalater_at__20c          = 'RNAlater at -20C'
-    other                     = 'Other'
-    unknown                   = 'Unknown'
+    ambient_temperature                = 'Ambient temperature'
+    cut_slide                          = 'Cut slide'
+    fresh                              = 'Fresh'
+    frozen_at__150c                    = 'Frozen at -150C'
+    frozen_at__20c                     = 'Frozen at -20C'
+    frozen_at__70c                     = 'Frozen at -70C'
+    frozen_at__80c                     = 'Frozen at -80C'
+    frozen_in_liquid_nitrogen          = 'Frozen in liquid nitrogen'
+    frozen_in_vapor_phase              = 'Frozen in vapor phase'
+    paraffin_block                     = 'Paraffin block'
+    rnalater_at_25c                    = 'RNAlater at 25C'
+    rnalater_at_4c                     = 'RNAlater at 4C'
+    rnalater_at__20c                   = 'RNAlater at -20C'
+    room_temperature_then_refrigerated = 'Room temperature then refrigerated'
+    other                              = 'Other'
+    unknown                            = 'Unknown'
 
 
 class SlideCharges(_CaseInsensitiveEnum):
@@ -1005,12 +1000,6 @@ class AJCCMetastasisStage(_CaseInsensitiveEnum):
     m1           = 'M1'
     m1a          = 'M1a'
     m1b          = 'M1b'
-    cm0          = 'cM0'
-    cm1          = 'cM1'
-    pm1          = 'pM1'
-    pm1a         = 'pM1a'
-    pm1b         = 'pM1b'
-    pm1c         = 'pM1c'
     unknown      = 'Unknown'
     not_reported = 'Not reported'
 
@@ -1055,7 +1044,7 @@ class AJCCPathologicStage(_CaseInsensitiveEnum):
 
 
 class Treatment(_CaseInsensitiveEnum):
-    '''Therapeutic agents.'''
+    '''The type of therapeutic agent administered before the body specimen was collected.'''
     surgery         = 'Surgery'
     radiation       = 'Radiation'
     chemotherapy    = 'Chemotherapy'
@@ -1124,11 +1113,11 @@ class Mitoses(_CaseInsensitiveEnum):
 
 class Necrosis(_CaseInsensitiveEnum):
     '''The necrotic status of the neoplasm.'''
-    absent              = 'Absent'
-    present             = 'Present'
-    cannot_be_determine = 'Cannot be determine'
-    unknown             = 'Unknown'
-    not_reported        = 'Not reported'
+    absent               = 'Absent'
+    present              = 'Present'
+    cannot_be_determined = 'Cannot be determined'
+    unknown              = 'Unknown'
+    not_reported         = 'Not reported'
 
 
 class IPMNGradeAtExcision(_CaseInsensitiveEnum):
@@ -1444,3 +1433,68 @@ class AdditionalUninvolvedProstateFindings(_CaseInsensitiveEnum):
     other                                          = 'Other'
     unknown                                        = 'Unknown'
     not_reported                                   = 'Not reported'
+
+
+class ClinicalMStage8(_CaseInsensitiveEnum):
+    '''Extent of the distant metastasis for the cancer based on evidence obtained from clinical assessment
+    parameters determined prior to treatment.
+    '''
+    m0           = 'M0'
+    m1           = 'M1'
+    m1a          = 'M1a'
+    m1b          = 'M1b'
+    m1c          = 'M1c'
+    pm1          = 'pM1'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class ClinicalNStage8(_CaseInsensitiveEnum):
+    '''Extent of the regional lymph node involvement for the cancer based on evidence obtained from clinical assessment parameters
+    determined prior to treatment.
+    '''
+    n0           = 'N0'
+    n1           = 'N1'
+    n2           = 'N2'
+    n3           = 'N3'
+    nx           = 'NX'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'
+
+
+class GroupStage8(_CaseInsensitiveEnum):
+    '''The extent of a cancer, especially whether the disease has spread from the original site to other parts of
+    the body based on AJCC staging criteria.
+    '''
+    zero          = '0'
+    ia            = 'IA'
+    ia1           = 'IA1'
+    ia2           = 'IA2'
+    ia3           = 'IA3'
+    ib            = 'IB'
+    iia           = 'IIA'
+    iib           = 'IIB'
+    iiia          = 'IIIA'
+    iiib          = 'IIIB'
+    iiic          = 'IIIC'
+    iv            = 'IV'
+    iva           = 'IVA'
+    ivb           = 'IVB'
+    occult        = 'Occult'
+    stage_unknown = 'Stage unknown'
+    not_reported  = 'Not reported'
+
+
+class AJCCMetastasisStage8(_CaseInsensitiveEnum):
+    '''Code to represent the defined absence or presence of distant spread or metastases (M) to locations via
+    vascular channels or lymphatics beyond the regional lymph nodes, using criteria established by the American
+    Joint Committee on Cancer (AJCC).
+    '''
+    cm0          = 'cM0'
+    cm1          = 'cM1'
+    pm1          = 'pM1'
+    pm1a         = 'pM1a'
+    pm1b         = 'pM1b'
+    pm1c         = 'pM1c'
+    unknown      = 'Unknown'
+    not_reported = 'Not reported'

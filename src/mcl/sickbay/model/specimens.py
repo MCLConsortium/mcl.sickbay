@@ -38,8 +38,8 @@ class Biospecimen(Base, LabCASMetadata):
     specimen_laterality         = Column(Enum(Laterality, name='laterality_enum'), nullable=False)
     acquisition_method          = Column(Enum(RulesOfAcquisition, name='acquisition_enum'), nullable=False)
     acquisition_method_other    = Column(String(100))
-    days_to_collection          = Column(Integer, nullable=False)
-    time_excision_to_processing = Column(Integer, nullable=False)
+    days_to_collection          = Column(Integer, nullable=True)
+    time_excision_to_processing = Column(Integer, nullable=True)
     ischemic_time               = Column(Float)
     portion_weight              = Column(Float)  # milligrams
     total_volume                = Column(Float)  # milliliters
@@ -55,7 +55,7 @@ class Biospecimen(Base, LabCASMetadata):
     protocol_version            = Column(Integer)
     storage_method              = Column(Enum(Storage, name='storage_enum'), nullable=False)
     storage_method_other        = Column(String(30))
-    days_to_storage             = Column(Integer, nullable=False)
+    days_to_storage             = Column(Integer, nullable=True)
     slide_charge_type           = Column(Enum(SlideCharges, name='slide_charges_enum'), nullable=False)
     section_thickness           = Column(Float)  # µm
     days_to_shipping            = Column(Integer)
