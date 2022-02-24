@@ -1483,6 +1483,7 @@ class GroupStage8(_CaseInsensitiveEnum):
     occult        = 'Occult'
     stage_unknown = 'Stage unknown'
     not_reported  = 'Not reported'
+    unknown       = 'Unknown'
 
 
 class AJCCMetastasisStage8(_CaseInsensitiveEnum):

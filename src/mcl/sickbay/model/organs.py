@@ -218,7 +218,7 @@ class LungOrgan(Organ):
     segment                                     = Column(Enum(LungSegment, name='lung_segment_enum'), nullable=False)
     branch                                      = Column(Enum(LungBranch, name='lung_branch_enum'), nullable=False)
     histologic_type                             = Column(Enum(LungHistologicType, name='lung_hist_enum'), nullable=False)
-    primary_adenocarcinoma_differentiation_type = Column(Enum(Adenocarcinoma, name='adenocar_enum'), nullable=False)
+    primary_adenocarcinoma_differentiation_type = Column(String(400), nullable=True)
     tumor_grade                                 = Column(Enum(TumorGrade, name='tumor_grade_enum'), nullable=False)
     ajcc_staging_system_edition                 = Column(Enum(AJCCStaging, name='ajccstaging_enum'), nullable=False)
     ajcc_7_lung_clinical_m                      = Column(Enum(ClinicalMStage7, name='cms7_enum'), nullable=True)
@@ -232,12 +232,12 @@ class LungOrgan(Organ):
     ajcc_8_lung_clinical_n                      = Column(Enum(ClinicalNStage8, name='cns8_enum'), nullable=True)
     ajcc_8_lung_clinical_t                      = Column(Enum(TStage8, name='ts8_enum'), nullable=True)
     ajcc_8_lung_disease_stage                   = Column(Enum(GroupStage8, name='group8_enum'), nullable=True)
-    ajcc_8_lung_pathologic_m                    = Column(Enum(AJCCMetastasisStage8, name='metastasis_enum'), nullable=True)
+    ajcc_8_lung_pathologic_m                    = Column(Enum(AJCCMetastasisStage8, name='metastasis_enum8'), nullable=True)
     ajcc_8_lung_pathologic_n                    = Column(Enum(ClinicalNStage8, name='cns8_enum'), nullable=True)
     ajcc_8_lung_pathologic_t                    = Column(Enum(TStage8, name='ts8_enum'), nullable=True)
     lymph_nodes_positive                        = Column(Integer, nullable=True)
     prior_malignancy                            = Column(Enum(PolarAnswer, name='polar_enum'), nullable=False)
-    prior_treatment                             = Column(Enum(Treatment, name='treatment_enum'), nullable=False)
+    prior_treatment                             = Column(String(400), nullable=True)
 
     # Object-relational mapping details:
     __mapper_args__ = {'polymorphic_identity': 'lungOrgans'}
@@ -302,15 +302,15 @@ class ProstateOrgan(Organ):
     gleason_grade_group                          = Column(Enum(GleasonGrade, name='gleason_grade_enum'), nullable=False)
     percent_gleason_pattern_4                    = Column(Float)
     tumor_extent                                 = Column(Enum(TumorExtent, name='tumor_extent_enum'), nullable=False)
-    location_dominant_nodule                     = Column(Enum(NoduleLocations, name='domloc_enum'), nullable=False)
-    location_secondary_nodule                    = Column(Enum(NoduleLocations, name='domloc_enum'), nullable=False)
+    location_dominant_nodule                     = Column(String(200), nullable=True)
+    location_secondary_nodule                    = Column(String(200), nullable=True)
     local_extent                                 = Column(Enum(AJCCLocalExtent, name='locext_enum'), nullable=False)
-    location_extent_extraprostatic_extension     = Column(Enum(ProstaticNoduleLocations, name='long_enum'), nullable=False)
+    location_extent_extraprostatic_extension     = Column(String(400), nullable=True)
     margins                                      = Column(Enum(MarginalStatus, name='marginal_status_enum'), nullable=False)
-    location_nature_positive_margins             = Column(Enum(PositiveMargins, name='positive_margins_enum'), nullable=False)
-    summed_length_positive_margin                = Column(Float, nullable=False)  # mm
+    location_nature_positive_margins             = Column(String(400), nullable=True)
+    summed_length_positive_margin                = Column(String(200), nullable=True)
     highest_grade_at_margin                      = Column(Integer)  # units?
-    seminal_vesicle_invasion                     = Column(Enum(SeminalVesicle, name='seminal_vessicle_enum'), nullable=False)
+    seminal_vesicle_invasion                     = Column(String(200), nullable=True)
     lymphatic_invasion                           = Column(Enum(LymphaticInvasion, name='lymphatic_invasion_enum', nullable=False))
     pelvic_lymph_nodes                           = Column(Integer)  # units?
     tumor_in_pelvic_lymph_nodes                  = Column(Enum(TestResults, name='test_results_enum'), nullable=False)
@@ -322,7 +322,7 @@ class ProstateOrgan(Organ):
     ajcc_staging_system_edition                  = Column(Enum(AJCCStaging, name='ajccstaging_enum'), nullable=False)
     additonal_findings_uninvolved_prostate       = Column(Enum(AdditionalUninvolvedProstateFindings, name='huge_enum'), nullable=False)
     prior_malignancy                             = Column(Enum(PolarAnswer, name='polar_enum'), nullable=False)
-    prior_treatment                              = Column(Enum(Treatment, name='treatment_enum'), nullable=False)
+    prior_treatment                              = Column(String(400), nullable=True)
 
     # Object-relational mapping details:
     __mapper_args__ = {'polymorphic_identity': 'prostateOrgans'}
