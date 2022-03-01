@@ -3,6 +3,34 @@
 This documents the changes from release to release.
 
 
+### 1.2.0
+
+This release contains some incompatible changes to accommodate CDE updates from 2022-01-20 through 2022-01-30 See [the CDE changelog](https://mcl.nci.nih.gov/resources/standards/mcl_cdedictionaries_changelog_v6.xlsx) for details. However, given the moribund nature of the Consortium for Molecular and Cellular Characterization of Screen-Detected Lesions, these changes are simplified for the following reasons:
+
+-   The project has concluded and we must intake any form of outstanding data presented (as [Kristen Anton](https://github.com/kristenanton) said: "MCL is ended, we should take what data we can.")
+-   No one actually writes queries for the relational database or uses the query interface of the ORM.
+-   The user interface just wants plain text over JSON anyway.
+
+Given that, this and all future changes no longer models 1-to-many relationships as traditional relational database structures of 1-table-row-to-multiple-other-table-rows. Instead, we just use plain text and expect pipe (`|`) separated strings. This is what the input to this database is (pipe-separated cells in a spreadsheet) and what the UI expects, so the Herculean overhead of making the tables and ORM models to support this is ultimately fatuous.
+
+The changes in this release include:
+
+-   The enumeration `GroupStage8` now has an additional value, `unknown`. This is not currently reflected in the [Lung CDEs](https://mcl.nci.nih.gov/resources/standards/lung_v2_31jan2022.xlsx) at this time, but we're not concerned.
+-   In the `LungOrgan` class:
+    -   The following values are now string types instead of enumerations:
+        -   `primary_adenocarcinoma_differentiation_type`
+        -   `prior_treatment`
+    -   The `ajcc_8_lung_pathologic_m` has an error; the enumeration name was duplicated as `metastasis_enum`; it's now `metastasis_enum8`.
+    -   The changelog for CDEs says that all 14 AJCC fields are now optional; but this was already the case for Sickbay since 1.1.0.
+-   In the `ProstateOrgan` class, the following values are now string types instead of enumerations:
+    -   `location_dominant_nodule`
+    -   `location_secondary_nodule`
+    -   `location_extent_extraprostatic_extension`
+    -   `location_nature_positive_margins`
+    -   `summed_length_positive_margin`
+    -   `seminal_vesicle_invasion`
+
+
 ### 1.1.0
 
 This release contains some incompatible changes in order to accommodate CDE updates from 2021-08-26 through 2021-11-18. Please [see the CDE changelog](https://mcl.nci.nih.gov/resources/standards/mcl_cdedictionaries_changelog-4.xlsx) for highly pedantic details of these updates. The changes to the software include:
