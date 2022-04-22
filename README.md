@@ -41,7 +41,7 @@ venv/bin/pip install --quiet --upgrade setuptools pip wheel build
 venv/bin/pip install --editable .
 ```
 
-You can run `venv/bin/create-clinical-db` to populate a PostgreSQL database with the schema of the Sickbay data model. Add `-add-test-data` to include some test data or `--add-sample-data` to add some sample data (or use both!).
+You can run `venv/bin/create-clinical-db` to populate a PostgreSQL database with the schema of the Sickbay data model. Add `--add-test-data` to include some test data or `--add-sample-data` to add some sample data (or use both!).
 
 To build and publish this software, try [build](https://pypi.org/project/build/) and [Twine](https://twine.readthedocs.io/).
 

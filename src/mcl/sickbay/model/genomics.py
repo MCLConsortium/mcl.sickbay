@@ -42,7 +42,7 @@ class Genomics(Base, LabCASMetadata):
     library_strand                   = Column(Enum(GenomicStranding, name='genomic_stranding_enum'), nullable=False)
     library_layout                   = Column(Boolean)
     # Note: there is a mispelling here; we are stuck with "analyzier" 😩
-    sequencing_platform              = Column(Enum(GenomicAnalyzer, name='genomic_analyzier_enum'), nullable=False)
+    sequencing_platform              = Column(String(100), nullable=True)
     read_length                      = Column(String(10))
     rin                              = Column(Float)  # 🤔 TODO: is this Float or Integer? What the heck even is "R.I.N."?
     adapter_name                     = Column(String(40))
