@@ -3,9 +3,25 @@
 This documents the changes from release to release.
 
 
+### 1.2.1
+
+This release accommodates [listings in the CDE changelog](https://mcl.nci.nih.gov/resources/standards/mcl_cdedictionaries_changelog_v11.xlsx) from 2022-03-15–2022-04-11, notably:
+
+-   `pancreaticoduodenectomy` is a new enumerated value in `RulesOfAcquisition`.
+-   `higpin` is a new enumerated value in `Precancers`.
+-   `sarcoma` is a new enumerated value in `Lesion`.
+-   In class `Biospecimen`, these fields are no longer enumerations or floats, but nullable strings:
+    -   `storage_method`
+    -   `section_thickness`
+    -   `shipping_destination`
+-   In class `Genomics`, `sequencing_platform` is now a nullable string.
+
+The CDE changelog also mentions that `location_extent_extraprostatic_extension` and `seminal_vesicle_invasion` (although it misspells it "vessicle") have two new enumerated values, however in Sickbay these are simply strings, so there's no need to change anything.
+
+
 ### 1.2.0
 
-This release contains some incompatible changes to accommodate CDE updates from 2022-01-20 through 2022-01-30 See [the CDE changelog](https://mcl.nci.nih.gov/resources/standards/mcl_cdedictionaries_changelog_v6.xlsx) for details. However, given the moribund nature of the Consortium for Molecular and Cellular Characterization of Screen-Detected Lesions, these changes are simplified for the following reasons:
+This release contains some incompatible changes to accommodate CDE updates from 2022-01-20 through 2022-01-31 See [the CDE changelog](https://mcl.nci.nih.gov/resources/standards/mcl_cdedictionaries_changelog_v6.xlsx) for details. However, given the moribund nature of the Consortium for Molecular and Cellular Characterization of Screen-Detected Lesions, these changes are simplified for the following reasons:
 
 -   The project has concluded and we must intake any form of outstanding data presented (as [Kristen Anton](https://github.com/kristenanton) said: "MCL is ended, we should take what data we can.")
 -   No one actually writes queries for the relational database or uses the query interface of the ORM.

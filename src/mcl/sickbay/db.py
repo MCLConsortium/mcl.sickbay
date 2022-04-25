@@ -347,13 +347,13 @@ def addSampleData(session):
         analyte_type=Analytes.dna,
         protocol_number=22,
         protocol_version=1,
-        storage_method=Storage.frozen_at__70c,
+        storage_method='lukewarm',
         days_to_storage=1,
         slide_charge_type=SlideCharges.uncharged,
-        section_thickness=15,
+        section_thickness='15',
         days_to_shipping=2,
         shipping_conditions=Packaging.dry_ice,
-        shipping_destination=Destinations.bu
+        shipping_destination='Las Vegas, baby'
     )
     bs2 = Biospecimen(
         # LabCASMetadata
@@ -388,13 +388,13 @@ def addSampleData(session):
         analyte_type=Analytes.ffpe_dna,
         protocol_number=22,
         protocol_version=1,
-        storage_method=Storage.paraffin_block,
+        storage_method='Paraffin block',
         days_to_storage=1,
         slide_charge_type=SlideCharges.unknown,
-        section_thickness=21,
+        section_thickness='oakland thicc',
         days_to_shipping=2,
         shipping_conditions=Packaging.cold_pack,
-        shipping_destination=Destinations.bu
+        shipping_destination='The Moon'
     )
     bs3 = Biospecimen(
         # LabCASMetadata
@@ -428,13 +428,13 @@ def addSampleData(session):
         analyte_type=Analytes.ffpe_dna,
         protocol_number=22,
         protocol_version=1,
-        storage_method=Storage.paraffin_block,
+        storage_method='wax block',
         days_to_storage=1,
         slide_charge_type=SlideCharges.charged,
-        section_thickness=3,
+        section_thickness='3',
         days_to_shipping=2,
         shipping_conditions=Packaging.cold_pack,
-        shipping_destination=Destinations.bu
+        shipping_destination='Cleveland'
     )
     bs1.adjacent_specimens = [AdjacentSpecimen(adjacent_specimen_ID='MCL78_001_10002')]
     bs2.adjacent_specimens = [AdjacentSpecimen(adjacent_specimen_ID='MCL78_001_10001'), AdjacentSpecimen(adjacent_specimen_ID='MCL78_001_10003')]
@@ -522,13 +522,13 @@ def addSampleData(session):
         analyte_type=Analytes.rna,
         protocol_number=1,
         protocol_version=1,
-        storage_method=Storage.ambient_temperature,
+        storage_method='Warm shelf',
         days_to_storage=275,
         slide_charge_type=SlideCharges.unknown,
-        section_thickness=123,
+        section_thickness='123',
         days_to_shipping=11,
         shipping_conditions=Packaging.other_shipping,
-        shipping_destination=Destinations.ucsf
+        shipping_destination='Djbouti'
     )
     bs404_2 = Biospecimen(
         # LabCASMetadata
@@ -562,13 +562,13 @@ def addSampleData(session):
         analyte_type=Analytes.repli_g_qiagen_dna,
         protocol_number=1,
         protocol_version=1,
-        storage_method=Storage.cut_slide,
+        storage_method='Cult slide',
         days_to_storage=275,
         slide_charge_type=SlideCharges.not_recorded,
-        section_thickness=456,
+        section_thickness='456',
         days_to_shipping=1,
         shipping_conditions=Packaging.not_recorded,
-        shipping_destination=Destinations.ucsf
+        shipping_destination='Antarctica'
     )
     bs404_3 = Biospecimen(
         # LabCASMetadata
@@ -605,14 +605,14 @@ def addSampleData(session):
         analyte_type_other='OtherAnalyteType',
         protocol_number=1,
         protocol_version=1,
-        storage_method=Storage.other,
+        storage_method='other',
         storage_method_other='OtherStorageMethod',
         days_to_storage=275,
         slide_charge_type=SlideCharges.not_applicable,
-        section_thickness=0.01,
+        section_thickness='0.01',
         days_to_shipping=2,
         shipping_conditions=Packaging.ambient_pack,
-        shipping_destination=Destinations.ucla
+        shipping_destination='Yoo-kla'
     )
     bs404_1.adjacent_specimens = [AdjacentSpecimen(adjacent_specimen_ID='MCL111_404_10002')]
     bs404_2.adjacent_specimens = [AdjacentSpecimen(adjacent_specimen_ID='MCL111_404_10001'), AdjacentSpecimen(adjacent_specimen_ID='MCL111_404_10003')]
@@ -641,7 +641,7 @@ def addSampleData(session):
         library_selection=GenomicMethod.pcr,
         library_strand=GenomicStranding.first_stranded,
         library_layout=True,
-        sequencing_platform=GenomicAnalyzer.illumina_hiseq_2000,
+        sequencing_platform='Sequent 3400-ZT',
         read_length=250,
         rin=8,
         adapter_name='N702',
@@ -676,7 +676,7 @@ def addSampleData(session):
         library_selection=GenomicMethod.affinity_enrichment,
         library_strand=GenomicStranding.second_stranded,
         library_layout=True,
-        sequencing_platform=GenomicAnalyzer.illumina_hiseq_2000,  # Kristen Anton has this as "2001" but there's no such permissible value
+        sequencing_platform='Hi-Five',
         read_length=180,
         rin=9,
         adapter_name='A583',
@@ -709,7 +709,7 @@ def addSampleData(session):
         library_selection=GenomicMethod.random,
         library_strand=GenomicStranding.unstranded,
         library_layout=False,
-        sequencing_platform=GenomicAnalyzer.illumina_hiseq_2000,  # Kristen Anton has this as "2002" but there's no such permissible value
+        sequencing_platform='mabooty',
         read_length=60,
         rin=10,
         adapter_name='A447',
@@ -746,7 +746,7 @@ def addSampleData(session):
         library_selection=GenomicMethod.poly_t_enrichment,
         library_strand=GenomicStranding.first_stranded,
         library_layout=True,
-        sequencing_platform=GenomicAnalyzer.ion_torrent_pgm,
+        sequencing_platform='torrent file',
         read_length=150,
         rin=8,
         adapter_name='H5030',
@@ -781,7 +781,7 @@ def addSampleData(session):
         library_selection=GenomicMethod.pcr,
         library_strand=GenomicStranding.second_stranded,
         library_layout=False,
-        sequencing_platform=GenomicAnalyzer.ab_solid_3,
+        sequencing_platform='Scan-o-tron 3200-XT',
         read_length=80,
         rin=9,
         adapter_name='B3854',
@@ -816,7 +816,7 @@ def addSampleData(session):
         library_selection=GenomicMethod.other,
         library_strand=GenomicStranding.unstranded,
         library_layout=False,
-        sequencing_platform=GenomicAnalyzer.ab_solid_3,
+        sequencing_platform='do me a solid',
         read_length=80,
         rin=10,
         adapter_name='B3854',
@@ -859,7 +859,7 @@ def addTestData(session):
         specimen_laterality=Laterality.bilateral, acquisition_method=RulesOfAcquisition.core_biopsy,
         time_excision_to_processing=4, days_to_collection=2, preservation_method=Preserves.o_c_t,
         fixative_used=Fixatives.para_benzoquinone, processing_duration=123, analyte_type=Analytes.repli_g_qiagen_dna,
-        storage_method=Storage.frozen_in_liquid_nitrogen, days_to_storage=99, slide_charge_type=SlideCharges.other,
+        storage_method='frozen', days_to_storage=99, slide_charge_type=SlideCharges.other,
         labcasID='/tmp/more.dat', inscribed_clinicalCore_participant_ID='ZZTOP'
     )
     cc.biospecimens = [bs]
@@ -1037,7 +1037,7 @@ def addTestData(session):
         sequencing_batch_id='QED1', library_name='Baltimore Public Library',
         library_strategy=SequencingTechnique.rna_seq, library_source=SequencingOrigin.dna,
         library_selection=GenomicMethod.pcr, library_strand=GenomicStranding.first_stranded,
-        sequencing_platform=GenomicAnalyzer.ab_solid_4, read_length=6,
+        sequencing_platform='xyz', read_length=6,
         labcasID='/tmp/1.gene'
     )
     g2 = Smart3SeqGenomics(
@@ -1045,7 +1045,7 @@ def addTestData(session):
         sequencing_batch_id='QED2', library_name='The Great Library at Alexandria',
         library_strategy=SequencingTechnique.bisulfite_seq, library_source=SequencingOrigin.rna,
         library_selection=GenomicMethod.poly_t_enrichment, library_strand=GenomicStranding.second_stranded,
-        sequencing_platform=GenomicAnalyzer.ab_solid_2, read_length=9,
+        sequencing_platform='abc', read_length=9,
         number_PCR_cycles=7, input_type=Smart3SeqInput.tissue_on_cap, number_libraries_in_pool=7,
         index_sequence='CGTAACT', indexing_type=Smart3SeqIndexing.single,
         labcasID='/tmp/2.gene', inscribed_clinicalCore_participant_ID='ZZTOP', inscribed_biospecimen_specimen_ID='ZZBOT'

@@ -53,14 +53,14 @@ class Biospecimen(Base, LabCASMetadata):
     analyte_type_other          = Column(String(100))
     protocol_number             = Column(Integer)
     protocol_version            = Column(Integer)
-    storage_method              = Column(Enum(Storage, name='storage_enum'), nullable=False)
+    storage_method              = Column(String(100), nullable=True)
     storage_method_other        = Column(String(30))
     days_to_storage             = Column(Integer, nullable=True)
     slide_charge_type           = Column(Enum(SlideCharges, name='slide_charges_enum'), nullable=False)
-    section_thickness           = Column(Float)  # µm
+    section_thickness           = Column(String(100), nullable=True)  # |-separated µm values
     days_to_shipping            = Column(Integer)
     shipping_conditions         = Column(Enum(Packaging, name='packaging_enum'))
-    shipping_destination        = Column(Enum(Destinations, name='destinations_enum'))
+    shipping_destination        = Column(String(100), nullable=True)
     # Note adjacent_specimen_IDs is a 1-to-many relation; see below, captured in attribute "adjacent_specimens"
 
     # Structural attribute ↓
