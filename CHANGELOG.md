@@ -3,6 +3,14 @@
 This documents the changes from release to release.
 
 
+### 1.2.2
+
+This release increases the limits on sizes in `Biospecimen` for the following fields:
+
+-   `specimen_ID_local` 25 → 200
+-   `specimen_parent_ID` 50 → 200
+
+
 ### 1.2.1
 
 This release accommodates [listings in the CDE changelog](https://mcl.nci.nih.gov/resources/standards/mcl_cdedictionaries_changelog_v11.xlsx) from 2022-03-15–2022-04-11, notably:

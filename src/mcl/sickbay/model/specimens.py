@@ -28,8 +28,8 @@ class Biospecimen(Base, LabCASMetadata):
     specimen_ID = Column(String(50), primary_key=True)
 
     # Attributes:
-    specimen_ID_local           = Column(String(25))
-    specimen_parent_ID          = Column(String(50))
+    specimen_ID_local           = Column(String(200))
+    specimen_parent_ID          = Column(String(200))
     specimen_type               = Column(Enum(Specimen, name='specimen_enum'), nullable=False)
     anatomical_site             = Column(Enum(AnatomicalSite, name='anatomical_site_enum'), nullable=False)
     tumor_tissue_type           = Column(Enum(TumorTissue, name='tumor_tissue_enum'), nullable=False)
