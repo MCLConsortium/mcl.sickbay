@@ -3,6 +3,11 @@
 This documents the changes from release to release.
 
 
+### 1.2.3
+
+This release simply adds `unknown` as a possible value to the `Mode` enumeration, thus satisfying [issue 21](https://github.com/MCLConsortium/mcl.sickbay/issues/21).
+
+
 ### 1.2.2
 
 This release increases the limits on sizes in `Biospecimen` for the following fields:
