@@ -191,6 +191,7 @@ class Mode(_CaseInsensitiveEnum):
     imaging         = 'Imaging'
     physical_exam   = 'Physical exam'
     laboratory_test = 'Laboratory test'
+    unknown         = 'Unknown'
 
 
 class Neoplasm(_CaseInsensitiveEnum):
