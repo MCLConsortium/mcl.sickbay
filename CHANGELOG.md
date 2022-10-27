@@ -2,6 +2,34 @@
 
 This documents the changes from release to release.
 
+### 1.2.4
+
+This release updates pancreas common data elements as follows:
+
+-   `exocrine_clinical_M_AJCC_8` is now optional
+-   `exocrine_clinical_N_AJCC_8` is now optional
+-   `exocrine_clinical_T_AJCC_8` is now optional
+-   `exocrine_group_stage_AJCC_8` is now optional
+-   `exocrine_pathologic_M_AJCC_8` is now optional
+-   `exocrine_pathologic_N_AJCC_8` is now optional
+-   `exocrine_pathologic_T_AJCC_8` is now optional
+-   `final_path_duct_communication` is now a string and is optional
+-   `histological_subtypes_ipmn` now has a new permissible value: `Mixed`
+-   `lesion_size` is now optional
+-   `neuroendocrine_clinical_M_AJCC_8` is now optional
+-   `neuroendocrine_clinical_N_AJCC_8` is now optional
+-   `neuroendocrine_clinical_T_AJCC_8` is now optional
+-   `neuroendocrine_group_stage` is now optional
+-   `neuroendocrine_pathologic_M_AJCC_8` is now optional
+-   `neuroendocrine_pathologic_N_AJCC_8` is now optional
+-   `neuroendocrine_pathologic_T_AJCC_8` is now optional
+-   `number_lesions` is now optional
+-   `path_acc_num_diag_biopsy` is now optional
+-   `path_management_recommendation` has a new permissible value: `Pancreaticoduodenectomy`
+-   `path_number_of_tumors` is now optional
+-   `path_tumor_size_largest_lesion` is now a string and is optional
+-   `tumor_pathology_location` is now a string; the TumorPathologyLocation enumeration no longer exists
+
 
 ### 1.2.3
 

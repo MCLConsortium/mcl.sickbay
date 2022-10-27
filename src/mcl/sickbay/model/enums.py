@@ -1078,23 +1078,9 @@ class IPMNHistologicalSubtypes(_CaseInsensitiveEnum):
     intestinal       = 'Intestinal'
     pancreatobiliary = 'Pancreatobiliary'
     oncocytic_type   = 'Oncocytic type'
+    mixed            = 'Mixed'
     unknown          = 'Unknown'
     not_reported     = 'Not reported'
-
-
-class TumorPathologyLocation(_CaseInsensitiveEnum):
-    '''The location of the lesion at time of resection.'''
-    head                    = 'Head'
-    uncinate                = 'Uncinate'
-    neck                    = 'Neck'
-    body                    = 'Body'
-    tail                    = 'Tail'
-    duodenum                = 'Duodenum'
-    ampulla                 = 'Ampulla'
-    distal_common_bile_duct = 'Distal Common bile duct'
-    diffuse                 = 'Diffuse'
-    not_specified           = 'Not Specified'
-    unknown                 = 'Unknown'
 
 
 class LesionFocality(_CaseInsensitiveEnum):
@@ -1149,6 +1135,7 @@ class PathManagement(_CaseInsensitiveEnum):
     '''Recommended treatment of pancreatic carcinoma.'''
     high_risk_stigmata_surgical_resection = 'High-risk stigmata: Surgical resection'
     worrisome_features_evaluation         = 'Worrisome features: Evaluation by endoscopic ultrasonography (EUS)'
+    pancreaticoduodenectomy               = 'Pancreaticoduodenectomy'
     unknown                               = 'Unknown'
     not_reported                          = 'Not reported'
 

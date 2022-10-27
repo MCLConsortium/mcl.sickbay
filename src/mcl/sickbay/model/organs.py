@@ -88,8 +88,7 @@ from .enums import (
     TStage7,
     TStage8,
     TumorExtent,
-    TumorGrade,
-    TumorPathologyLocation,
+    TumorGrade
 )
 
 
@@ -253,35 +252,35 @@ class PancreasOrgan(Organ):
     # Pancreas-specific attributes:
     histological_grading               = Column(Enum(MicroHistoPathologiclaGrading, enum='yikes_enum'), nullable=False)
     histological_subtypes_ipmn         = Column(Enum(IPMNHistologicalSubtypes, enum='ipnmhs_enum'), nullable=False)
-    tumor_pathology_location           = Column(Enum(TumorPathologyLocation, name='tpl_enum'), nullable=False)
+    tumor_pathology_location           = Column(String(400), nullable=True)
     lesion_focality                    = Column(Enum(LesionFocality, name='lf_enum'), nullable=False)
-    number_lesions                     = Column(Integer, nullable=False)
+    number_lesions                     = Column(Integer, nullable=True)
     mitotic_rate                       = Column(Enum(Mitoses, name='mitsoses_enum'), nullable=False)
     necrosis                           = Column(Enum(Necrosis, name='necrosis_enum'), nullable=False)
-    path_number_of_tumors              = Column(Integer, nullable=False)
-    path_tumor_size_largest_lesion     = Column(Float, nullable=False)  # mm
-    lesion_size                        = Column(Float, nullable=False)  # mm
+    path_number_of_tumors              = Column(Integer, nullable=True)
+    path_tumor_size_largest_lesion     = Column(String(400), nullable=True)
+    lesion_size                        = Column(Float, nullable=True)  # mm
     path_ipmn_grade_at_excision        = Column(Enum(IPMNGradeAtExcision, name='ipnmgae_enum'), nullable=False)
-    final_path_duct_communication      = Column(Enum(DuctComms, name='ductcomms_enum'), nullable=False)
+    final_path_duct_communication      = Column(String(400), nullable=True)
     path_management_recommendation     = Column(Enum(PathManagement, name='pm_enum'), nullable=False)
-    path_acc_num_diag_biopsy           = Column(Integer, nullable=False)
+    path_acc_num_diag_biopsy           = Column(Integer, nullable=True)
     path_immunohistochemistry          = Column(Enum(Immunohistochemistry, name='immunohistochemistry_enum'), nullable=False)
     path_immunohistochemistry_outcome  = Column(Enum(ImmunohistochemistryOutcomes, name='io_enum'), nullable=False)
     histology_grading                  = Column(Enum(HistologyGrading, name='histologygrading_enum'), nullable=False)
-    exocrine_pathologic_T_AJCC_8       = Column(Enum(TStage8, name='ts8_enum'), nullable=False)
-    exocrine_pathologic_N_AJCC_8       = Column(Enum(ExocrineStage8, name='es8_enum'), nullable=False)
+    exocrine_pathologic_T_AJCC_8       = Column(Enum(TStage8, name='ts8_enum'), nullable=True)
+    exocrine_pathologic_N_AJCC_8       = Column(Enum(ExocrineStage8, name='es8_enum'), nullable=True)
     exocrine_pathologic_M_AJCC_8       = Column(Enum(ClinicalTNMCategoryM8, name='ctnmc8m_enum'))
-    exocrine_clinical_T_AJCC_8         = Column(Enum(TStage8, name='ts8_enum'), nullable=False)
-    exocrine_clinical_N_AJCC_8         = Column(Enum(ExocrineStage8, name='es8_enum'), nullable=False)
+    exocrine_clinical_T_AJCC_8         = Column(Enum(TStage8, name='ts8_enum'), nullable=True)
+    exocrine_clinical_N_AJCC_8         = Column(Enum(ExocrineStage8, name='es8_enum'), nullable=True)
     exocrine_clinical_M_AJCC_8         = Column(Enum(ClinicalTNMCategoryM8, name='ctnmc8m_enum'))
     exocrine_group_stage_AJCC_8        = Column(Enum(PrognosticGroupStage8, name='progroup8_enum'))
-    neuroendocrine_pathologic_T_AJCC_8 = Column(Enum(TStage8, name='ts8_enum'), nullable=False)
-    neuroendocrine_pathologic_N_AJCC_8 = Column(Enum(ExocrineStage8, name='es8_enum'), nullable=False)
-    neuroendocrine_pathologic_M_AJCC_8 = Column(Enum(AJCCMetastasisStage, name='metastasis_enum'), nullable=False)
-    neuroendocrine_clinical_T_AJCC_8   = Column(Enum(TStage8, name='ts8_enum'), nullable=False)
-    neuroendocrine_clinical_N_AJCC_8   = Column(Enum(ExocrineStage8, name='es8_enum'), nullable=False)
-    neuroendocrine_clinical_M_AJCC_8   = Column(Enum(AJCCMetastasisStage, name='metastasis_enum'), nullable=False)
-    neuroendocrine_group_stage         = Column(Enum(NeuroendocrineGroup, name='ng_enum'), nullable=False)
+    neuroendocrine_pathologic_T_AJCC_8 = Column(Enum(TStage8, name='ts8_enum'), nullable=True)
+    neuroendocrine_pathologic_N_AJCC_8 = Column(Enum(ExocrineStage8, name='es8_enum'), nullable=True)
+    neuroendocrine_pathologic_M_AJCC_8 = Column(Enum(AJCCMetastasisStage, name='metastasis_enum'), nullable=True)
+    neuroendocrine_clinical_T_AJCC_8   = Column(Enum(TStage8, name='ts8_enum'), nullable=True)
+    neuroendocrine_clinical_N_AJCC_8   = Column(Enum(ExocrineStage8, name='es8_enum'), nullable=True)
+    neuroendocrine_clinical_M_AJCC_8   = Column(Enum(AJCCMetastasisStage, name='metastasis_enum'), nullable=True)
+    neuroendocrine_group_stage         = Column(Enum(NeuroendocrineGroup, name='ng_enum'), nullable=True)
 
     # Object-relational mapping details:
     __mapper_args__ = {'polymorphic_identity': 'pancreaseOrgans'}
